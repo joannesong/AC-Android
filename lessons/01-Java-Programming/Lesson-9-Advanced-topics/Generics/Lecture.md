@@ -3,16 +3,12 @@
  
 --- 
 
-# Questions
-#### ... from anywhere everywhere?
-
-Watch out for *[In-class exercise]*
+# Warm up exercise
 
 ---
  
 # Objectives 
  
-- Review extending abstract classes 
 - Master reading types and Generic notation 
 - Understand when to use generics 
 - Be able to create simple generic functions 
