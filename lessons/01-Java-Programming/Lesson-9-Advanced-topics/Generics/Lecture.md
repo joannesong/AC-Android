@@ -5,6 +5,13 @@
 
 # Warm up exercise
 
+Create a main program with the functions:
+    - sum: that takes a list of integers and returns their sum
+    - min: that takes a list of integers and returns the smallest number
+    - main method: that creates a list with the numbers 2,4,5,6,1,3,8,0  
+        and prints out the sum and min of the numbers using the first 2 funcs above
+
+
 ---
  
 # Objectives 
@@ -30,16 +37,39 @@
 - Generics are Interfaces on steriod
  
 --- 
+
+## Generic class syntax
+```java
+public class Box<T> {
+   private T t;
+
+   public void add(T t) {
+      this.t = t;
+   }
+}
+```
+
+## Generic method syntax (outside generic class)
+
+```java
+// generic method printArray
+   public static < E > void printArray( E[] inputArray ) {
+      // Display array elements
+      for(E element : inputArray) {
+         System.out.printf("%s ", element);
+      }
+      System.out.println();
+   }
+```
+
+---
  
-# Quick Refresher on Abstractions 
+# The Print function 
  
-1. The easy `print` function from last time - how do we print more types? 
+1. The easy `print` function 
     - Using function overloads to accomodate each object 
     - Using a very high-level interface (or object) 
-    - Add special print for `Food` types 
-    - Introduction of vargs 
- 
-[In-class exercise] 
+    - Add special print for `Food` types
  
 --- 
  
@@ -91,7 +121,6 @@ Integer x = myIntList.iterator().next(); // 3'
     - For a number, print the number of digits 
     - Overload, interface or something else? 
  
-[In-class exercises] 
  
 --- 
  
@@ -104,22 +133,17 @@ So Why Generics
  
 --- 
  
-# Code With Me - A simple list of strings 
+# Example: A simple list of strings 
  
 1. Create a class `StringList` to represent a list of strings (similar to arraylist of integers) 
     - methods add, size, toString, and clear
 2. Customize string list above to represent a list of Donuts, call it `DonutsList` 
 3. Add a typed constructor with vargs 
  
-[In-class exercise] 
-
----
-
-# Break time / Mid-day checkins
  
 --- 
  
-# Code With Me - Abstracting over the string type 
+# Abstracting over the string type in StringList
  
 1. Let's take a closer look at [ArrayList](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html) 
 2. Create a `SmartList` that is similar to `StringList` but using type parameters.
@@ -136,8 +160,6 @@ public interface SmartListI <E> {
     boolean isEmpty(); 
 } 
 ``` 
- 
-[In-class exercise] 
  
 --- 
  
@@ -176,7 +198,7 @@ Create a class `Box` that boxes any types and stores the time they were created
  
 # Summary 
  
- 
+* Generic classes and method work on objects of different type (without loosing type info)
  
 --- 
  
