@@ -25,7 +25,7 @@ As developers working with java, it is important to understand these steps, but 
 
 Below, I have a project called Collections with a package which I defined during project creation which contains classes.
 
-!(https://github.com/C4Q/AC-Android/blob/best-practice/lessons/programming-best-practices/folder_structure.png])
+!(https://github.com/C4Q/AC-Android/blob/best-practice/lessons/programming-best-practices/folder_structure.png)
 
 The classes themselves can be arranged by package depending on their function and it is something we will see in practice during the lesson.
 
@@ -34,7 +34,7 @@ The classes themselves can be arranged by package depending on their function an
 Having clean code is absolutely paramount to being a good programmer. You want to be able to go back and make any necessary changes in the future without breaking things and making sure that anything you write can be understood by another programmer. This is a skill that comes with practice but there are several conventions that you can follow. The image below is a snapshot of what a formatted class in production can look like:
 
 
-!(https://github.com/C4Q/AC-Android/blob/best-practice/lessons/programming-best-practices/class_convetion.png])
+!(https://github.com/C4Q/AC-Android/blob/best-practice/lessons/programming-best-practices/class_convetion.png)
 
 However this formatting can be time consuming and so it is usually done as a polishing step once basic functionaility is implemented. When prototyping you generally want to build as quickly as possible and so it's not expected to see this formatting all the time, the exception being take-home-projects for interviews and at your workplace. It has been my experience that good docummented code is hardly frowned-upon when evaluating candidates at the workplace. Even for your own private projects, being able to have a consistent style that you can come back to will make development easier for you overtime.
 
