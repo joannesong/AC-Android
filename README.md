@@ -6,13 +6,14 @@
 - [Schedule](schedule.md)
 - [Homework](homework/)
 - [Github Classroom](https://classroom.github.com/classrooms/21197287-accesscode3-3)
+- [Canvas Calendar](https://canvas.instructure.com/calendar)
 
 
 ## Coding Style
 
 AC3.3 uses the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) for all Java code. Students should be familiar with this style and format Java code accordingly in all exercises, projects, homework submissions, and assessments.
 
-## Highlights
+### Style Guide Highlights
 
 - Line length limited to 100 characters.
 - Spaces around operators.
