@@ -285,3 +285,9 @@ Describe a XML representation for the image below
 ![alt text](website-layout.png "Website Layout template")
 
 
+## It Doesn't Stop There...
+
+All Android layouts and view elements are represented using XML.
+
+This lecture is a lead-in to [Android Layouts](../Lecture-4-Layouts-XML-in-Android/)
+

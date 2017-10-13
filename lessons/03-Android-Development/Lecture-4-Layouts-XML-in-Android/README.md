@@ -1,14 +1,14 @@
-- title: XML Layouts
-- tags: android, xml, layouts, widgets, toasts
+## Title: Android Layouts
+Tags: android, xml, layouts, widgets, toasts
 
-# Objectives
+## Objectives
 
 - Learn how activity layouts are built in XML.
 - Practice positioning child views in both LinearLayout and RelativeLayouts.
 - Practice configuring XML attributes for common view widgets.
 - Learn how to make a Toast.
 
-# Resources
+## Resources
 
 - [Toasts](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)
 - [Layouts](https://developer.android.com/guide/topics/ui/declaring-layout.html)
@@ -18,7 +18,6 @@
 - [Android API: EditText](https://developer.android.com/reference/android/widget/EditText.html)
 - [Android API: Button](https://developer.android.com/reference/android/widget/Button.html)
 
-# Lecture
 
 ## Making Toast :bread:
 
