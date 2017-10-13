@@ -1,67 +1,224 @@
-- title: XML Layouts
-- tags: android, xml, layouts, widgets, toasts
 
-# Objectives
+## Title: Topic Here
+Tags: Some, tags
 
-- Learn how activity layouts are built in XML.
-- Practice positioning child views in both LinearLayout and RelativeLayouts.
-- Practice configuring XML attributes for common view widgets.
-- Learn how to make a Toast.
+## Objectives
 
-# Resources
+* Understand XML, Schema and Namespaces
+* Learn how to use XML syntax
+* Use XML to represent data
+* Serialize data to and from XML
+* Understand basic layout techniques in XML
 
-- [Toasts](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)
-- [Layouts](https://developer.android.com/guide/topics/ui/declaring-layout.html)
-- [Linear Layout](https://developer.android.com/guide/topics/ui/layout/linear.html)
-- [Relative Layout](https://developer.android.com/guide/topics/ui/layout/relative.html)
-- [Android API: TextView](https://developer.android.com/reference/android/widget/TextView.html)
-- [Android API: EditText](https://developer.android.com/reference/android/widget/EditText.html)
-- [Android API: Button](https://developer.android.com/reference/android/widget/Button.html)
 
-# Lecture
+## Resources
 
-## Making Toast :bread:
+* [W3Schools XML Tutorial](https://www.w3schools.com/xml/default.asp)
+* [Just a little bit of HTML](https://www.w3schools.com/html/)
+* [Java Docs XML Serialization](http://docs.oracle.com/javase/tutorial/jaxb/intro/basic.html)
+* [Better Java Serializatin using Jackson](http://www.baeldung.com/jackson-xml-serialization-and-deserialization)
+ 
 
-A Toast is a popup that provides simple feedback to the user. It only fills the amount of space required for the message and does not remove the current activity from the foreground or block interaction. A Toast will automatically disappear after a short timeout, defined by the duration argument (e.g. `Toast.LENGTH_SHORT` or `Toast.LENGTH_LONG`).
+## What is XML
 
-```java
-// Make a toast that says "Hello toast!"
-Context context = getApplicationContext();
-CharSequence text = "Hello toast!";
-int duration = Toast.LENGTH_SHORT;
+* XML stands for eXtensible *Markup* Language
+* XML is a markup language much like HTML
+* XML was designed to store and transport data
+* XML was designed to be self-descriptive
 
-Toast toast = Toast.makeText(context, text, duration);
-toast.show();
 
-// ... Or as a single line:
-Toast.makeText(getApplicationContext(), "Hello toast!", Toast.LENGTH_SHORT).show();
+## XML Does Not DO Anything
+
+Maybe it is a little hard to understand, but XML does not DO anything.
+
+This note is a note to Tove from Jani, stored as XML: 
+
+```
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
 ```
 
-## XML Layouts
+You can store information about a Java data-class as XML
 
-A **layout** defines the visual structure for a user interface. There are two ways to create Android layouts:
+## XML Does Not Use Predefined Tags
 
-1. As an XML resource file. Android provides a straightforward XML vocabulary that corresponds to the View classes and subclasses, such as those for widgets and layouts.
-2. In Java, by instantiating layout elements at runtime. Your application can create View and ViewGroup objects (and manipulate their properties) programmatically.
+* The XML language has no predefined tags. No such things as `if`, `while` keywords. No keywords.
 
-While you can use either of these methods to create layouts, there are some advantages to declaring your UI in XML:
-- It enables you to better separate the presentation of your application from the code that controls its behavior. 
-- You can modify or adapt layouts without having to modify your source code. For example, you can create XML layouts for different screen orientations, different device screen sizes, and different languages. 
-- Declaring the layout in XML makes it easier to visualize the structure of your UI, so it's easier to debug problems.
+* The tags in the example above (like <to> and <from>) are not defined in any XML standard. These tags are "invented" by the author of the XML document.
 
-Each XML layout file may only contain one root element. Once you've defined the root element, you can add more layout objects or widgets as child elements within.
+* Android creates some predefined tags like <Layout>, <Button>, <TextView>, etc.
 
-When you compile your application, each XML layout file is compiled into a View resource. For an activity, you can load the layout resource by calling setContentView() and passing it the reference to your layout resource in the form of: R.layout.layout_file_name. For example:
+* With XML, the author must define both the tags and the document structure.
 
-```java
-public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.main_layout);
+## Anatomy of XML Markup
+
+```
+1 <?xml version="1.0" encoding="UTF-8"?>  
+2 <!-- A note model -->                   
+3 <note>                                                      
+4   <id type="number">23</id>                                
+5   <to type="string">Tove</to>
+6   <from type="string">Jani</from>
+7   <heading type="string" size="big">Reminder</heading>    
+8   <body type="string">Don't forget me this weekend!</body>
+9   <created type="date">June 1, 2017</created>
+10 </note>
+```
+
+* line 1 is the **xml prolog**, the only **required** tag in *valid* xml 
+* line 2 is a xml comment, opens with `<!--` and closes with `-->`
+* line 3-10 are user defined tags
+* `type` on line 4 is an **attribute** whose **value** is `number`
+
+## What are the Rules? None*
+
+* As many tags as you want
+* A tag can go as deep as it wants
+* A tag can have as many attributes as it wants
+* Anything can be used as a tag: `<lol:2>`
+
+#### But...
+
+* There is only 1 root element (the declaration doesn't count)
+* You must close every tag you open.
+* Tag names are case sensitive, `<P>` is different from `<p>`
+* The nesting must be proper: `<a><b> </b></a>`
+* Attribute values *must* be quoted: `<movie author="James Bond">007</movie>`
+* You cannot use `<` and `>` anyhow because...? Use `&lt;` and `&gt;`
+
+## Namespaces
+
+XML Namespaces provide a method to avoid element name conflicts.
+
+Imagine you wanted to use `<table>` but someone else (like the android system or a browser) has already defined `<table>`
+
+Here are two different kinds of table under different namespaces `h` and `f`:
+
+```
+<root xmlns:h="http://www.w3.org/TR/html4/"
+xmlns:f="https://www.w3schools.com/furniture">
+
+    <h:table>
+    <h:tr>
+        <h:td>Apples</h:td>
+        <h:td>Bananas</h:td>
+    </h:tr>
+    </h:table>
+
+    <f:table>
+    <f:name>African Coffee Table</f:name>
+    <f:width>80</f:width>
+    <f:length>120</f:length>
+    </f:table>
+
+</root>
+```
+
+## Namespaces in Real Use
+
+Here is a basic android view. How many Namespaces are there?
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.justiceo.myapplication.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
+```
+
+## XML in Practice: Representing Data
+
+How would we represent note xml as a java class?
+
+```
+<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+```
+
+Represent [Books.xml](books.xml) as a Java object
+
+
+## XML in Practice: Describing Views
+
+For displaying web pages, android apps, iOS apps
+
+Navigate to [Repl it HTML canvas](https://repl.it/languages/web_project)
+
+
+## XML in Practice: Object Serialization
+
+* Serialization is the process of converting an object into a stream of bytes in order to store the object or transmit it to memory, a database, or a file. 
+* Its main purpose is to save the state of an object in order to be able to recreate it when needed. 
+* The reverse process is called deserialization.
+
+The steps for saving object as XML:
+* Describe the class using annotations
+* Marshall the object into a XML representation
+* Write it to a file or print to console
+
+
+## Hands-on Serialization
+
+See [Object Serialization Example](ObjectSerializationExample.java)
+
+
+## Summary
+
+* XML was designed to carry data - with focus on what data is
+* Is very extensible - no predefined tags
+* Namespaces resolve conflicts on conflicting tags
+* XML can be used to describe views and layouts on different platforms
+* Xml can be used to serialize complex data structures.
+
+## Exercises
+
+> ** Question 1 ** 
+
+Describe the java class below as a XML document. 
+
+Imagine someone needs to be able to recreate the class exactly just based on the XML document.
+
+```
+public class Car {
+    public String name;
+    protected String model;
+    private int mileage;
+
+    private class Engine {
+        public int size;
+        public String make;
+        public double horsePower;
+    }
+    
 }
 ```
 
-## [API Guides: LinearLayout](https://developer.android.com/guide/topics/ui/layout/linear.html)
+> ** Question 2 **
 
-## [API Guides: RelativeLayout](https://developer.android.com/guide/topics/ui/layout/relative.html)
+Describe a XML representation for the image below
 
-## [Exercises](exercises.md)
+![alt text](website-layout.png "Website Layout template")
+
+
