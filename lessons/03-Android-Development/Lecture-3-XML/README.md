@@ -33,7 +33,7 @@ Maybe it is a little hard to understand, but XML does not DO anything.
 
 This note is a note to Tove from Jani, stored as XML: 
 
-```
+```xml
 <note>
   <to>Tove</to>
   <from>Jani</from>
@@ -56,7 +56,7 @@ You can store information about a Java data-class as XML
 
 ## Anatomy of XML Markup
 
-```
+```xml
 1 <?xml version="1.0" encoding="UTF-8"?>  
 2 <!-- A note model -->                   
 3 <note>                                                      
@@ -98,7 +98,7 @@ Imagine you wanted to use `<table>` but someone else (like the android system or
 
 Here are two different kinds of table under different namespaces `h` and `f`:
 
-```
+```xml
 <root xmlns:h="http://www.w3.org/TR/html4/"
 xmlns:f="https://www.w3schools.com/furniture">
 
@@ -122,7 +122,7 @@ xmlns:f="https://www.w3schools.com/furniture">
 
 Here is a basic android view. How many Namespaces are there?
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -148,7 +148,7 @@ Here is a basic android view. How many Namespaces are there?
 
 How would we represent note xml as a java class?
 
-```
+```xml
 <note>
   <to>Tove</to>
   <from>Jani</from>
@@ -200,7 +200,7 @@ Describe the java class below as a XML document.
 
 Imagine someone needs to be able to recreate the class exactly just based on the XML document.
 
-```
+```java
 public class Car {
     public String name;
     protected String model;
