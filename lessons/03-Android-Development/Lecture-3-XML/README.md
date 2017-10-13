@@ -1,5 +1,6 @@
 
-## Title: Topic Here
+## Title: XML 
+### Introduction, Views and Serialization
 Tags: Some, tags
 
 ## Objectives
@@ -162,9 +163,33 @@ Represent [Books.xml](books.xml) as a Java object
 
 ## XML in Practice: Describing Views
 
-For displaying web pages, android apps, iOS apps
+* XML is used for describing views for displaying web pages (HTML) android apps (Views)
+* HTML is the standard markup language for creating Web pages.
+* HTML stands for Hyper Text Markup Language
+* HTML elements are represented by tags
+* HTML tags label pieces of content such as "heading", "paragraph", "table", and so on
+* Browsers do not display the HTML tags, but use them to render the content of the page
 
-Navigate to [Repl it HTML canvas](https://repl.it/languages/web_project)
+## XML in Practice: Basic HTML Layout
+
+To image below is a basic layout of mobile web pages.
+
+![alt text](simple-layout.png "Simple layout")
+
+The HTML representation would like:
+```html
+<body style="text-align:center; text-transform: uppercase">
+    <div style="padding:20px; background: pink">Header</div>
+    <div style="padding:10px; background: magenta">Navigation Bar</div>
+    <div style="min-height:200px; padding-top:100px">Main Content</div>
+    <div style="padding:20px; background: magenta">Footer</div>
+</body>
+```
+
+Preview using [Repl.it for HTML](https://repl.it/languages/web_project)
+
+How can we represent the layout below in html?
+![alt text](complex-layout.jpeg "Complex layout")
 
 
 ## XML in Practice: Object Serialization
@@ -179,9 +204,47 @@ The steps for saving object as XML:
 * Write it to a file or print to console
 
 
-## Hands-on Serialization
+## XML in Practice: Serializing Java Objects
 
-See [Object Serialization Example](ObjectSerializationExample.java)
+```java
+// imports omitted
+public class ObjectSerializationExample {
+
+    @XmlRootElement
+    public static class  Car implements Serializable {
+        @XmlElement
+        public String name = "Mercedes Benz";
+        @XmlElement
+        public int mileage = 2000;
+        @XmlAttribute
+        public String model = "C-class";
+    }
+
+    public static void main(String[] args) throws Exception {
+        Car car = new Car();
+
+        // marshall the object
+        JAXBContext ctx = JAXBContext.newInstance(Car.class);
+        Marshaller marshaller = ctx.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        // write it to a stream
+        StringWriter writer = new StringWriter();
+        marshaller.marshal(car, writer);
+        writer.close();
+
+        // print to console (could be to a file)
+        System.out.println(writer.toString());
+
+        // Read it back
+        JAXBContext readCtx = JAXBContext.newInstance(Car.class);
+        Unmarshaller unmarshaller = readCtx.createUnmarshaller();
+
+        Car carReadBack = (Car) unmarshaller.unmarshal(new StringReader(writer.toString()));
+        System.out.println(carReadBack.name);
+    }
+}
+```
 
 
 ## Summary
