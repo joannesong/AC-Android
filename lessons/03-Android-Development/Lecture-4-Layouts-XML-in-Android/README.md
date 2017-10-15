@@ -148,7 +148,7 @@ You can guess **android:paddingRight**, **paddingTop** and **paddingBottom**
 
 ## Tweek and Feel
 
-Experiment with these attributes in the notepad app
+Experiment with these attributes in the [Android Layouts app](https://github.com/C4Q/AC-Android-Apps/tree/master/AndroidLayoutsXML)
 
 ## Exercises
 
