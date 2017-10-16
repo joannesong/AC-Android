@@ -14,11 +14,8 @@
 
 - [Visualgo.net - visualizing data structures](http://visualgo.net/)
 - [Big O Cheat Sheet](http://bigocheatsheet.com/)
-- [CS50 - Linked Lists](https://study.cs50.net/linked_lists)
-- [CS50 - Stacks](https://study.cs50.net/stacks)
-- [CS50 - Queues](https://study.cs50.net/queues)
+- [LinkedList Java](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html)
 
-# Lecture
 
 ## Linked Lists
 
@@ -112,32 +109,3 @@ A **circular linked list** is a variation of linked list in which the first elem
 
 3. Can you traverse a singly-linked list backwards? What about a circular singly-linked list?
 
-## Stacks
-
-A **stack** is a last in, first out (LIFO) data structure that can be visualized like a stack of papers or pancakes. What you put on top (push) is the first item you take off (pop).
-
-Stack interface:
-- `void push(E item)` - inserts `item` at the top of the stack, O(1).
-- `E pop()` - remove item at the top of the stack, O(1).
-- `int size()` - return the number of items.
-- `boolean isEmpty()` - return `true` if no items, otherwise `false`.
-- `E top()` - return item at the top of the stack without removing it, O(1).
- 
-## Queues
-
-A **queue** is a first in, first out (FIFO) data structure that can be visualized as a waiting line. You add to the back of the line (enqueue), the front of the line is the first item you take off (dequeue).
-
-Queue interface:
-- `void enqueue(E item)` - inserts `item` at the rear of the queue, O(1).
-- `E dequeue()` - remove item from front of queue, O(1).
-- `int size()` - return the number of items.
-- `boolean isEmpty()` - return `true` if no items, otherwise `false`.
-- `E front()` - return item at the front of the queue without removing it, O(1).
-
-### Exercises
-
-1.  Write a `moveToTop` function that takes in a queue and a value, and moves that value to the top of the queue.
-
-2. Review your solutions to and complete any of the [List, Stack and Queue Implementation Exercises](exercises.md) that you haven't already.
-
-## [Exit Ticket](https://goo.gl/forms/RzGGMo5rGUPzC0y62)
