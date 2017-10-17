@@ -91,11 +91,19 @@ You can store information about a Java data-class as XML
 * Attribute values *must* be quoted: `<movie author="James Bond">007</movie>`
 * You cannot use `<` and `>` anyhow because...? Use `&lt;` and `&gt;`
 
+In XML, `<tag> 2 < 3 </tag>` becomes `<tag> 2 &lt; 3 </tag>` because `<` and `>` are special characters
+
 ## Namespaces
 
-XML Namespaces provide a method to avoid element name conflicts.
+XML Namespaces provide a method to avoid element name conflicts. Namespaces differentiate tags.
 
 Imagine you wanted to use `<table>` but someone else (like the android system or a browser) has already defined `<table>`
+
+A namespace is declared using the "xmlns" attribute - which stands for XMLNameSpace
+
+The value of the xmlns attribute is a link to the schema.
+
+A schema is a document that describes the data in an xml file or a xml format
 
 Here are two different kinds of table under different namespaces `h` and `f`:
 
