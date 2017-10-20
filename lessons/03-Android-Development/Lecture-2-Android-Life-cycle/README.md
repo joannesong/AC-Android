@@ -1,7 +1,6 @@
-- title: The Android Lifecycle
-- tags: android, activities, lifecycle
+# The Android Lifecycle
 
-# Objectives
+## Objectives
 
 - Practice creating a new Android Studio project.
 - Understand what an activity is and the role that it plays in an Android app.
@@ -9,7 +8,7 @@
 - Learn how to log output to the console.
 - Learn how to save the state of an activity through an orientation change.
 
-# Resources
+## Resources
 
 - [Activities](https://developer.android.com/guide/components/activities.html)
 - [Managing the Activity Lifecycle](https://developer.android.com/training/basics/activity-lifecycle/index.html)
