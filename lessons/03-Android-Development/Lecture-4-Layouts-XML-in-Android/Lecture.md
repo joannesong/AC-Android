@@ -8,7 +8,6 @@ Tags: android, xml, layouts, widgets, toasts
 - Learn how activity layouts are built in XML.
 - Practice positioning child views in LinearLayout.
 - Practice configuring XML attributes for common view widgets.
-- Learn how to make a Toast.
 
 --
 
