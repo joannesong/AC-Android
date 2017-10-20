@@ -77,3 +77,18 @@ Title: Review
 - Retrieve external resources like strings, arrays, and drawables in Java code
 
 - To explore how Android manages external resources such as strings, layouts, and drawables.
+
+## Views
+
+
+## Intents and Services
+
+- Distinguish between implicit and explicit intents
+
+- Starting components and services using intents
+
+- Use intents to handle navigation within an Android application
+
+- Use intent extras to transfer information from one activity to another.
+
+- Registering intents via intent filters
