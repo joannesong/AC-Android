@@ -1,46 +1,44 @@
-- title: Android Intents
-- tags: intents, extra, data, action
+Title: Android Intents and Services
+Tags: intents, services, extra, data, action
 
-# Objectives
+## Objectives
 
 - Distinguish between implicit and explicit intents
+- Starting components and services using intents
 - Use intents to handle navigation within an Android application
 - Use intent extras to transfer information from one activity to another.
+- Registering intents via intent filters
 
-# Resources
+## Resources
 
 - [Intent](https://developer.android.com/reference/android/content/Intent.html)
 - [Common Intents](https://developer.android.com/guide/components/intents-common.html)
 - [Getting a result from an activity](https://developer.android.com/training/basics/intents/result.html)
+- [Intents Tutorial by Vogella](http://www.vogella.com/tutorials/AndroidIntent/article.html)
 
-# Lecture
+
+## What are intents?
+
+Intents are asynchronous messages which allow application components to request functionality from other Android components. Intents allow you to interact with components from the same applications as well as with components contributed by other applications. For example, an activity can start an external activity for taking a picture.
+
+Intents are objects of the android.content.Intent type. Your code can send them to the Android system defining the components you are targeting. For example, via the startActivity() method you can define that the intent should be used to start an activity.
+
 
 ### Instantiating activities
 
 The simplest way to navigate from activity to another is to call the startActivity() method in the initial activity.
 
 ```java
-public void startActivity(Intent intent);
-```
-The Intent class refers to an object that can be used to navigate between activities. At a minimum, it will specify which activity we want to navigate to or some specific action.
-
-```java
-Intent intent = new Intent(MainActivity.this, FingerPrintActivity.class)
+// start the gallary activity
+Intent intent = new Intent(this, GalleryActivity.class)
+startActivity(intent);
 ```
 
-### What is an Intent?
+![using startIntent to start another activity](images/startIntent-to-perform-action.png)
 
-The intent, like a lot of what we see in Java, is just an object. It's an object that a component can use to communicate with the OS. So far, the only we components we're familiar with are activities, but there are also services, broadcast receivers, and content providers.
+Activities which are started by other Android activities are called sub-activities. This wording makes it easier to describe which activity is meant.
 
-The intent class provides different constructors depending on what you intend to do.
 
-*Take a few minutes to research some of the other constructors that can be used to create an Intent instance.*
-
-When an activity calls startActivity, the call is sent to the OS, which lunches the ActivityManager trigging the ActivityManager to create the Activity instance and call its onCreate method.
-
-NB: Before ActivityManager actually starts the desired activity, it checks the manifest to ensure that the specified class has been declared in AndroidManifest.xml. If it hasn't been declared, we end up with an [ActivityNotFoundException](https://developer.android.com/reference/android/content/ActivityNotFoundException.html).
-
-TLDR - Declare all your activities in your manifest
 
 ### Navigating
 
@@ -55,57 +53,69 @@ As a group, we will build a splash screen that is presented when we first launch
 
 
 
-#### What is your Intent? Implicit vs. Explicit
+#### Implicit vs. Explicit Intents
 
-When we specify a Class within our application we want to navigate to, that is a very explicit intent. We are telling the OS and the ActivityManager exactly which activity we want to navigate to.
-There are two primary forms of intents you will use.
+When we **specify a class within our application** we want to navigate to, that is an **explicit** intent. We are telling the ActivityManager exactly which activity we want to navigate to.
 
-- Explicit Intents have specified a component (via setComponent(ComponentName) or setClass(Context, Class)), which provides the exact class to be run. Often these will not include any other information, simply being a way for an application to launch various internal activities it has as the user interacts with the application.
+```java
+Intent explicitIntent = new Intent(this, ActivityTwo.class);
+```
 
-- Implicit Intents have not specified a component; instead, they must include enough information for the system to determine which of the available components is best to run for that intent.
+Implicit Intents do not specify a component; instead, they must include enough information for the system to determine which of the available components is best to run for that intent. 
 
-Using an implicit intent is useful when your app cannot perform the action, but other apps probably can and you'd like the user to pick which app to use.
+```java
+Intent implicitIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.c4q.nyc"));
+```
+
+Using an implicit intent is useful when your app cannot perform the action, but other apps probably can and you'd like the user to pick which app to use. 
+
+## Common Implicit Intents
 
 For example, if you have content you want the user to share with other people, create an intent with the ACTION_SEND action and add extras that specify the content to share. When you call startActivity() with that intent, the user can pick an app through which to share the content.
 
+* Taking a picture with Camera (uses default camera app)
+
+* Sending/Reading an SMS message
+
 *What other examples of implicit intents can we think of?*
 
-#### Sending data
-
-![Extra1](http://apprize.info/google/programming/programming.files/image070.jpg)
+## Sending data
 
 To send data from one activity to another, we need to make sure to associate an extra with the intent before calling startActivity() in our origin Activity.
 
-Extras are just arbitrary data that a calling activity can include with its intent. The OS will forward the intent to the recipient activity, which can access the extras and retrieve the data.
-
-An extra is structured as a key-value pair, and by now we are experts on key-value pairs.
-
-
+You can add data to an Intent Bundle via the overloaded `putExtra()` methods of the Intent objects. Extras are key/value pairs. The key is always of type String. As value you can use the primitive data types (int, float, …​) plus objects of type String, Bundle, Parcelable and Serializable.
 ``` java
-public Intent putExtra(String name, boolean value);
+public Intent putExtra(String key, String value);
 ```
 
-Why do you think the method returns an Intent object
+## Receiving data
 
-
-![Extra2](http://apprize.info/google/programming/programming.files/image071.jpg)
-
-To receive data back from a child activity, you will want to call startActivityForResult() instead of startActivity.
-
-
-It's method definition looks like
+The component which receives the intent can use the `getIntent().getExtras()` method call to get the extra data. That is demonstrated in the following code snippet.
 
 ```java
-public void startActivityForResult(Intent intent, int requestCode);
+Bundle extras = getIntent().getExtras();
+if (extras == null) {
+    return;
+}
+// get data via the key
+String value1 = extras.getString(Intent.EXTRA_TEXT);
+if (value1 != null) {
+    // do something with the data
+}
 ```
 
-The first parameter is still an intent, while the second parameter is the request code used to identify the action that was requested. The request code is just a user-defined integer that is sent to the child activity and then received back by the parent.
+## Example: Using the share intent
 
-Your activity receives the result as a separate Intent object in your activity's onActivityResult() callback method. The onActivityResult method signature looks like
+Lots of Android applications allow you to share some data with other people, e.g., the Facebook, G+, Gmail and Twitter application. You can send data to one of these components using the Share intent. 
 
-``` java
-void onActivityResult(int requestCode, int resultCode, Intent data);
+```java
+// this runs, for example, after a button click
+Intent intent = new Intent(Intent.ACTION_SEND);
+intent.setType("text/plain");
+intent.putExtra(android.content.Intent.EXTRA_TEXT, "Important news to share with friends");
+startActivity(intent);
 ```
+
 
 ## Pairing Exercises - Add lifelines to the Quizzy app
 
