@@ -19,7 +19,7 @@
 
 ## Warmup - Making Toast :bread:
 
-A Toast is a popup that provides simple feedback to the user. It only fills the amount of space required for the message and does not remove the current activity from the foreground or block interaction. A Toast will automatically disappear after a short timeout, defined by the duration argument (e.g. `Toast.LENGTH_SHORT` or `Toast.LENGTH_LONG`).
+A ```Toast``` is a popup that provides simple feedback to the user. It only fills the amount of space required for the message and does not remove the current activity from the foreground or block interaction. A ```Toast``` will automatically disappear after a short timeout, defined by the duration argument (e.g. `Toast.LENGTH_SHORT` or `Toast.LENGTH_LONG`).
 
 ```java
 // Make a toast that says "Hello toast!"
