@@ -28,3 +28,53 @@ According to the Android Docs:
 [Android Source Documentation](https://developer.android.com/guide/topics/ui/overview.html)
 
 Essentially, ```View``` objects are anything which can be either seen or touched by the user. ```ViewGroups``` are also views, but their jobs are much more tailored to organizing view objects on the screen.
+
+## Defining Views Programatically
+
+There are multiple ways to place views on a screen. One way is by using pure java code in your activities:
+
+```java
+package nyc.c4q.surewhynot;
+
+import android.graphics.drawable.GradientDrawable;
+import android.support.v4.view.GravityCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT,
+                1.0f);
+
+        LinearLayout ll = new LinearLayout(getApplicationContext());
+        ll.setLayoutParams(param);
+        ll.setOrientation(LinearLayout.VERTICAL);
+        setContentView(ll);
+
+        TextView tv = new TextView(getApplicationContext());
+        tv.setLayoutParams(param);
+        tv.setText("Hello");
+        tv.setGravity(Gravity.CENTER);
+
+
+        TextView tv2 = new TextView(getApplicationContext());
+        tv2.setLayoutParams(param);
+        tv2.setText("Goodbye");
+        tv2.setGravity(Gravity.CENTER);
+
+        ll.addView(tv);
+        ll.addView(tv2);
+    }
+}
+```
