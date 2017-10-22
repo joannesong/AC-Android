@@ -153,7 +153,7 @@ In our Java-only version above, we had to instantiate a ```LinearLayout``` objec
         
 ```
 
-However, Android Studio helps us create an XML file automatically, and will auto-generate a layout resource file automatically, with all of the necessary parameters for the view:
+However, Android Studio helps us create an XML file, and will auto-generate a layout resource file automatically, with all of the necessary parameters for the view:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -169,7 +169,7 @@ However, Android Studio helps us create an XML file automatically, and will auto
 </LinearLayout>
 ```
 
-The only code we had to actually add was the ```android:orientation="vertical``` line above. This helps to set the orientation of the views placed within this ViewGroup to be stacked on top of each other, rather than next to each other. If we wanted them stacked next to each other from left-to-right, we could have written ```android:orientation="horizontal"``` instead.
+The only code we had to actually add was the ```android:orientation="vertical"``` line above. This helps to set the orientation of the views placed within this ViewGroup to be stacked on top of each other, rather than next to each other. If we wanted them stacked next to each other from left-to-right, we could have written ```android:orientation="horizontal"``` instead.
 
 For more information on the various different layouts in Android, please check out these links from the Android Docs below:
 
