@@ -173,8 +173,8 @@ The only code we had to actually add was the ```android:orientation="vertical```
 
 For more information on the various different layouts in :android:, please check out these links from the Android Docs below:
 
-### [API Guides: LinearLayout](https://developer.android.com/guide/topics/ui/layout/linear.html)
+[API Guides: LinearLayout](https://developer.android.com/guide/topics/ui/layout/linear.html)
 
-### [API Guides: RelativeLayout](https://developer.android.com/guide/topics/ui/layout/relative.html)
+[API Guides: RelativeLayout](https://developer.android.com/guide/topics/ui/layout/relative.html)
 
-### [API Guides: FrameLayout](https://developer.android.com/guide/topics/ui/layout/frame.html)
+[API Guides: FrameLayout](https://developer.android.com/reference/android/widget/FrameLayout.html)
