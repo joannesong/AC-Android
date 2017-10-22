@@ -17,6 +17,23 @@
 - [Android API: EditText](https://developer.android.com/reference/android/widget/EditText.html)
 - [Android API: Button](https://developer.android.com/reference/android/widget/Button.html)
 
+## Warmup - Making Toast :bread:
+
+A Toast is a popup that provides simple feedback to the user. It only fills the amount of space required for the message and does not remove the current activity from the foreground or block interaction. A Toast will automatically disappear after a short timeout, defined by the duration argument (e.g. `Toast.LENGTH_SHORT` or `Toast.LENGTH_LONG`).
+
+```java
+// Make a toast that says "Hello toast!"
+Context context = getApplicationContext();
+CharSequence text = "Hello toast!";
+int duration = Toast.LENGTH_SHORT;
+
+Toast toast = Toast.makeText(context, text, duration);
+toast.show();
+
+// ... Or as a single line:
+Toast.makeText(getApplicationContext(), "Hello toast!", Toast.LENGTH_SHORT).show();
+```
+
 # Lecture
 
 According to the Android Docs:
