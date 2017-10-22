@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-Old-school Java GUI (Grafical User Interface) Frameworks developers like AWT and Swing use (use? from the 90's, but today? Still?), pure java code to instantiate and layout view objects on the screen. 
+Old-school Java GUI (Graphical User Interface) Framework developers like AWT and Swing use (used? from the 90's, but today? Still?), pure java code to instantiate and layout view objects on the screen. 
 
 However, although this way is possible, it might not be ideal. Doing it this way means errors will appear at runtime, which could have been checked for at compile time. There is another way to place these object on the screen in Android - with XML (eXtensible Markup Language).
 
