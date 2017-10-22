@@ -34,6 +34,8 @@ toast.show();
 Toast.makeText(getApplicationContext(), "Hello toast!", Toast.LENGTH_SHORT).show();
 ```
 
+Start your morning with ```Toast```! Make 10 different toast messages, and switch between short and long durations. What happens if you put integers rather than strings in your toasts? Will they still work?
+
 # Lecture
 
 According to the Android Docs:
