@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout ll = new LinearLayout(getApplicationContext());
         ll.setLayoutParams(param);
         ll.setOrientation(LinearLayout.VERTICAL);
+        
         setContentView(ll);
 
         TextView tv = new TextView(getApplicationContext());
@@ -81,3 +82,70 @@ public class MainActivity extends AppCompatActivity {
 Old-school Java GUI (Grafical User Interface) Frameworks developers like AWT and Swing use (use? from the 90's, but today? Still?), pure java code to instantiate and layout view objects on the screen. 
 
 However, although this way is possible, it might not be ideal. Doing it this way means errors will appear at runtime, which could have been checked for at compile time. There is another way to place these object on the screen in Android - with XML (eXtensible Markup Language).
+
+## XML Layouts
+
+A **layout** defines the visual structure for a user interface. There are two ways to create Android layouts:
+
+- As an XML resource file. Android provides a straightforward XML vocabulary that corresponds to the View classes and subclasses, such as those for widgets and layouts.
+- In Java, by instantiating layout elements at runtime. Your application can create View and ViewGroup objects (and manipulate their properties) programmatically.
+
+While you can use either of these methods to create layouts, there are some advantages to declaring your UI in XML:
+
+- It enables you to better separate the presentation of your application from the code that controls its behavior. 
+- You can modify or adapt layouts without having to modify your source code. For example, you can create XML layouts for different screen orientations, different device screen sizes, and different languages. 
+- Declaring the layout in XML makes it easier to visualize the structure of your UI, so it's easier to debug problems.
+
+Each XML layout file may only contain one root element. Once you've defined the root element, you can add more layout objects or widgets as child elements within.
+
+When you compile your application, each XML layout file is compiled into a View resource, which is saved in a file called ```R.java```, and may be accessed in your activity. For an activity, you can load the layout resource by calling setContentView() and passing it the reference to your layout resource in the form of: R.layout.layout_file_name. For example:
+
+```java
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    
+    setContentView(R.layout.main_layout);
+}
+```
+
+In our Java-only version above, we had to instantiate a ```LinearLayout``` object first, using many lines of code, then finally use that layout object as a parameter in our ```setContentView()``` method:
+
+```java
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT,
+                1.0f);
+
+        LinearLayout ll = new LinearLayout(getApplicationContext());
+        ll.setLayoutParams(param);
+        ll.setOrientation(LinearLayout.VERTICAL);
+        
+        setContentView(ll);
+        
+        ... 
+        
+        }
+        
+        ...
+        
+```
+
+However, Android Studio helps us create an XML file automatically, and will auto-generate a layout resource file automatically, with all of the necessary parameters for the view:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:id="@+id/sure_linearlayout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context="nyc.c4q.surewhynot.MainActivity">
+
+</LinearLayout>
+```
