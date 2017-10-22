@@ -178,3 +178,21 @@ For more information on the various different layouts in Android, please check o
 [API Guides: RelativeLayout](https://developer.android.com/guide/topics/ui/layout/relative.html)
 
 [API Guides: FrameLayout](https://developer.android.com/reference/android/widget/FrameLayout.html)
+
+[API Guides: ConstraintLayout](https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html)
+
+## Input Controls, and Child View Items
+
+Android has a number of views, or widgets, out-of-the-box - that you can use to display information from the screen, and use information entered by the user:
+
+- *TextView* - for displaying text on the screen
+- *ImageView* - for displaying images on the screen
+- *Button* - for accepting button clicks from the user
+- *ImageButton* - for accepting button clicks from the user, but with a fun picture in the background
+- *EditText* - for accepting textual input from the user (using a keyboard)
+
+These are all considered "Child Views", since they all need a "Parent" layout to host them, in order to be seen by the user effectively.
+
+For a full list of all of the basic Input Controls in Android, click on the link below:
+
+[API Guides: Input Controls](https://developer.android.com/guide/topics/ui/controls.html)
