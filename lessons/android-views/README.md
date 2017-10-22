@@ -149,3 +149,5 @@ However, Android Studio helps us create an XML file automatically, and will auto
 
 </LinearLayout>
 ```
+
+The only code we had to actually add was the ```android:orientation="vertical``` line above. This helps to set the orientation of the views placed within this ViewGroup to be stacked on top of each other, rather than next to each other. If we wanted them stacked next to each other from left-to-right, we could have written ```android:orientation="horizontal"``` instead. 
