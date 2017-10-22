@@ -196,3 +196,11 @@ These are all considered "Child Views", since they all need a "Parent" layout to
 For a full list of all of the basic Input Controls in Android, click on the link below:
 
 [API Guides: Input Controls](https://developer.android.com/guide/topics/ui/controls.html)
+
+## Creating ID's
+
+An efficient way to access views in a layout resource file is by creating unique id's for each of your views in your XML layout files:
+
+```xml
+
+```
