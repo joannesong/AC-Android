@@ -82,17 +82,17 @@ public class MainActivity extends AppCompatActivity {
         
         setContentView(ll);
 
-        TextView tv = new TextView(getApplicationContext());
-        tv.setLayoutParams(param);
-        tv.setText("Hello");
-        tv.setGravity(Gravity.CENTER);
+        TextView tv1 = new TextView(getApplicationContext());
+        tv1.setLayoutParams(param);
+        tv1.setText("Hello");
+        tv1.setGravity(Gravity.CENTER);
 
         TextView tv2 = new TextView(getApplicationContext());
         tv2.setLayoutParams(param);
         tv2.setText("Goodbye");
         tv2.setGravity(Gravity.CENTER);
 
-        ll.addView(tv);
+        ll.addView(tv1);
         ll.addView(tv2);
     }
 }
@@ -237,3 +237,29 @@ If we wanted to update our code to replace the Java with XML for our views, we c
 </LinearLayout>
 ```
 
+Now, if we wanted to interact with these TextViews in our Activity at runtime, we could to this:
+
+```java
+package nyc.c4q.surewhynot;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+        TextView tv1 = (TextView) findViewById(R.id.first_textview);
+        TextView tv2 = (TextView) findViewById(R.id.second_textview);
+        
+        tv1.setText("Hola");
+        tv2.setText("Adios");
+
+    }
+}
+```
