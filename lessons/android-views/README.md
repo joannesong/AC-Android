@@ -202,5 +202,38 @@ For a full list of all of the basic Input Controls in Android, click on the link
 An efficient way to access views in a layout resource file is by creating unique id's for each of your views in your XML layout files:
 
 ```xml
-
+android:id="@+id/some_name_for_your_view"
 ```
+
+If we wanted to update our code to replace the Java with XML for our views, we could do something like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/sure_linearlayout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="nyc.c4q.surewhynot.MainActivity">
+
+    <TextView
+        android:id="@+id/first_textview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Hello"/>
+
+    <TextView
+        android:id="@+id/second_textview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Goodbye"/>
+
+</LinearLayout>
+```
+
