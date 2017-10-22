@@ -169,4 +169,12 @@ However, Android Studio helps us create an XML file automatically, and will auto
 </LinearLayout>
 ```
 
-The only code we had to actually add was the ```android:orientation="vertical``` line above. This helps to set the orientation of the views placed within this ViewGroup to be stacked on top of each other, rather than next to each other. If we wanted them stacked next to each other from left-to-right, we could have written ```android:orientation="horizontal"``` instead. 
+The only code we had to actually add was the ```android:orientation="vertical``` line above. This helps to set the orientation of the views placed within this ViewGroup to be stacked on top of each other, rather than next to each other. If we wanted them stacked next to each other from left-to-right, we could have written ```android:orientation="horizontal"``` instead.
+
+For more information on the various different layouts in :android:, please check out these links from the Android Docs below:
+
+### [API Guides: LinearLayout](https://developer.android.com/guide/topics/ui/layout/linear.html)
+
+### [API Guides: RelativeLayout](https://developer.android.com/guide/topics/ui/layout/relative.html)
+
+### [API Guides: FrameLayout](https://developer.android.com/guide/topics/ui/layout/frame.html)
