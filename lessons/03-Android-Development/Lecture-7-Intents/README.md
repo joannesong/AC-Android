@@ -97,9 +97,17 @@ Bundle extras = getIntent().getExtras();
 if (extras == null) {
     return;
 }
+
 // get data via the key
 String value1 = extras.getString(Intent.EXTRA_TEXT);
 if (value1 != null) {
+    // do something with the data
+}
+
+
+// alternatively:
+if(getIntent().hasExtra(Intent.EXTRA_TEXT)) {
+    // call getExtras().getString() here.
     // do something with the data
 }
 ```
@@ -116,19 +124,60 @@ intent.putExtra(android.content.Intent.EXTRA_TEXT, "Important news to share with
 startActivity(intent);
 ```
 
+## Registering Intents
 
-## Pairing Exercises - Add lifelines to the Quizzy app
+The following code will register an Activity for the Intent which is triggered when someone wants to open a webpage.
 
-1) CheatMode: Add a CheatActivity that displays the same question and includes a Cheat button allowing the user to preview the right answer. Modify CheatActivity's logic so that it reports back to the original activity whether the user clicked cheat or not.
+```xml
+<activity android:name=".BrowserActivitiy"
+          android:label="@string/app_name">
+  <intent-filter>
+     <action android:name="android.intent.action.VIEW" />
+     <category android:name="android.intent.category.DEFAULT" />
+     <data android:scheme="http"/>
+  </intent-filter>
+</activity>
+```
 
-2) Phone-A-Genius: Add the phone number of a genius to your Android project as String resources. Include a button allowing the user to automatically dial this number. The app should navigate from your app to the phone app with the desired phone number already loaded without any additional entry from the user.
+# Registering Intents
+
+The following example registers an activity for the ACTION_SEND intent. It declares itself only relevant for the text/plain mime type.
+
+```xml
+<activity
+    android:name=".ActivityTest"
+    android:label="@string/app_name" >
+    <intent-filter>
+      <action android:name="android.intent.action.SEND" />
+      <category android:name="android.intent.category.DEFAULT" />
+      <data android:mimeType="text/plain" />
+    </intent-filter>
+</activity>
+```
+
+Implicit Intents (activities outside your app) must be registered.
+
+If a component does not define an intent filter, it can only be called by explicit intents.
 
 
-3) Share-with-a-Friend: Implement the share feature, allowing for a user to share the question they're having difficulty with on different mediums (ex: Gmail, facebook, twitter, messages) [See Share Icons](https://storage.googleapis.com/material-icons/external-assets/v4/icons/zip/ic_send_black_24dp.zip)
+
+## Exercises 
+
+> **Question 1**
+
+The goal of this exercise is to be able to send and recieve data between two intents. Create an app called Adder with two activities, Main and Total. 
+
+The Main activity has two number inputs and a "SUM" button.
+
+When user types in two numbers and presses the SUM button, a new activity Total is launched which displays the sum of the numbers from the previous activity. 
 
 
-### More on Intents - Optional but Recommended
-Your user now wants to be able to include a selfie in the Activity. Include an imageView that will display the user's selfie and a button for launching the phone's Camera app. How can we retrieve the resulting image from the Camera Activity in our own activity?
+> **Question 2**
+
+The goal of this exercise to be able to use implicit intents. Create an app that has a text input and a button "Share".
+
+When user enters text a presses "Share", they should see the share activity that allows them to select app to share the text entered. 
+
+Select SMS app, ensure the text user entered is displayed in SMS texting box.
 
 
-[Exit Ticket](#)
