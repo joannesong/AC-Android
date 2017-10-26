@@ -55,7 +55,7 @@ Intents are objects of the android.content.Intent type. Your code can send them 
 
 ---
 
-### Instantiating activities
+## Instantiating activities
 
 The simplest way to navigate from activity to another is to call the startActivity() method in the initial activity.
 
@@ -72,7 +72,7 @@ Activities which are started by other Android activities are called sub-activiti
 
 ---
 
-#### Implicit vs. Explicit Intents
+## Implicit vs. Explicit Intents
 
 When we **specify a class within our application** we want to navigate to, that is an **explicit** intent. We are telling the ActivityManager exactly which activity we want to navigate to.
 
