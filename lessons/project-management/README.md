@@ -1,15 +1,15 @@
-- title: Intro to Project Management
-- tags: project management, agile, scrum, trello
+# Intro to Project Management
 
-# Objectives
+## Objectives
 
 - Identify common software project pitfalls.
 - Gain exposure to common software project management methodologies.
 - Discuss strategies to facilitate communication and collaboration on team software projects. 
 - Practice using a Trello board to organize and track a project sprint. 
 
-# Resources
+## Resources
 
+- [Trello - Open a new Trello Account using your C4Q email](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjXuNmLm5TXAhVEWCYKHbLfB9MQFggtMAA&url=https%3A%2F%2Ftrello.com%2F&usg=AOvVaw2MxeUTjBtzSFqg1FEnPYYj)
 - [Beginner's Guide to Scrum and Agile Project Management](http://blog.trello.com/beginners-guide-scrum-and-agile-project-management)
 - [Using Trello for Agile Software Development](http://buildbettersoftware.com/trello-for-software-development)
 - [Quora: What is a minimum viable product?](https://www.quora.com/What-is-a-minimum-viable-product)
