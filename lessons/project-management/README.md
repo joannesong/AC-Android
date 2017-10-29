@@ -78,11 +78,11 @@ Determining an MVP for your product during initial planning and working towards 
 
 User stories are short and simple descriptions of a feature told from the point of view of the person who desires the feature, usually a user or customer of the app. They typically follow a simple pattern:
 
-> *As a (type of user), I want (some goal) so that (some reason).*
+***As a (type of user), I want (some goal) so that (some reason).***
 
 During initial project or sprint planning meetings, user stories are written on index cards or sticky notes and arranged on walls or tables to facilitate planning and discussion.
 
-> **Exercise:** Work in groups to discuss and decide on at least 5 user stories for the [scientific calculator](/homework/unit-2/week-3+4.md) project. Remember to keep them short, specific, and to follow the *"As a (type of user), I want (some goal) so that (some reason)."* pattern. Write each user story down on the front of a new index card. Arrange the user story cards in a column, with the higher priority stories towards the top of the column.
+**Exercise:** Work in groups to discuss and decide on at least 5 user stories for the Scientific Calculator project. Remember to keep them short, specific, and to follow the *"As a (type of user), I want (some goal) so that (some reason)."* pattern. Write each user story down on the front of a new index card. Arrange the user story cards in a column, with the higher priority stories towards the top of the column.
 
 #### Features
 
@@ -110,15 +110,15 @@ Each feature should include a priority. You can use a numeric scale, for example
 
 Think about your MVP as well as any feature dependencies or "blockers" (does Feature A need to be completed before work on Feature B can start?) when assigning priority.
 
-> **Exercise:** Work in groups to discuss and decide on at least 10 features for the [scientific calculator](/homework/unit-2/week-3+4.md) project, based on your user stories. Write each feature down on the front of a new index card. Give each feature an **estimate** and a **priority**, keeping dependencies in mind. If Feature A is "blocked" from being started until Feature B is implemented, write a reference to the Feature B on the back of the Feature A card and give Feature B a higher priority.
+**Exercise:** Work in groups to discuss and decide on at least 10 features for the [scientific calculator](/homework/unit-2/week-3+4.md) project, based on your user stories. Write each feature down on the front of a new index card. Give each feature an **estimate** and a **priority**, keeping dependencies in mind. If Feature A is "blocked" from being started until Feature B is implemented, write a reference to the Feature B on the back of the Feature A card and give Feature B a higher priority.
 
-> **Exercise:** Work in groups to evaluate the user story and feature cards you've created. Arrange the feature cards in a "backlog" column with the highest priority cards at the top of the column. Discuss how you would divide feature implementation across your group members. Refer to the estimation values to balance features equally across the team, keeping priorities, blockers and related tasks in mind. Assign each feature to a group member (write their initials on the card). 
+**Exercise:** Work in groups to evaluate the user story and feature cards you've created. Arrange the feature cards in a "backlog" column with the highest priority cards at the top of the column. Discuss how you would divide feature implementation across your group members. Refer to the estimation values to balance features equally across the team, keeping priorities, blockers and related tasks in mind. Assign each feature to a group member (write their initials on the card). 
 
-> **Exercise:** Nominate a Tech Lead in your group. The Tech Lead should copy the [AC 3.3 Sprint Template](https://trello.com/b/pz8oJNK2/ac-3-3-template) Trello board, rename the board "Scientific Calculator", and add the other group members as collaborators to the new board. 
+**Exercise:** Nominate a Tech Lead in your group. The Tech Lead should copy the [AC 3.3 Sprint Template](https://trello.com/b/pz8oJNK2/ac-3-3-template) Trello board, rename the board "Scientific Calculator", and add the other group members as collaborators to the new board. 
 
-> **Exercise:** For each user story index card that your group has created, create a new card in the *User Stories* list. Each group member should practice adding at least one user story to the board. Arrange the cards in the list by priority. 
+**Exercise:** For each user story index card that your group has created, create a new card in the *User Stories* list. Each group member should practice adding at least one user story to the board. Arrange the cards in the list by priority. 
 
-> **Exercise:** For each feature index card that your group has created, create a new Trello card in the *Backlog* list. Each group member should practice adding at least two features to the board. Add a comment to each card with its priority and estimate. Add a label to each card. Arrange the cards in the list by priority. Assign each card to the group member who is responsible for completing the feature. 
+**Exercise:** For each feature index card that your group has created, create a new Trello card in the *Backlog* list. Each group member should practice adding at least two features to the board. Add a comment to each card with its priority and estimate. Add a label to each card. Arrange the cards in the list by priority. Assign each card to the group member who is responsible for completing the feature. 
 
 #### Retros
 
