@@ -173,7 +173,7 @@ Start off each project or sprint with a planning meeting (like we've practiced t
 
 - Review **project requirements** as a team.
 - If the project has open-ended requirements (i.e. freedom to choose a topic or theme for the app), decide on these together as a team.
-- Nominate a **tech lead** - preference goes to members who haven't served yet as leads on their previous teams.
+- Nominate **tech lead** and **project manager** - preference goes to members who haven't served yet as leads on their previous teams.
 - Create a project **Trello board** and add all team members as collaborators.
 - Discuss and decide on **user stories** for the project, add them to the Trello board and rank them by priority.
 - Discuss and decide on **features** for the project and add them to the Trello board backlog. Give each feature a priority and an estimate and rank them by priority in the backlog.
