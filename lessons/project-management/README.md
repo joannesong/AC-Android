@@ -114,7 +114,7 @@ Think about your MVP as well as any feature dependencies or "blockers" (does Fea
 
 **Exercise:** Work in groups to evaluate the user story and feature cards you've created. Arrange the feature cards in a "backlog" column with the highest priority cards at the top of the column. Discuss how you would divide feature implementation across your group members. Refer to the estimation values to balance features equally across the team, keeping priorities, blockers and related tasks in mind. Assign each feature to a group member (write their initials on the card). 
 
-**Exercise:** Nominate a Tech Lead in your group. The Tech Lead should copy the [AC 3.3 Sprint Template](https://trello.com/b/pz8oJNK2/ac-3-3-template) Trello board, rename the board "Scientific Calculator", and add the other group members as collaborators to the new board. 
+**Exercise:** Nominate a Tech Lead in your group. The Tech Lead should copy the [AC 4.4 Android Sprint Template](https://trello.com/b/vgePW3sJ/ac-44-sprint-template) Trello board, rename the board "Scientific Calculator", and add the other group members as collaborators to the new board. 
 
 **Exercise:** For each user story index card that your group has created, create a new card in the *User Stories* list. Each group member should practice adding at least one user story to the board. Arrange the cards in the list by priority. 
 
