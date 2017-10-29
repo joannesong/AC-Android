@@ -82,7 +82,7 @@ User stories are short and simple descriptions of a feature told from the point 
 
 During initial project or sprint planning meetings, user stories are written on index cards or sticky notes and arranged on walls or tables to facilitate planning and discussion.
 
-**Exercise:** Work in groups to discuss and decide on at least 5 user stories for the Scientific Calculator project. Remember to keep them short, specific, and to follow the *"As a (type of user), I want (some goal) so that (some reason)."* pattern. Write each user story down on the front of a new index card. Arrange the user story cards in a column, with the higher priority stories towards the top of the column.
+**Exercise:** Work in groups to discuss and decide on at least 5 user stories for the Scientific Calculator project you completed recently. Remember to keep them short, specific, and to follow the *"As a (type of user), I want (some goal) so that (some reason)."* pattern. Write each user story down on the front of a new index card. Arrange the user story cards in a column, with the higher priority stories towards the top of the column.
 
 #### Features
 
@@ -110,15 +110,17 @@ Each feature should include a priority. You can use a numeric scale, for example
 
 Think about your MVP as well as any feature dependencies or "blockers" (does Feature A need to be completed before work on Feature B can start?) when assigning priority.
 
-**Exercise:** Work in groups to discuss and decide on at least 10 features for the [scientific calculator](/homework/unit-2/week-3+4.md) project, based on your user stories. Write each feature down on the front of a new index card. Give each feature an **estimate** and a **priority**, keeping dependencies in mind. If Feature A is "blocked" from being started until Feature B is implemented, write a reference to the Feature B on the back of the Feature A card and give Feature B a higher priority.
+**Exercise:** Work in groups to discuss and decide on at least 10 features for the Scientific Calculator project, based on your user stories. Write each feature down on the front of a new index card. Give each feature an **estimate** and a **priority**, keeping dependencies in mind. If Feature A is "blocked" from being started until Feature B is implemented, write a reference to the Feature B on the back of the Feature A card and give Feature B a higher priority.
 
 **Exercise:** Work in groups to evaluate the user story and feature cards you've created. Arrange the feature cards in a "backlog" column with the highest priority cards at the top of the column. Discuss how you would divide feature implementation across your group members. Refer to the estimation values to balance features equally across the team, keeping priorities, blockers and related tasks in mind. Assign each feature to a group member (write their initials on the card). 
 
-**Exercise:** Nominate a Tech Lead in your group. The Tech Lead should copy the [AC 4.4 Android Sprint Template](https://trello.com/b/vgePW3sJ/ac-44-sprint-template) Trello board, rename the board "Scientific Calculator", and add the other group members as collaborators to the new board. 
+**Exercise:** Nominate a Project Manager in your group. The Project Manager should copy the [AC 4.4 Android Sprint Template](https://trello.com/b/vgePW3sJ/ac-44-sprint-template) Trello board, rename the board "Scientific Calculator", and add the other group members as collaborators to the new board. The Project Manager should also create a new Slack channel, and add all of the members to the channel, and use the command "@channel" to relay group-wide messages.
 
 **Exercise:** For each user story index card that your group has created, create a new card in the *User Stories* list. Each group member should practice adding at least one user story to the board. Arrange the cards in the list by priority. 
 
-**Exercise:** For each feature index card that your group has created, create a new Trello card in the *Backlog* list. Each group member should practice adding at least two features to the board. Add a comment to each card with its priority and estimate. Add a label to each card. Arrange the cards in the list by priority. Assign each card to the group member who is responsible for completing the feature. 
+**Exercise:** For each feature index card that your group has created, create a new Trello card in the *Backlog* list. Each group member should practice adding at least two features to the board. Add a comment to each card with its priority and estimate. Add a label to each card. Arrange the cards in the list by priority. Assign each card to the group member who is responsible for completing the feature.
+
+**Exercise:** Nominate a Tech Lead in your group. The Tech Lead should create a new Android Studio project named "Scientific Calculator", create a new GitHub repository, add/commit/push the new Android Studio project to the repository, and add the other group members as collaborators to the new repository. Everyone should then clone the repository, and make a new local branch, with their own full name as the branch name. 
 
 #### Retros
 
@@ -163,7 +165,7 @@ Merging small code changes frequently will also help your team better avoid last
 
 #### Tech lead
 
-Nominate a tech lead at your first project meeting. The tech lead will be responsible for hosting the Trello board and Github repository, facilitating daily stand-up and checking in with team members to ensure features are pushed, reviewed and merged into the master branch as they are completed.
+Nominate tech lead / project manager at your first project meeting. The project manager will be responsible for hosting the Trello board while the Tech lead will be responsable for hosting the Github repository. The project manager should facilitate daily stand-ups and check-in in with team members to ensure features are pushed. The Tech Lead should then review each feature and merge them into the master branch as they are completed.
 
 #### Project planning / Sprint planning
 
