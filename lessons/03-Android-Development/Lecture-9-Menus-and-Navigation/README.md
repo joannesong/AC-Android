@@ -46,7 +46,7 @@ There are three main types:
 
 It's where you should place actions that have a global impact on the app, such as "Search," "Compose email," and "Settings."
 
-[Todo: add images of options menu]
+![Options menu](options-menu.png)
 
 
 ## Context menu and contextual action mode
@@ -57,7 +57,7 @@ It provides actions that affect the selected content or context frame.
 
 The contextual action mode displays action items that affect the selected content in a bar at the top of the screen and allows the user to select multiple items.
 
-[todo: add image of contextual menu]
+![Contextual menu](context-menu.jpg)
 
 ## Popup menu
 
