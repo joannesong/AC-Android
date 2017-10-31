@@ -282,10 +282,6 @@ To create a pop up menu:
 
 ---
 
-## Handling click events for Popup menu
-
----
-
 ## Pop up menu example
 
 For example, here's a button with the android:onClick attribute that shows a popup menu:
@@ -305,6 +301,34 @@ public void showPopup(View v) {
     MenuInflater inflater = popup.getMenuInflater();
     inflater.inflate(R.menu.actions, popup.getMenu());
     popup.show();
+}
+```
+
+---
+
+## Handling click events for Popup menu
+
+1. Set onClickListener in `showPopup` function as in `popup.setOnMenuItemClickListener(this)`
+
+2. Implement `OnMenuItemClickListener` and override `boolean onMenuItemClick(MenuItem item)`
+
+3. Handle different item click behaviors in `onMenuItemClick`
+
+--- 
+
+## Handling click events in onMenuItemClick
+
+```java
+@Override
+public boolean onMenuItemClick(MenuItem item) {
+    switch (item.getItemId()) {
+        case R.id.withId:
+            Log.e(TAG, "Menu item with id selected");
+            return true;
+        default:
+            Log.e(TAG, "Some menu item selected");
+            return super.onContextItemSelected(item);
+    }
 }
 ```
 
