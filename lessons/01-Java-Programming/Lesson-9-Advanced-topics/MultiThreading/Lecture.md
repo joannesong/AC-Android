@@ -1,21 +1,31 @@
 # Title: MultiThreading
 Tags: multithreading, concurrency
 
+---
+
 # Objectives
 
 * Life Cycle of a Thread
 * Be able to create and use a Thread
 * Be able to manage multiple threads
 
+### Show me the threads!
+
+---
+
 # Resources
 
 - [Java Concurrency](https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html)
+
+---
 
 # Concurrency vs Parrellism
 
 Concurrency is *dealing* with many things as once. For example: you laptop is managing the needs of multiple applications at once (not necessarily at the same time).
 
 Parrellism is *doing* many things at once. For example: Dividing the work of cleaning a big hall between multiple people. They all pick their sections and can all clean at once.
+
+---
 
 # What is Thread in java
 
@@ -26,6 +36,8 @@ Threads are independent, if there occurs exception in one thread, it doesn't aff
 ![Multithreading](multithreading.jpg)
 
 As shown in the above figure, thread is executed inside the process. There is context-switching between the threads. There can be multiple processes inside the OS and one process can have multiple threads.
+
+---
 
 # What is MultiThreading
 
@@ -39,6 +51,8 @@ Benefits:
 
 * Threads are independent so it doesn't affect other threads if exception occur in a single thread.
 
+---
+
 # When to use threads
 
 ### Threads make work fast, why not use it all time!
@@ -49,6 +63,8 @@ Benefits:
 * Operations that can be parallelized
 
 * Continual running background operations
+
+---
 
 # Simple Java Thread code
 
@@ -67,6 +83,8 @@ class Multi3 implements Runnable{
 }  
 ```
 
+---
+
 # Life cycle of a Thread (Thread States)
 
 * New : The thread is in new state if you create an instance of Thread class but before the invocation of start() method.
@@ -82,6 +100,8 @@ Other states may exist such as "waiting", "timed_waiting"
 The life cycle of the thread in java is controlled by JVM. 
 
 ![Thread lifecycle](threadstates.jpg)
+
+---
 
 
 # Creating a Thread via Runnable Interface
@@ -104,6 +124,8 @@ class Multi3 implements Runnable{
 }  
 ```
 
+---
+
 ### You can also extend the `Thread` class to create a thread.
 
 ```java
@@ -117,6 +139,8 @@ class Multi extends Thread{
     }  
 } 
 ```
+
+---
 
 # Commonly used methods of Thread:
 
@@ -147,6 +171,8 @@ class Multi extends Thread{
 * `public void stop()`: is used to stop the thread(depricated).
 
 * `public void interrupt()`: interrupts the thread.
+
+---
 
 
 # Thread examples
@@ -184,6 +210,8 @@ class RunnableDemo implements Runnable {
    }
 }
 
+---
+
 public class TestThread {
 
    public static void main(String args[]) {
@@ -196,9 +224,13 @@ public class TestThread {
 }
 ```
 
+---
+
 # More examples
 
 See [SimpleThreads.java](SimpleThreads.java)
+
+---
 
 # Summary
 
@@ -208,6 +240,8 @@ See [SimpleThreads.java](SimpleThreads.java)
 * Be able to create and use a Thread
 * Be able to manage multiple threads
 
+---
+
 
 # Exercises
 
@@ -215,6 +249,3 @@ See [SimpleThreads.java](SimpleThreads.java)
 Write a program called SharedCounter.java in which 10 threads each increment a shared int counter 1000 times. When all the threads have finished, print the final value of the counter. Counter is initialized to zero and you should always get 10000 
 
 [Further] Arrange for your code to sometimes print the wrong answer. (Hint: try using some well-placed calls to Thread.yield() or Thread.sleep().)
-
-
-**Question 2**
