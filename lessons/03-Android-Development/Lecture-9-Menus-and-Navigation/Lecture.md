@@ -1,4 +1,3 @@
-
 # Title: Menus
 Tags: android menus, navigation
 
@@ -60,6 +59,10 @@ There are three main types:
 
 It's where you should place actions that have a global impact on the app, such as "Search," "Compose email," and "Settings."
 
+**Image on next screen**
+
+---
+
 ![Options menu](options-menu.png)
 
 
@@ -72,6 +75,10 @@ It's where you should place actions that have a global impact on the app, such a
 It provides actions that affect the selected content or context frame.
 
 The contextual action mode displays action items that affect the selected content in a bar at the top of the screen and allows the user to select multiple items.
+
+ **Image on next screen**
+
+---
 
 ![Contextual menu](context-menu.jpg)
 
@@ -187,6 +194,55 @@ There are two ways to provide contextual actions:
 
 ---
 
+## Floating context menu example
+
+For example:
+```java
+@Override
+public void onCreateContextMenu(ContextMenu menu, View v,
+                                ContextMenuInfo menuInfo) {
+    super.onCreateContextMenu(menu, v, menuInfo);
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.context_menu, menu);
+}
+```
+
+The callback method parameters include the View that the user selected and a ContextMenu.ContextMenuInfo object that provides additional information about the item selected. If your activity has several views that each provide a different context menu, you might use these parameters to determine which context menu to inflate.
+
+---
+
+## Creating a floating context menu
+
+1. Register the View to which the context menu should be associated by calling registerForContextMenu() and pass it the View.
+
+2. Implement the onCreateContextMenu() method in your Activity or Fragment and inflate the menu.
+
+
+---
+
+## Example contd.
+
+3. Implement onContextItemSelected().
+For example:
+```java
+@Override
+public boolean onContextItemSelected(MenuItem item) {
+    AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+    switch (item.getItemId()) {
+        case R.id.edit:
+            editNote(info.id);
+            return true;
+        case R.id.delete:
+            deleteNote(info.id);
+            return true;
+        default:
+            return super.onContextItemSelected(item);
+    }
+}
+```
+
+---
+
 ## Creating Pop Up menu
 
 Useful for providing an overflow-style menu for actions that relate to specific content or for providing a drop-down similar to Spinner that does not retain a persistent selection
@@ -226,53 +282,6 @@ public void showPopup(View v) {
     MenuInflater inflater = popup.getMenuInflater();
     inflater.inflate(R.menu.actions, popup.getMenu());
     popup.show();
-}
-```
-
-## Creating a floating context menu
-
-1. Register the View to which the context menu should be associated by calling registerForContextMenu() and pass it the View.
-
-2. Implement the onCreateContextMenu() method in your Activity or Fragment and inflate the menu.
-
-
----
-
-## Floating context menu example
-
-For example:
-```java
-@Override
-public void onCreateContextMenu(ContextMenu menu, View v,
-                                ContextMenuInfo menuInfo) {
-    super.onCreateContextMenu(menu, v, menuInfo);
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.context_menu, menu);
-}
-```
-
-The callback method parameters include the View that the user selected and a ContextMenu.ContextMenuInfo object that provides additional information about the item selected. If your activity has several views that each provide a different context menu, you might use these parameters to determine which context menu to inflate.
-
----
-
-## Example contd.
-
-3. Implement onContextItemSelected().
-For example:
-```java
-@Override
-public boolean onContextItemSelected(MenuItem item) {
-    AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-    switch (item.getItemId()) {
-        case R.id.edit:
-            editNote(info.id);
-            return true;
-        case R.id.delete:
-            deleteNote(info.id);
-            return true;
-        default:
-            return super.onContextItemSelected(item);
-    }
 }
 ```
 
@@ -316,3 +325,15 @@ It would log "'Add' from context menu clicked"
 
 
 ---
+
+## Exercises 
+
+**Question 3**
+
+Create a Notepad app with two activities: NotesList and AddNote 
+
+NotesList should display a list of notes that when long-pressed on reveal [Edit, Delete, Archive] in a context menu 
+NotesList should include an options menu with "Add Note" which launches the AddNote activity. 
+
+AddNote should allow user to enter a note with a title and a body. It should have a button in the toolbar for "Save".
+On save, user is directed back to the NotesList and new note is added to the list.
