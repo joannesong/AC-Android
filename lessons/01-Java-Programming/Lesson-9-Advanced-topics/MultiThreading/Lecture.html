@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
 # Title: MultiThreading
 Tags: multithreading, concurrency
 
@@ -32,6 +55,8 @@ Parrellism is *doing* many things at once. For example: Dividing the work of cle
 *def* A thread is a lightweight sub process, a smallest unit of processing. It is a separate path of execution.
 
 Threads are independent, if there occurs exception in one thread, it doesn't affect other threads. It shares a common memory area.
+
+---
  
 ![Multithreading](multithreading.jpg)
 
@@ -99,7 +124,9 @@ Other states may exist such as "waiting", "timed_waiting"
 
 The life cycle of the thread in java is controlled by JVM. 
 
-![Thread lifecycle](threadstates.jpg)
+---
+
+![Thread lifecycle](threadstate_trans.gif)
 
 ---
 
@@ -160,6 +187,10 @@ class Multi extends Thread{
 
 * `public Thread.State getState()`: returns the state of the thread.
 
+---
+
+# Commonly used methods of Threads contd.
+
 * `public boolean isAlive()`: tests if the thread is alive.
 
 * `public void yield()`: causes the currently executing thread object to temporarily pause and allow other threads to execute.
@@ -177,52 +208,8 @@ class Multi extends Thread{
 
 # Thread examples
 
-```java
-class RunnableDemo implements Runnable {
-   private Thread t;
-   private String threadName;
-   
-   RunnableDemo( String name) {
-      threadName = name;
-      System.out.println("Creating " +  threadName );
-   }
-   
-   public void run() {
-      System.out.println("Running " +  threadName );
-      try {
-         for(int i = 4; i > 0; i--) {
-            System.out.println("Thread: " + threadName + ", " + i);
-            // Let the thread sleep for a while.
-            Thread.sleep(50);
-         }
-      }catch (InterruptedException e) {
-         System.out.println("Thread " +  threadName + " interrupted.");
-      }
-      System.out.println("Thread " +  threadName + " exiting.");
-   }
-   
-   public void start () {
-      System.out.println("Starting " +  threadName );
-      if (t == null) {
-         t = new Thread (this, threadName);
-         t.start ();
-      }
-   }
-}
+See [Runnable Demo Code](https://github.com/C4Q/AC-Android/tree/v2/lessons/01-Java-Programming/Lesson-9-Advanced-topics/MultiThreading#thread-examples)
 
----
-
-public class TestThread {
-
-   public static void main(String args[]) {
-      RunnableDemo R1 = new RunnableDemo( "Thread-1");
-      R1.start();
-      
-      RunnableDemo R2 = new RunnableDemo( "Thread-2");
-      R2.start();
-   }   
-}
-```
 
 ---
 
@@ -249,3 +236,13 @@ See [SimpleThreads.java](SimpleThreads.java)
 Write a program called SharedCounter.java in which 10 threads each increment a shared int counter 1000 times. When all the threads have finished, print the final value of the counter. Counter is initialized to zero and you should always get 10000 
 
 [Further] Arrange for your code to sometimes print the wrong answer. (Hint: try using some well-placed calls to Thread.yield() or Thread.sleep().)
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create();
+</script>
+</body>
+</html>
