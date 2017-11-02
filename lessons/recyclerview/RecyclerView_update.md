@@ -20,3 +20,9 @@ Things to try:
 * Make your list scroll horizontally
 * flesh out your view holders. (add images!)
 * add buttons to your view holder and make something cool happen when a button is clicked!
+
+#### Bonus!!!
+
+* Add an OPTIONS MENU button which adds a new item to the RecyclerView
+* Add a button to the ViewHolder that opens a new activity and displays the information from the item 
+* Add a button to the ViewHolder to share some text from the item via an implicit intent. 
