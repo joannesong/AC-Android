@@ -5,11 +5,13 @@
  
  Side note: a [ScrollView](https://developer.android.com/reference/android/widget/ScrollView.html) will allow you to scroll through items as well but it is not dynamic which means that you have to add each and every view manually.
 
-#### SampleApp and prework
+#### Resrouces
 
 You can read more about the recyclerview [here](https://guides.codepath.com/android/using-the-recyclerview)
 
-I have created a sample app with a barebones implementation of a recycler view [here](https://github.com/lighterletter/RecyclerView_Lesson). 
+You can watch a high-level overview of the reasonsing behind it [here](https://www.youtube.com/watch?v=-VPM6ICgCk8)
+
+For reference, I have created a sample app with a barebones implementation of a recycler view [here](https://github.com/lighterletter/RecyclerView_Lesson). 
 
 ![](https://github.com/lighterletter/RecyclerView_Lesson/blob/master/sample/recyclerview_sample.gif)
 #### Afternoon Exercise
