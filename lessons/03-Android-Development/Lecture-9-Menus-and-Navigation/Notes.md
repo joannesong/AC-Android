@@ -10,6 +10,11 @@ Github:
 - fork off of the *dev* branch
 - create pull requests to merge your changes
 - be sure your branch is update to upstream/dev before creating pull request
+```
+git clone url
+git checkout dev # to checkout dev branch
+git checkout your-branch # to checkout your branch from dev
+```
 
 NotesList activity should (intents, menus, activities):
 - displays a list of note items. Each note item has a title and first line of content
