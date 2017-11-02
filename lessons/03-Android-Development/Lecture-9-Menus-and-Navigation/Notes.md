@@ -11,7 +11,7 @@ Github:
 - create pull requests to merge your changes
 - be sure your branch is update to upstream/dev before creating pull request
 ```
-git clone url
+git clone url-of-your-fork
 git checkout dev # to checkout dev branch
 git checkout your-branch # to checkout your branch from dev
 ```
