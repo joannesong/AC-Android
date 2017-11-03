@@ -1,14 +1,11 @@
-- title: Linked Lists, Stacks & Queues
-- tags: linked list, stack, queue, node
+Title: LinkedList
 
 # Objectives
 
 - Review linked lists and implementations of their common methods. 
-- Review stacks and queues and implementations of their common methods. 
-- Identify the runtime complexity of each implemented operation.
+- Practice traversing linked lists to search for a target value and/or return the list length.
 - Understand the difference between singly vs. doubly linked lists.
 - Understand a circular linked list and its implementation.
-- Practice traversing linked lists to search for a target value and/or return the list length.
 
 # Resources
 
@@ -18,6 +15,8 @@
 
 
 ## Linked Lists
+
+![Linked LIst](linked-list.gif)
 
 Let's look at another linear data structure that addresses some of the limitations of arrays. A **linked list** is a data structure consisting of a group of nodes which together represent a sequence.
 
@@ -34,6 +33,7 @@ A linked list is a dynamic data structure, allocating the needed memory while th
 
 One disadvantage of a linked list against an array is that it does not allow direct access to the individual elements. If you want to access a particular item then you have to start at the head and follow the references until you get to that item. Also, they have a tendency to use more memory than an array as the references require extra storage space.
 
+
 ## Traversal
 
 A visit to every node of a data structure is called a **traversal**.
@@ -49,9 +49,68 @@ To traverse a singly-linked list, we begin at the first node and follow each nex
      current node = next node
 ```
 
+## Linked List
+
+We can put all the operations around the nodes in a class, and call it LinkedList
+
+```java
+// Linked List Class
+class LinkedList
+{
+    Node head;  // head of list
+ 
+    /* Node Class */
+    class Node
+    {
+        String data;
+        Node next;
+          
+        // Constructor to create a new node
+        Node(String d) {data = d; next = null; }
+    }
+}
+```
+
+## Linked List: Adding an item to the list
+
+This method inserts a new Node at front of the list. 
+It is defined inside LinkedList class shown above.
+New items are added at the head of the list.
+
+```java
+/* This function is in LinkedList class.  */
+public void add(String new_data)
+{
+    // create the new node
+    Node new_node = new Node(new_data);
+ 
+    // make next of new Node the head 
+    new_node.next = head;
+ 
+    /* 4. Move the head to point to new Node */
+    head = new_node;
+}
+```
+
+## Linked List: Traverse and Print list
+
+This function prints contents of linked list starting from head
+
+```java
+public void printList()
+{
+    Node tnode = head;
+    while (tnode != null)
+    {
+        System.out.print(tnode.data+" ");
+        tnode = tnode.next;
+    }
+}
+```
+
 ### Exercises:
 
-1. Write a method `listLength(Node list)` that receives the head of a singly linked list and returns the number of nodes in the linked list. What is the worst-case runtime complexity of your algorithm?
+1. Write a method `listLength(Node node)` that receives the head of a singly linked list and returns the number of nodes in the linked list. What is the worst-case runtime complexity of your algorithm?
 
 ```java
 Node next;
@@ -62,13 +121,13 @@ public Node(Object data) {
 	this.next = null ;
 } 
 
-Node list = new Node("Apple");
-list.next = new Node("Orange") 
-list.next.next = new Node("Banana");
-list.next.next.next = new Node("Carrot");
-list.next.next.next.next = new Node("Beet");
+Node node = new Node("Apple");
+node.next = new Node("Orange") 
+node.next.next = new Node("Banana");
+node.next.next.next = new Node("Carrot");
+node.next.next.next.next = new Node("Beet");
  
-listLength(list); // returns 5 
+listLength(node); // returns 5 
 ``` 
 
 2. Write a method called `searchLinkedList(Node head, Object target)` that receives the head of a linked list and target search value, and returns `true` if the target is in the list, or `false` if the target is not in the list. What is the worst-case runtime complexity of your algorithm?
