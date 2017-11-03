@@ -39,10 +39,9 @@ imageView.setImageResource(R.drawable.marshmallow);
  ##### Overview of Android Resource Directories
 
 
-![ android build process ](./images/build-process.png)
+![android build process](./images/build-process.png)
 
 You should always externalize resources such as images and strings from your application code, so that you can maintain them independently. Externalizing your resources also allows you to provide alternative resources that support specific device configurations such as different languages or screen sizes, which becomes increasingly important as more Android-powered devices become available with different configurations. In order to provide compatibility with different configurations, you must organize resources in your project's `res/` directory, using various sub-directories that group resources by type and configuration.
-
 
 For any type of resource, you can specify `default` and `alternative` resources for your application:
 
@@ -89,22 +88,11 @@ As you can see in this example, the res/ directory contains all the resources (i
 
 
 | Folder    | Resource Type                                  |
-|-----------|------------------------------------------------|
-| drawable/	|                                                |
-|           |  Bitmap files (.png, .9.png, .jpg, .gif) or    |
-|           |  XML files that are compiled into the          |
-|           |    following drawable                          |
-| --------- | ---------------------------------------------- |
-| layout/   | XML files that define a user interface layout. |
-| --------- | ---------------------------------------------- |
-|           |                                                |
-| mipmap/	| Drawable files for different launcher icon     |
-|           | densities.                                     |
-| --------- | ---------------------------------------------- |
-|           |                                                |
-| values/   | XML files that contain simple values, such as  |
-|           | strings, integers, and colors.                 |
-
+|-----------|:------------------------------------------------:|
+| drawable\/|Bitmap files (.png, .9.png, .jpg, .gif) or XML files that are compiled into the following drawable|
+| layout\/  | XML files that define a user interface layout. |
+| mipmap\/	| Drawable files for different launcher icon densities.|
+| values\/   | XML files that contain simple values, such as strings, integers, and colors.|
 
 ### Providing Alternative Resources
 
