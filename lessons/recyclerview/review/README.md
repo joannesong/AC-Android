@@ -115,3 +115,73 @@ Go to the Activity layout xml file (or wherever you want your RecyclerView to be
 </android.support.constraint.ConstraintLayout>
 ```
  Make sure to give your RecyclerView widget an ID that makes sense (as with all your widgets), so that it will be easier to find in the future. You'll thank me later.
+
+## 4. Reference the RecyclerView in your Activity's onCreate()
+
+Like so:
+
+```java
+RecyclerView movieRecyclerView = (RecyclerView) findViewById(R.id.movie_recyclerview);
+```
+
+## 5. Create an ItemView Layout
+
+Next, we'll want to create a container layout file, to organize our data, and repeat over-and-over again for display. We'll call it movie_itemview.xml, and store it in our layout resource folder:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/movie_itemview"
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/movie_title_textview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/movie_director_textview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/movie_year_textview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>
+```
+
+### 6. Create a ViewHolder Class to set these view values dynamically
+
+Next, create a ViewHolder class, to set the values of the views within the itemview dynamically. Make sure to "extends" from RecyclerView.ViewHolder:
+
+```java
+package nyc.c4q.recyclerviewexample.view;
+
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
+
+import nyc.c4q.recyclerviewexample.R;
+import nyc.c4q.recyclerviewexample.model.Movie;
+
+public class MovieViewHolder extends RecyclerView.ViewHolder{
+
+    private TextView title;
+    private TextView director;
+    private TextView year;
+
+    public MovieViewHolder(View itemView) {
+        super(itemView);
+        title = (TextView) itemView.findViewById(R.id.movie_title_textview);
+        director = (TextView) itemView.findViewById(R.id.movie_director_textview);
+        year = (TextView) itemView.findViewById(R.id.movie_year_textview);
+    }
+}
+```
