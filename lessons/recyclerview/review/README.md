@@ -6,9 +6,8 @@
 * Fellows will implement LinearLayout-based RecyclerView which will display the model's data  
 
 ## Resources
-* []()
-* []()
-* []()
+* [RecyclerView Android Docs](https://developer.android.com/training/material/lists-cards.html)
+* [CodePath RecyclerView](https://guides.codepath.com/android/using-the-recyclerview)
 
 # Lecture
 
