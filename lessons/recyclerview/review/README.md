@@ -159,7 +159,7 @@ Next, we'll want to create a container layout file, to organize our data, and re
 
 ### 6. Create a ViewHolder Class to set these view values dynamically
 
-Next, create a ViewHolder class, to set the values of the views within the itemview dynamically. Make sure to "extends" from RecyclerView.ViewHolder:
+Next, create a ViewHolder class, to set the values of the views within the itemview dynamically. Make sure to "extends" from RecyclerView.ViewHolder, and to create a constructor, that sets field variables to references to the itemView's child views:
 
 ```java
 package nyc.c4q.recyclerviewexample.view;
@@ -182,6 +182,36 @@ public class MovieViewHolder extends RecyclerView.ViewHolder{
         title = (TextView) itemView.findViewById(R.id.movie_title_textview);
         director = (TextView) itemView.findViewById(R.id.movie_director_textview);
         year = (TextView) itemView.findViewById(R.id.movie_year_textview);
+    }
+}
+```
+
+If you'll notice, we put the parameter ```itemView``` in front of the ```findViewById()``` method, because we are setting the child views of the itemView being passed into this constructor.
+
+### 7. Create an Adapter Class to bind data to each View
+
+Create an Adapter class, to pass in and bind your data to your views. Make sure to "extends" from RecyclerView.Adapter<vh>, and change the type parameter within the angle brackets to that of your ViewHolder class. After you do this, you will be asked to @Override 3 different methods - onCreateViewHolder(), onBindViewHolder(), and getItemCount():
+    
+```java
+import nyc.c4q.recyclerviewexample.R;
+import nyc.c4q.recyclerviewexample.model.Movie;
+import nyc.c4q.recyclerviewexample.view.MovieViewHolder;
+
+public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
+
+    @Override
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(MovieViewHolder holder, int position) {
+    
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
     }
 }
 ```
