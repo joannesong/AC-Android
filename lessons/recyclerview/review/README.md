@@ -32,7 +32,7 @@ To quote an applicable movie reference:
 
 As with any skill, it's important to figure out the bare minimum for what is necessary to gain this skill, rather than seeking to be an expert from the very beginning.
 
-The famous 18th century catholic polyglot, Cardinal Giuseppe Mezzofanti, spoke 30-plus languages fluently, and was familiar with upwards of 42 languages. He did this by taking the *Pater Noster* prayer, and painstakingly translated it into every new language he wanted to learn, to break down the individual steps that made each language unique.
+The famous 18th century catholic polyglot, Cardinal Giuseppe Mezzofanti, spoke 30-plus languages fluently, and was familiar with upwards of 42 languages. He did this by taking the *Pater Noster* prayer, and painstakingly translating it into every new language he wanted to learn, to break down the individual steps that made each language unique.
 
 Elon Musk, the co-founder of PayPal, and current CEO of both SpaceX and Tesla, referred to this technique as **first principles** - he is quoted as once saying "you boil things down to the most fundamental truths... and then reason up from there."
 
