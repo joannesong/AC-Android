@@ -30,7 +30,7 @@ To quote an applicable movie reference:
 
 ## Practice, then Improvise
 
-As with any skill, it's important to figure out the bare minimum for what is necessary to gain this skill.
+As with any skill, it's important to figure out the bare minimum for what is necessary to gain this skill, rather than seeking to be an expert from the very beginning.
 
 The famous 18th century catholic polyglot, Cardinal Giuseppe Mezzofanti, spoke 30-plus languages fluently, and was familiar with upwards of 42 languages. He did this by taking the *Pater Noster* prayer, and painstakingly translated it into every new language he wanted to learn, to break down the individual steps that made each language unique.
 
