@@ -132,7 +132,7 @@ Next, we'll want to create a container layout file, to organize our data, and re
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/movie_itemview"
               android:layout_width="match_parent"
-              android:layout_height="100dp"
+              android:layout_height="wrap_content"
               android:orientation="vertical">
 
     <TextView
