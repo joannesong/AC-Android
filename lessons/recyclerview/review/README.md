@@ -235,7 +235,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         Movie movie = movieList.get(position);
-        holder.onBind(movie);
     }
 
     @Override
@@ -287,7 +286,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         Movie movie = movieList.get(position);
-        holder.onBind(movie);
     }
 
     @Override
@@ -296,3 +294,148 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
     }
 }
 ```
+
+### 11. Compose an onBind() method in your ViewHolder
+
+Next, we'll want to assign data to each view in our ViewHolder, within the ViewHolder class. We can do this by creating our own onBind() method, that passes our data directly to our ViewHolder, when called in the onBindViewHolder() method on the Adapter class. We're doing this, because we want to keep data exchange decisions up to controller classes, and view assignment up to view classes. The following code should be in toyr ViewHolder class:
+
+```java
+    public void onBind(Movie movie) {
+        title.setText("Title: " + movie.getTitle());
+        director.setText("Director: " + movie.getDirector());
+        year.setText("Year: " + movie.getYear());
+    }
+```
+
+and it's method call should be in your Adapter's onBindViewHolder() method:
+
+```java
+    @Override
+    public void onBindViewHolder(MovieViewHolder holder, int position) {
+        Movie movie = movieList.get(position);
+        
+        holder.onBind(movie);
+    }
+```
+
+Great! Let's add some data to this RecyclerView!
+
+### 12. Create a list of objects to pass to the Adapter
+
+```java
+package nyc.c4q.recyclerviewexample;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import nyc.c4q.recyclerviewexample.controller.MovieAdapter;
+import nyc.c4q.recyclerviewexample.model.Movie;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        RecyclerView movieRecyclerView = (RecyclerView) findViewById(R.id.movie_recyclerview);
+
+        List<Movie> movies = new ArrayList<>();
+        movies.add(new Movie("Jaws", "Steven Spielberg", "1975"));
+        movies.add(new Movie("Star Wars", "George Lucas", "1977"));
+        movies.add(new Movie("Iron Man", "Jon Favreau", "2007"));
+        movies.add(new Movie("The Avengers", "Joss Whedon","2011"));
+        movies.add(new Movie("28 Days Later", "Danny Boyle", "2002"));
+        movies.add(new Movie("Guardians of the Galaxy", "James Gunn", "2014"));
+        movies.add(new Movie("Sneakers", "Phil Alden Robinson", "1992"));
+        movies.add(new Movie("Clear and Present Danger", "Phillip Noyce", "1994"));
+    }
+}
+```
+
+### 13. Pass this List into an Adapter instance
+
+```java
+MovieAdapter movieAdapter = new MovieAdapter(movies);
+```
+
+### 14. Create a LinearLayoutManager Instance, to set Orientation
+
+You'll need a LinearLayoutManager instance to organize your itemViews in the RecyclerView (Vertical/Horizontal, in reverse-order, etc.):
+
+```java
+LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+```
+
+If you don't care about adjusting the order of the way your itemViews are displayed on the screen, you can just use the default instance:
+
+```java
+LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+```
+
+### 15. Set the Adapter to your RecyclerView (the adapter instance you just created)
+
+```java
+movieRecyclerView.setAdapter(movieAdapter);
+```
+
+### 16. Set the LinearLayoutManager to your RecyclerView (the linearLayoutManager instance you just created)
+
+```java
+movieRecyclerView.setLayoutManager(linearLayoutManager);
+```
+
+### 17. Confirm that your onCreate() method looks good
+
+Make sure it looks something like this:
+
+```java
+package nyc.c4q.recyclerviewexample;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import nyc.c4q.recyclerviewexample.controller.MovieAdapter;
+import nyc.c4q.recyclerviewexample.model.Movie;
+
+public class MainActivity extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        RecyclerView movieRecyclerView = (RecyclerView) findViewById(R.id.movie_recyclerview);
+
+        List<Movie> movies = new ArrayList<>();
+        movies.add(new Movie("Jaws", "Steven Spielberg", "1975"));
+        movies.add(new Movie("Star Wars", "George Lucas", "1977"));
+        movies.add(new Movie("Iron Man", "Jon Favreau", "2007"));
+        movies.add(new Movie("The Avengers", "Joss Whedon","2011"));
+        movies.add(new Movie("28 Days Later", "Danny Boyle", "2002"));
+        movies.add(new Movie("Guardians of the Galaxy", "James Gunn", "2014"));
+        movies.add(new Movie("Sneakers", "Phil Alden Robinson", "1992"));
+        movies.add(new Movie("Clear and Present Danger", "Phillip Noyce", "1994"));
+
+        MovieAdapter movieAdapter = new MovieAdapter(movies);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        movieRecyclerView.setAdapter(movieAdapter);
+        movieRecyclerView.setLayoutManager(linearLayoutManager);
+    }
+}
+```
+
+### 18. Run it, to make sure it compiles 🤞 🤞
+
