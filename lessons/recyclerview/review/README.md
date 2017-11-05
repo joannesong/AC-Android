@@ -439,3 +439,7 @@ public class MainActivity extends AppCompatActivity {
 
 ### 18. Run it, to make sure it compiles 🤞 🤞
 
+It should look very much like this:
+
+![](RecyclerViewDemo.PNG)
+
