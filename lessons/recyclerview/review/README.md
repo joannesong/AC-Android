@@ -192,7 +192,7 @@ If you'll notice, we put the parameter ```itemView``` in front of the ```findVie
 
 ### 7. Create an Adapter Class to bind data to each View
 
-Create a package called **controller** (all lowercase) within your project, just to store classes related to classes which will pass model data, to your view classes.
+Create a package called **controller** (all lowercase) within your project, just to store classes responsible for passing model data to your view classes.
 
 Create an Adapter class, so as to pass in, and bind your data to your views. Make sure to "extends" from RecyclerView.Adapter<vh>, and change the type parameter within the angle brackets to that of your ViewHolder class. After you do this, you will be asked to @Override 3 different methods - onCreateViewHolder(), onBindViewHolder(), and getItemCount():
     
