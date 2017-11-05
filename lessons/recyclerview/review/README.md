@@ -40,7 +40,7 @@ The same can be said for learning to code, especially views like Android's Recyc
 
 ### 1. Create a Model Class for the Data you want to Display
 
-To separate concerns effectively, we should create a package called **model** (all lowercase) within our project just for our data models - or what we want our data to look like for use.
+To separate concerns effectively, we should create a package called **model** (all lowercase) within your project just for our data models - or what we want our data to look like for use.
 
 Next, we'll make a basic data class to store inside of our new package - a class for fun movies. It should have:
 
@@ -114,7 +114,7 @@ Go to the Activity layout xml file (or wherever you want your RecyclerView to be
 
 </android.support.constraint.ConstraintLayout>
 ```
- Make sure to give your RecyclerView widget an ID that makes sense (as with all your widgets), so that it will be easier to find in the future. You'll thank me later.
+Make sure to give your RecyclerView widget an ID that makes sense (as with all your widgets), so that it will be easier to find in the future. You'll thank me later.
 
 ## 4. Reference the RecyclerView in your Activity's onCreate()
 
@@ -159,7 +159,9 @@ Next, we'll want to create a container layout file, to organize our data, and re
 
 ### 6. Create a ViewHolder Class to set these view values dynamically
 
-Next, create a ViewHolder class, to set the values of the views within the itemview dynamically. Make sure to "extends" from RecyclerView.ViewHolder, and to create a constructor, that sets field variables to references to the itemView's child views:
+Create a package called **view** (all lowercase) within your project, just to store classes related to view assignment.
+
+Next, create a ViewHolder class inside that folder, to set the values of the views within the itemview dynamically. Make sure to "extends" from RecyclerView.ViewHolder, and to create a constructor, that sets field variables to references to the itemView's child views:
 
 ```java
 package nyc.c4q.recyclerviewexample.view;
@@ -190,7 +192,9 @@ If you'll notice, we put the parameter ```itemView``` in front of the ```findVie
 
 ### 7. Create an Adapter Class to bind data to each View
 
-Create an Adapter class, to pass in and bind your data to your views. Make sure to "extends" from RecyclerView.Adapter<vh>, and change the type parameter within the angle brackets to that of your ViewHolder class. After you do this, you will be asked to @Override 3 different methods - onCreateViewHolder(), onBindViewHolder(), and getItemCount():
+Create a package called **controller** (all lowercase) within your project, just to store classes related to classes which will pass model data, to your view classes.
+
+Create an Adapter class, so as to pass in, and bind your data to your views. Make sure to "extends" from RecyclerView.Adapter<vh>, and change the type parameter within the angle brackets to that of your ViewHolder class. After you do this, you will be asked to @Override 3 different methods - onCreateViewHolder(), onBindViewHolder(), and getItemCount():
     
 ```java
 import nyc.c4q.recyclerviewexample.R;
@@ -212,6 +216,83 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
     @Override
     public int getItemCount() {
         return 0;
+    }
+}
+```
+
+### 8. Create an List and a Constructor to accept a List of your datatype objects
+
+```java
+    private List<Movie> movieList;
+
+    public MovieAdapter(List<Movie> movieList) {
+        this.movieList = movieList;
+    }
+```
+
+### 9. Update your onBindViewHolder() and getItemCount() methods based on this List
+
+    @Override
+    public void onBindViewHolder(MovieViewHolder holder, int position) {
+        Movie movie = movieList.get(position);
+        holder.onBind(movie);
+    }
+
+    @Override
+    public int getItemCount() {
+        return movieList.size();
+    }
+    
+### 10. Inflate your itemView layout into your ViewHolder
+
+```java
+    @Override
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View childView = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_itemview, parent, false);
+        return new MovieViewHolder(childView);
+    }
+```
+
+When that's done, your class should look like this:
+
+```java
+package nyc.c4q.recyclerviewexample.controller;
+
+import android.support.v7.view.menu.MenuView;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.List;
+
+import nyc.c4q.recyclerviewexample.R;
+import nyc.c4q.recyclerviewexample.model.Movie;
+import nyc.c4q.recyclerviewexample.view.MovieViewHolder;
+
+public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
+
+    private List<Movie> movieList;
+
+    public MovieAdapter(List<Movie> movieList) {
+        this.movieList = movieList;
+    }
+
+    @Override
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View childView = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_itemview, parent, false);
+        return new MovieViewHolder(childView);
+    }
+
+    @Override
+    public void onBindViewHolder(MovieViewHolder holder, int position) {
+        Movie movie = movieList.get(position);
+        holder.onBind(movie);
+    }
+
+    @Override
+    public int getItemCount() {
+        return movieList.size();
     }
 }
 ```
