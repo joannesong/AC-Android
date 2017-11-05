@@ -12,4 +12,5 @@
 |Android Resource Directories|[Link](https://developer.android.com/guide/topics/resources/providing-resources.html)||
 |Referencing Widgits in Activities|[Link](https://github.com/C4Q/AC-Android/tree/master/lessons/android-views)||
 |Making Toasts|[Link](https://github.com/C4Q/AC-Android/tree/master/lessons/android-views)||
+|Intents and Switching Activities|[Link](https://github.com/C4Q/AC-Android/tree/v2/lessons/03-Android-Development/Lecture-7-Intents)||
 ||||
