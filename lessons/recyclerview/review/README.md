@@ -230,7 +230,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
 ```
 
 ### 9. Update your onBindViewHolder() and getItemCount() methods based on this List
-
+```java
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
         Movie movie = movieList.get(position);
@@ -240,7 +240,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
     public int getItemCount() {
         return movieList.size();
     }
-    
+```
 ### 10. Inflate your itemView layout into your ViewHolder
 
 ```java
