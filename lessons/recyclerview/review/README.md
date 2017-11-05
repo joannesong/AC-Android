@@ -89,4 +89,29 @@ implementation 'com.android.support:recyclerview-v7:26.+'
 
 This will add the library to your build for use. This is a good thing. Once done, sync your gradle files.
 
-### 3. 
+### 3. Insert RecyclerView XML Widget
+
+Go to the Activity layout xml file (or wherever you want your RecyclerView to be seen), and create a RecyclerView Widget:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nyc.c4q.recyclerviewexample.MainActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/movie_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
+```
+ Make sure to give your RecyclerView widget an ID that makes sense (as with all your widgets), so that it will be easier to find in the future. You'll thank me later.
