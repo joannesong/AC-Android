@@ -40,7 +40,7 @@ The same can be said for learning to code, especially views like Android's Recyc
 
 ### 1. Create a Model Class for the Data you want to Display
 
-To separate concerns effectively, we should create a package called **model** (all lowercase) within our project just for our data models - or what we ant our data to look like for use.
+To separate concerns effectively, we should create a package called **model** (all lowercase) within our project just for our data models - or what we want our data to look like for use.
 
 Next, we'll make a basic data class to store inside of our new package - a class for fun movies. It should have:
 
@@ -72,3 +72,21 @@ public class Movie {
     }
 }
 ```
+
+### 2. Insert a dependency into your app's build.gradle file
+
+Oh, Gradle - the cause of, and solution to, all of life's problems. First, add this line of code to your app's build.gradle dependencies:
+
+```groovy
+compile 'com.android.support:recyclerview-v7:26.+'
+```
+
+If you've updated to Android Studio 3.0, you might have to add this line instead:
+
+```groovy
+implementation 'com.android.support:recyclerview-v7:26.+'
+```
+
+This will add the library to your build for use. This is a good thing. Once done, sync your gradle files.
+
+### 3. 
