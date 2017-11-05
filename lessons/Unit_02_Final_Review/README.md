@@ -13,4 +13,5 @@
 |Referencing Widgits in Activities|[Link](https://github.com/C4Q/AC-Android/tree/master/lessons/android-views)||
 |Making Toasts|[Link](https://github.com/C4Q/AC-Android/tree/master/lessons/android-views)||
 |Intents and Switching Activities|[Link](https://github.com/C4Q/AC-Android/tree/v2/lessons/03-Android-Development/Lecture-7-Intents)||
-||||
+|Intent Extras and Bundles|[Link](http://www.vogella.com/tutorials/AndroidIntent/article.html#data-transfer-between-activities)||
+|Explicit vs. Implicit Intents|[Link](http://www.vogella.com/tutorials/AndroidIntent/article.html#data-transfer-between-activities)
