@@ -14,7 +14,6 @@
 
 To quote an applicable movie reference:
 
-```
 **Colette:** I know the Gusteau style cold. In every dish, Chef Gusteau always has something unexpected. I will show you. I memorize all his recipe.
 **Linguini:** (writing in notebook) Always do something unexpected.
 **Colette:** No. Follow the recipe.
@@ -23,4 +22,3 @@ To quote an applicable movie reference:
 **Colette, Linguini:** (together, as Linguini rewrites the advice) ... follow the recipe.
 
 **-- Ratatouille, 2007**
-```
