@@ -4,4 +4,5 @@
 |:---------:|:----------:|:---------------------:|
 |XML Tags and Formatting|[Link](https://www.w3schools.com/xml/xml_syntax.asp)|
 |Lifecycle Callbacks|[Link](https://developer.android.com/guide/components/activities/activity-lifecycle.html)|
+|onSavedInstanceState\(\)|[Link](https://developer.android.com/guide/components/activities/activity-lifecycle.html)|
 
