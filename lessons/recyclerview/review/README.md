@@ -297,7 +297,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder>{
 
 ### 11. Compose an onBind() method in your ViewHolder
 
-Next, we'll want to assign data to each view in our ViewHolder, within the ViewHolder class. We can do this by creating our own onBind() method, that passes our data directly to our ViewHolder, when called in the onBindViewHolder() method on the Adapter class. We're doing this, because we want to keep data exchange decisions up to controller classes, and view assignment up to view classes. The following code should be in toyr ViewHolder class:
+Next, we'll want to assign data to each view in our ViewHolder, within the ViewHolder class. We can do this by creating our own onBind() method, that passes our data directly to our ViewHolder, when called in the onBindViewHolder() method on the Adapter class. We're doing this, because we want to keep data exchange decisions up to controller classes, and view assignment up to view classes. The following code should be in your ViewHolder class:
 
 ```java
     public void onBind(Movie movie) {
