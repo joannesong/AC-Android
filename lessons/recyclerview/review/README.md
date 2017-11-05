@@ -443,3 +443,10 @@ It should look very much like this:
 
 ![](RecyclerViewDemo.PNG)
 
+### 19. Happy Dance 🕺 💃🏽
+
+Congrats! Take a break - you just made RecyclerView happen!
+
+### 20. DO IT ALL OVER AGAIN 🙄
+
+Practice makes permanent. Follow this process again and again, until it becomes second nature. It is highly likely that you will have a ListView requirement on a Coding Challenge from potential employers. Being able to produce a view like this on command will definitely make you a competitive candidate. So, consult this lesson frequently, and follow each step, to make sure you haven't missed anything. Then, when you're comfortable, add click listeners, intents, change layouts, even modify the way itemviews look based on what the user does!
