@@ -4,10 +4,11 @@ Title: Review
 ## Objective
 
 - Summarize what we've learned so far
-- Exercise things we know in the notes app
+- Prepare for first test tomorrow
 - Answer any questions you have
 
 ## Any Questions
+
 
 ## Android Lifecycle
 
@@ -108,4 +109,3 @@ Title: Review
 - We own explicit intents while the OS manages implicit ones
 
 - Extras are used to pass and retrieve additional information to intents
-
