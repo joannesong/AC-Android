@@ -196,3 +196,80 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
+
+If you'll notice, we have the String ```private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";```, and we stored this String because we will be using it several times throughout our application - you'll see as we create the app further.
+
+We then create/get a SharedPreferences reference, associated with the key "sharedPrefsTesting":
+
+```login = getApplicationContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);```
+
+We'll want to store the username and password entered into our EditTexts for future use ONLY if the checkbox next to "rememeber me" is ticked, and the "Submit" button has been clicked. We can do that by taking the SharedPreferences reference, and adding it to a ```SharedPreferences.Editor``` reference in the submit button's onClickListener. First, we check whether the checkbox has been ticked (```checkbox.isChecked()```), then we pass the ```SharedPreferences``` reference to the ```Editor```, because like Arrays and Strings, ```SharedPreferences``` are essentially immutable, and must be edited in a unique way:
+
+```java
+package nyc.c4q.sharedprefstesting;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
+    private EditText username;
+    private EditText password;
+    private CheckBox checkBox;
+    private Button submitButton;
+    private Button registerButton;
+    private SharedPreferences login;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        username = (EditText) findViewById(R.id.username_edittext);
+        password = (EditText) findViewById(R.id.password_edittext);
+        checkBox = (CheckBox) findViewById(R.id.remember_me_checkbox);
+        submitButton = (Button) findViewById(R.id.submit_button);
+        registerButton = (Button) findViewById(R.id.register_button);
+
+        login = getApplicationContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = login.edit();
+                if (checkBox.isChecked()) {
+                    editor.putString("username", username.getText().toString());
+                    editor.putString("password", password.getText().toString());
+                    editor.putBoolean("isChecked", checkBox.isChecked());
+                    editor.commit();
+                } else {
+                    editor.putBoolean("isChecked", checkBox.isChecked());
+                    editor.commit();
+                }
+            }
+        });
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            
+            }
+        });
+    }
+}
+```
+
+To store the values, we use a put method (very much like a Map), corresponding to its data type: ```int```, ```boolean```, ```String```, etc.:
+
+```java
+editor.putString("username", username.getText().toString());
+editor.putString("password", password.getText().toString());
+editor.putBoolean("isChecked", checkBox.isChecked());
+```
