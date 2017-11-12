@@ -138,3 +138,7 @@ Here's the login activity's XML:
 
 </LinearLayout>
 ```
+
+And this is what it should look like:
+
+![](login_screen.PNG)
