@@ -537,6 +537,10 @@ First, let's create another activity called RegisterActivity.java, and edit its 
 </LinearLayout>
 ```
 
+This is what it should look like on the screen:
+
+![](registration_activity.PNG)
+
 Next, let's fill in some logic that does several things:
 * First, checks to see if the password entered is consistent
 * Second, we are using the same SharedPreferences file as our login activity, and
