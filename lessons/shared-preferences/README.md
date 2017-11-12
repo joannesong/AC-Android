@@ -453,6 +453,195 @@ After entering our credentials and clicking on submit:
 
 ![](remember_me.PNG)
 
-Should then see our unique message in the next activity:
+We should then see our unique message in the next activity:
 
 ![](signed_in.PNG)
+
+Pretty good so far! We've come a long way - but we can still do more! At this point in our app, anyone who enters credentials, can sign into the app by pressing ```Submit``` - Let's locally store user information, by registering individual users, and saving that information using SharedPreferences. That way, unless a user is registered first, they won't be able to sign in!
+
+First, let's create another activity called RegisterActivity.java, and edit its corresponding XML file:
+
+```XML
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="nyc.c4q.sharedprefstesting.RegisterActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp">
+
+        <TextView
+            android:id="@+id/signin_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Please Register."/>
+
+        <TextView
+            android:id="@+id/username_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username:"/>
+
+        <EditText
+            android:id="@+id/register_username_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Email Address"
+            android:inputType="textWebEmailAddress"/>
+
+        <TextView
+            android:id="@+id/password_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password:"/>
+
+        <EditText
+            android:id="@+id/register_password_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Password"
+            android:inputType="textWebPassword"/>
+
+        <TextView
+            android:id="@+id/confirm_password_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm Password:"/>
+
+        <EditText
+            android:id="@+id/confirm_password_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Re-Enter Password"
+            android:inputType="textWebPassword"/>
+
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Submit"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+```
+
+Next, let's fill in some logic that does several things:
+* First, checks to see if the password entered is consistent
+* Second, we are using the same SharedPreferences file as our login activity, and
+* Third, updates our SharedPreferences with unique key/value pairs so that, when correctly enetered, will allow the user to log in successfully
+
+Let's try that now! In our MainActivity, we should use an intent to move to the RegisterActivity, and pass it the same SharedPreferences key we used to remember a user's credentials. We can do that with an extra, placed in the register button;s onClickListener():
+
+```java
+registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                intent.putExtra("testKey", SHARED_PREFS_KEY);
+                startActivity(intent);
+            }
+        });
+```
+
+Next, we'll modify our RegisterActivity's onCreate() to include the intent and the SharedPreferences file:
+
+```java
+package nyc.c4q.sharedprefstesting;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class RegisterActivity extends AppCompatActivity {
+    private SharedPreferences registerPrefs;
+    private EditText userName;
+    private EditText password;
+    private EditText confirmPassword;
+    private Button submitButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+
+        userName = (EditText) findViewById(R.id.register_username_edittext);
+        password = (EditText) findViewById(R.id.register_password_edittext);
+        confirmPassword = (EditText) findViewById(R.id.confirm_password_edittext);
+        submitButton = (Button) findViewById(R.id.submit_button);
+
+        Intent intent = getIntent();
+        registerPrefs = getApplicationContext().getSharedPreferences(intent.getStringExtra("testKey"), MODE_PRIVATE);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = registerPrefs.edit();
+                if (userName.getText() != null &&
+                        password.getText() != null &&
+                        confirmPassword.getText() != null &&
+                        password.getText().toString().equals(
+                                confirmPassword.getText().toString()
+                        )) {
+                    editor.putString("user" + userName.getText().toString(), userName.getText().toString());
+                    editor.putString("password" + userName.getText().toString(), password.getText().toString());
+                    editor.commit();
+                    finish();
+                }
+            }
+        });
+    }
+}
+```
+
+You'll see that after we've called ```commit()``` on out editor reference, we've written ```finish()``` - this destroys the activity, since once the data is added to SharedPreferences, we'll no long need the activity, and we'll want our user to be able to immediately sign in after registration. If the person using the app wants to register a new user, they can simply click on the register button again, and repeat the whole process!
+
+In order to save the username and password during registration, we had to make each key unique. we couldn't use the password as a key to the password itself, since we'd need to compare it to a username first. This is why we created two new keys, a user key which resulted from concatinating the word "user" with whatever the username was, and the password key, which resulted from concatenating the word "password" to whatever the username was as well. The value for thir first key would be the actual username, and the value of the second key would be the actual password.
+
+Now, whenever we want to check if the credentials are valid, no matter what the credentials may be, we can compare them using concatenation in the same wayin our submitButton's onClickListener:
+
+```java
+submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = login.edit();
+                if (checkBox.isChecked()) {
+                    editor.putString("username", username.getText().toString());
+                    editor.putString("password", password.getText().toString());
+                    editor.putBoolean("isChecked", checkBox.isChecked());
+                    editor.commit();
+                } else {
+                    editor.putBoolean("isChecked", checkBox.isChecked());
+                    editor.commit();
+                }
+                
+                String checkUser = "user" + username.getText().toString();
+                String checkPassword = "password" + username.getText().toString();
+                
+                if (username.getText().toString().equalsIgnoreCase(login.getString(checkUser, null))
+                        && password.getText().toString().equals(login.getString(checkPassword, null))) {
+                    Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                    intent.putExtra("currentUser", username.getText().toString());
+                    startActivity(intent);
+                }
+            }
+        });
+```
+
+Great! We were able to leverage the power of Intents and SharedPreferences to create and maintain persistant states within our app!
