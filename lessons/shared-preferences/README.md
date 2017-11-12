@@ -387,3 +387,64 @@ However, our app should probably do something - let's have the user be moved to 
 
 </android.support.constraint.ConstraintLayout>
 ```
+
+But how do we get to this activity? With an intent, called at the end of the submitButton's onClickListener logic:
+
+```java
+submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = login.edit();
+                if (checkBox.isChecked()) {
+                    editor.putString("username", username.getText().toString());
+                    editor.putString("password", password.getText().toString());
+                    editor.putBoolean("isChecked", checkBox.isChecked());
+                    editor.commit();
+                } else {
+                    editor.putBoolean("isChecked", checkBox.isChecked());
+                    editor.commit();
+                }
+                
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+```
+
+First, we instantiate an intent object, and pass in two arguments:
+* the activity we started in: ```MainActivity.this```
+* the activity we want to go to: ```SecondActivity.class```
+
+Then, we pass that reference to the ```startActivity()``` method, which stops the current activity, adds it to a backstack, and brings the next activity into view.
+
+Right now though, all the activity currently displays is the text "You have just Signed In!", which isn't terribly unique to a user. In the MainActivity's intent, we can pass along the username to the next activity, by passing in an intent extra:
+
+```java
+Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+intent.putExtra("currentUser", username.getText().toString());
+startActivity(intent);
+```
+
+Next, in SecondActivity.java, we can access that String from the intent that brought that activity into view with the ```intent.getIntent()``` method:
+
+```java
+package nyc.c4q.sharedprefstesting;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class SecondActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+        TextView textView = (TextView) findViewById(R.id.session_message_textview);
+        Intent intent = getIntent();
+        String user = intent.getStringExtra("currentUser");
+        textView.setText("You are currently signed in as: " + user);
+    }
+}
+```
