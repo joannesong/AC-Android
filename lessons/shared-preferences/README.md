@@ -448,3 +448,11 @@ public class SecondActivity extends AppCompatActivity {
     }
 }
 ```
+
+After entering our credentials and clicking on submit:
+
+![](remember_me.PNG)
+
+Should then see our unique message in the next activity:
+
+![](signed_in.PNG)
