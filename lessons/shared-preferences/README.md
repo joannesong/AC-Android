@@ -1,4 +1,4 @@
-# Android Shared Preferences and Intents, Revisited
+# Android SharedPreferences and Intents, Revisited
 
 # Objectives
 
@@ -546,7 +546,7 @@ Next, let's fill in some logic that does several things:
 * Second, we are using the same SharedPreferences file as our login activity, and
 * Third, updates our SharedPreferences with unique key/value pairs so that, when correctly enetered, will allow the user to log in successfully
 
-Let's try that now! In our MainActivity, we should use an intent to move to the RegisterActivity, and pass it the same SharedPreferences key we used to remember a user's credentials. We can do that with an extra, placed in the register button;s onClickListener():
+Let's try that now! In our MainActivity, we should use an intent to move to the RegisterActivity, and pass it the same SharedPreferences key we used to remember a user's credentials. We can do that with an extra, placed in the registerButton's onClickListener():
 
 ```java
 registerButton.setOnClickListener(new View.OnClickListener() {
