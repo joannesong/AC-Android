@@ -364,3 +364,26 @@ password.setText(login.getString("password", null));
 You could just as easily pass in a backup String value of "", or an empty String literal rather than ```null``` - whichever you prefer, since you'll only be using that value if the key does not exist - which in our example, is not the case.
 
 This ```if``` statement will only run if the SharedPreferences reference has an ```isChecked``` key with a ```true``` value associated with it.
+
+After entering the data, ticking the checkbox, clicking submit, shutting down the app, then reopening it - you'll see that the data, and behavior, are in fact persistent!
+
+However, our app should probably do something - let's have the user be moved to another activity after a successful login. We'll create a new activity, in a file called SecondActivity.java, and it's corresponding XML file:
+
+```XML
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nyc.c4q.sharedprefstesting.SecondActivity">
+
+    <TextView
+        android:id="@+id/session_message_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You have just Signed In!"/>
+
+</android.support.constraint.ConstraintLayout>
+```
