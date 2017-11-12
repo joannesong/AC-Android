@@ -266,10 +266,89 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-To store the values, we use a put method (very much like a Map), corresponding to its data type: ```int```, ```boolean```, ```String```, etc.:
+To store the values, we use a put method (very much like a Map), corresponding to its data type: ```int```, ```boolean```, ```String```, etc., we pass in a String key, and a value we want to associate with that key - in our case, the username text, the password text, and whether or not the checkbox has been ticked:
 
 ```java
 editor.putString("username", username.getText().toString());
 editor.putString("password", password.getText().toString());
 editor.putBoolean("isChecked", checkBox.isChecked());
 ```
+
+Finally, we add the line ```editor.commit();``` every time we run ```.edit()``` on the SharedPreferences reference, whenever we have finished adding key/value pairs of data.
+
+For our logic we're adding an if/then statement, so that if the checkbox is not ticked, we can store that fact for anyone who wishes to check that in the future.
+
+Let's say the user shuts down our app after a successful login. If they tick the checkbox, they'll expect that the next time they open the app, their information will be autofilled in. Let's do that for them now in our onCreate():
+
+```java
+package nyc.c4q.sharedprefstesting;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
+    private EditText username;
+    private EditText password;
+    private CheckBox checkBox;
+    private Button submitButton;
+    private Button registerButton;
+    private SharedPreferences login;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        username = (EditText) findViewById(R.id.username_edittext);
+        password = (EditText) findViewById(R.id.password_edittext);
+        checkBox = (CheckBox) findViewById(R.id.remember_me_checkbox);
+        submitButton = (Button) findViewById(R.id.submit_button);
+        registerButton = (Button) findViewById(R.id.register_button);
+
+        login = getApplicationContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
+        
+        if (login.getBoolean("isChecked", false)) {
+            username.setText(login.getString("username", null));
+            password.setText(login.getString("password", null));
+            checkBox.setChecked(login.getBoolean("isChecked", false));
+        }
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = login.edit();
+                if (checkBox.isChecked()) {
+                    editor.putString("username", username.getText().toString());
+                    editor.putString("password", password.getText().toString());
+                    editor.putBoolean("isChecked", checkBox.isChecked());
+                    editor.commit();
+                } else {
+                    editor.putBoolean("isChecked", checkBox.isChecked());
+                    editor.commit();
+                }
+            }
+        });
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            
+            }
+        });
+    }
+}
+```
+
+First, we check to see if the checkbox was ticked the last time the login info was submitted by running ```login.getBoolean("isChecked", false)``` as a conditional for the if statement. You'll see that the method takes two parameters:
+* the key for the value we want
+* a backup value, should the key not be there
+
+This backup value actually makes sense, since it helps to return a value no matter what. It's precident to make your backup value the default value of the data type you are asking for - in this case, a boolean's default type is ```false```, so if no value was found for that key, we can still use the backup value that was passed in and returned to us.
