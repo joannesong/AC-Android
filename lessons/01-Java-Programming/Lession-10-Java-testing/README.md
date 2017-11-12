@@ -145,7 +145,76 @@ JUnit provides static methods to test for certain conditions via the Assert clas
 
 The following table gives an overview of these methods. Parameters in [] brackets are optional and of type String.
 
+**fail([message])**: Let the method fail. Might be used to check that a certain part of the code is not reached or to have a failing test before the test code is implemented. The message parameter is optional.
+
+**assertTrue([message,] boolean condition)**: Checks that the boolean condition is true.
+
+**assertFalse([message,] boolean condition)**: Checks that the boolean condition is false.
+
+**assertEquals([message,] expected, actual)**: Tests that two values are the same. Note: for arrays the reference is checked not the content of the arrays.
+
+**assertEquals([message,] expected, actual, tolerance)**: Test that float or double values match. The tolerance is the number of decimals which must be the same.
+
+**assertNull([message,] object)**: Checks that the object is null.
+
+**assertNotNull([message,] object)**: Checks that the object is not null.
+
+**assertSame([message,] expected, actual)**: Checks that both variables refer to the same object.
+
+**assertNotSame([message,] expected, actual)**: Checks that both variables refer to different objects.
+
+## Mocking (Up next)
+
+## Test Driven Development (Up next)
+
 ## Summary
+
+- Software unit tests help the developer to verify that the logic of a piece of the program is correct.
+
+- They also verify the code is still correct after modification
+
+- There are several different kinds of tests but unit tests are the most common and important of them.
+
+- JUnit uses annotations to mark methods as test methods and to configure test classes
+
+- Asserts allow you to specify the error message, the expected and the actual result.
 
 
 ## Exercises
+
+**Question 1**:
+
+Create a method, `splitNumber` that takes a string of the form `"12345"` and returns an int array `[1,2,3,4,5]`. The string can be of arbitrary length.
+
+Create a JUnit test to test the method `splitNumber`.
+
+The method signature should be `public int[] splitNumber(String input)`
+
+**Question 2**:
+
+Below is the code for the bubble sort algorithm, create a JUnit test for it. 
+If you would like to learn more about bubble sort, see this [article](http://www.geeksforgeeks.org/bubble-sort/)
+
+```java
+public static void BubbleSort( int [ ] num )
+{
+     int j;
+     boolean flag = true;   // set flag to true to begin first pass
+     int temp;   //holding variable
+
+     while ( flag )
+     {
+            flag= false;    //set flag to false awaiting a possible swap
+            for( j=0;  j < num.length -1;  j++ )
+            {
+                   if ( num[ j ] < num[j+1] )   // change to > for ascending sort
+                   {
+                           temp = num[ j ];                //swap elements
+                           num[ j ] = num[ j+1 ];
+                           num[ j+1 ] = temp;
+                          flag = true;              //shows a swap occurred  
+                  } 
+            } 
+      } 
+} 
+```
