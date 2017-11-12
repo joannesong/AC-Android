@@ -352,3 +352,15 @@ First, we check to see if the checkbox was ticked the last time the login info w
 * a backup value, should the key not be there
 
 This backup value actually makes sense, since it helps to return a value no matter what. It's precident to make your backup value the default value of the data type you are asking for - in this case, a boolean's default type is ```false```, so if no value was found for that key, we can still use the backup value that was passed in and returned to us.
+
+
+Next, if the checkbox was ticked previously, we can now confidently set the text values of these EditTexts by using the keys associated with the username and password last entered. In the ```getString()``` method, we also pass in two arguments as parameters:
+
+```java
+username.setText(login.getString("username", null));
+password.setText(login.getString("password", null));
+```
+
+You could just as easily pass in a backup String value of "", or an empty String literal rather than ```null``` - whichever you prefer, since you'll only be using that value if the key does not exist - which in our example, is not the case.
+
+This ```if``` statement will only run if the SharedPreferences reference has an ```isChecked``` key with a ```true``` value associated with it.
