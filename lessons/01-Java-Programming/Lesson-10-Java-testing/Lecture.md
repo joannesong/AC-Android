@@ -102,7 +102,7 @@ src/main/java - for Java classes
 
 JUnit is a test framework which uses annotations to identify methods that specify a test. JUnit is an open source project hosted at Github.
 
-**Todo**: Add JUnit dependency to your project
+**Todo**: Add JUnit dependency to the LinkedList project from last week
 
 ---
 
@@ -113,6 +113,8 @@ A JUnit test is a method contained in a class which is only used for testing. Th
 This method executes the code under test. You use an assert method, provided by JUnit or another assert framework, to check an expected result versus the actual result. These method calls are typically called asserts or assert statements.
 
 You should provide meaningful messages in assert statements. That makes it easier for the user to identify and fix the problem. This is especially true if someone looks at the problem, who did not write the code under test or the test code.
+
+---
 
 ## Example JUnit test
 The following code shows a JUnit test using the JUnit 5 version. This test assumes that the MyClass class exists and has a multiply(int, int) method.
@@ -136,6 +138,8 @@ public class MyTests {
 }
 ```
 
+---
+
 ## JUnit naming conventions
 There are several potential naming conventions for JUnit tests. A widely-used solution for classes is to use the "Test" suffix at the end of test classes names.
 
@@ -146,14 +150,20 @@ One possible convention is to use the "should" in the test method name. For exam
 Another approach is to use "Given[ExplainYourInput]When[WhatIsDone]Then[ExpectedResult]" for the display name of the test method.
 
 
+---
+
 
 ## Test execution order
 JUnit assumes that all test methods can be executed in an arbitrary order. Well-written test code should not assume any order, i.e., tests should not depend on other tests.
 
 As of JUnit 4.11 the default is to use a deterministic, but not predictable, order for the execution of the tests.
 
+---
+
 ## Defining test methods
 JUnit uses annotations to mark methods as test methods and to configure them. The following table gives an overview of the most important annotations in JUnit for the 4.x and 5.x versions. All these annotations can be used on methods.
+
+---
 
 ## Common JUnit Annotations
 
@@ -165,6 +175,11 @@ JUnit uses annotations to mark methods as test methods and to configure them. Th
 
 **@BeforeClass**: Executed once, before the start of all tests. It is used to perform time intensive activities, for example, to connect to a database. Methods marked with this annotation need to be defined as static to work with JUnit.
 
+
+---
+
+## Common JUnit Annotations
+
 **@AfterClass**: Executed once, after all tests have been finished. It is used to perform clean-up activities, for example, to disconnect from a database. Methods annotated with this annotation need to be defined as static to work with JUnit.
 
 **@Test (expected = Exception.class)**
@@ -173,10 +188,9 @@ Fails if the method does not throw the named exception.
 **@Test(timeout=100)**
 Fails if the method takes longer than 100 milliseconds.
 
-## Assert statements
-JUnit provides static methods to test for certain conditions via the Assert class. These assert statements typically start with assert. They allow you to specify the error message, the expected and the actual result. An assertion method compares the actual value returned by a test to the expected value. It throws an AssertionException if the comparison fails.
+---
 
-The following table gives an overview of these methods. Parameters in [] brackets are optional and of type String.
+## Assert statements
 
 **fail([message])**: Let the method fail. Might be used to check that a certain part of the code is not reached or to have a failing test before the test code is implemented. The message parameter is optional.
 
@@ -188,6 +202,11 @@ The following table gives an overview of these methods. Parameters in [] bracket
 
 **assertEquals([message,] expected, actual, tolerance)**: Test that float or double values match. The tolerance is the number of decimals which must be the same.
 
+
+---
+
+## Assert statements contd.
+
 **assertNull([message,] object)**: Checks that the object is null.
 
 **assertNotNull([message,] object)**: Checks that the object is not null.
@@ -196,9 +215,13 @@ The following table gives an overview of these methods. Parameters in [] bracket
 
 **assertNotSame([message,] expected, actual)**: Checks that both variables refer to different objects.
 
+---
+
 ## Mocking (Up next)
 
 ## Test Driven Development (Up next)
+
+---
 
 ## Summary
 
@@ -212,6 +235,8 @@ The following table gives an overview of these methods. Parameters in [] bracket
 
 - Asserts allow you to specify the error message, the expected and the actual result.
 
+---
+
 
 ## Exercises
 
@@ -223,10 +248,16 @@ Create a JUnit test to test the method `splitNumber`.
 
 The method signature should be `public int[] splitNumber(String input)`
 
+---
+
+## Exercises
+
 **Question 2**:
 
 Below is the code for the bubble sort algorithm, create a JUnit test for it. 
 If you would like to learn more about bubble sort, see this [article](http://www.geeksforgeeks.org/bubble-sort/)
+
+---
 
 ```java
 public static void BubbleSort( int [ ] num )
@@ -251,3 +282,5 @@ public static void BubbleSort( int [ ] num )
       } 
 } 
 ```
+
+---
