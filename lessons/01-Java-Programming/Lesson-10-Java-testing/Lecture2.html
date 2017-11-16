@@ -261,6 +261,53 @@ Fails if the method takes longer than 100 milliseconds.
 
 - Asserts allow you to specify the error message, the expected and the actual result.
 
+---
+
+
+## Exercises
+
+**Question 1**:
+
+Create a method, `splitNumber` that takes a string of the form `"12345"` and returns an int array `[1,2,3,4,5]`. The string can be of arbitrary length.
+
+Create a JUnit test to test the method `splitNumber`.
+
+The method signature should be `public int[] splitNumber(String input)`
+
+---
+
+## Exercises
+
+**Question 2**:
+
+Below is the code for the bubble sort algorithm, create a JUnit test for it. 
+If you would like to learn more about bubble sort, see this [article](http://www.geeksforgeeks.org/bubble-sort/)
+
+---
+
+```java
+public static void BubbleSort( int [ ] num )
+{
+     int j;
+     boolean flag = true;   // set flag to true to begin first pass
+     int temp;   //holding variable
+
+     while ( flag )
+     {
+            flag= false;    //set flag to false awaiting a possible swap
+            for( j=0;  j < num.length -1;  j++ )
+            {
+                   if ( num[ j ] < num[j+1] )   // change to > for ascending sort
+                   {
+                           temp = num[ j ];                //swap elements
+                           num[ j ] = num[ j+1 ];
+                           num[ j+1 ] = temp;
+                          flag = true;              //shows a swap occurred  
+                  } 
+            } 
+      } 
+} 
+```
 
 ---
 
@@ -356,47 +403,6 @@ public class MockitoTest  {
 * You also can use methods like `anyString` or `anyInt` to define that dependent on the input type a certain value should be returned.
 
 See [MockitoSample.java](MockitoSample.java)
-
----
-
-## Exercises
-
-**Question 1**:
-
-Create a method, `splitNumber` that takes a string of the form `"12345"` and returns an int array `[1,2,3,4,5]`. The string can be of arbitrary length.
-
-Create a JUnit test to test the method `splitNumber`.
-
-The method signature should be `public int[] splitNumber(String input)`
-
-**Question 2**:
-
-Below is the code for the bubble sort algorithm, create a JUnit test for it. 
-If you would like to learn more about bubble sort, see this [article](http://www.geeksforgeeks.org/bubble-sort/)
-
-```java
-public static void BubbleSort( int [ ] num )
-{
-     int j;
-     boolean flag = true;   // set flag to true to begin first pass
-     int temp;   //holding variable
-
-     while ( flag )
-     {
-            flag= false;    //set flag to false awaiting a possible swap
-            for( j=0;  j < num.length -1;  j++ )
-            {
-                   if ( num[ j ] < num[j+1] )   // change to > for ascending sort
-                   {
-                           temp = num[ j ];                //swap elements
-                           num[ j ] = num[ j+1 ];
-                           num[ j+1 ] = temp;
-                          flag = true;              //shows a swap occurred  
-                  } 
-            } 
-      } 
-} 
-```
 
 ---
 
