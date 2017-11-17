@@ -15,6 +15,8 @@ I have created a [project](https://github.com/lighterletter/FragmentLesson) for 
 
 [Android Docs](https://developer.android.com/guide/components/fragments.html)
 
+[Google training](https://developer.android.com/training/basics/fragments/index.html)
+
 [Code Path Tutorial](https://guides.codepath.com/android/creating-and-using-fragments)
 
 ![](https://github.com/lighterletter/FragmentLesson/blob/master/sample/fragment_gif_demo.gif)
