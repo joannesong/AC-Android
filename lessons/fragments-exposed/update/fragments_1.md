@@ -14,6 +14,7 @@ Understanding how to build them dynamically will make the static implementation 
 I have created a [project](https://github.com/lighterletter/FragmentLesson) for you to see how fragments are built. Take a look through the code and comments and try to make sense of it. In this lesson we will review how the application was built and implement some fragments in class. 
 
 [Android Docs](https://developer.android.com/guide/components/fragments.html)
+
 [Code Path Tutorial](https://guides.codepath.com/android/creating-and-using-fragments)
 
 ![](https://github.com/lighterletter/FragmentLesson/blob/master/sample/fragment_gif_demo.gif)
