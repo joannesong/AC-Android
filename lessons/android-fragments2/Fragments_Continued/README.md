@@ -8,6 +8,6 @@
 * Fellows will utilize Fagment managers
 * Fellows will use Fragment Transactions to add bundles and commit Fragments
 * Fellows will add Fragments to a BackStack
-* Fellows will and and replace Fragments within Frame Layouts
+* Fellows will add and replace Fragments within Frame Layouts
 
 # Lecture
