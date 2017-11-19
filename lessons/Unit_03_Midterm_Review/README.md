@@ -1,7 +1,7 @@
 # Unit 03 Midterm Review
 
 |Topic|Resource|
-|:-:|:-|
+|:-|:-|
 |Git and GitHub|[link](https://try.github.io/levels/1/challenges/1)|
 |Creating Git Branches and Commits|[link](http://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/commandlinegit.html)|
 |Activity Lifecycle|[link](https://github.com/C4Q/AC-Android/tree/master/lessons/android-lifecycle)|
