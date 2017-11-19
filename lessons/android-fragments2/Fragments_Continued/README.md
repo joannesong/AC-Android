@@ -182,3 +182,109 @@ Finally, we commit our transaction (just like we do when editing SharedPrefernce
 ![](overlapping_views.PNG)
 
 Oh no! It looks jumbled! This is actually a good thing - it's showing us that the fragment has replaced, and been layered onto the MainActivity's FrameLayout! We we delete the TextView from the MainActivity's Layout XML, from within the Frame Layout, this overlapping issue should disappear!
+
+Let's create a new Fragment called ButtonFragment.java, with the following code:
+
+```java
+package nyc.c4q.fragmentstesting.fragments;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import nyc.c4q.fragmentstesting.R;
+
+public class ButtonFragment extends Fragment {
+
+private View rootView;
+
+    public ButtonFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_button, container, false);
+
+        Button button01 = rootView.findViewById(R.id.button01);
+        button01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PictureFragment pictureFragment = new PictureFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_container, pictureFragment).addToBackStack("picture");
+                fragmentTransaction.commit();
+
+            }
+        });
+        
+        return rootView;
+    }
+}
+```
+
+And this will be its corresponding XML:
+
+```xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center"
+              tools:context="nyc.c4q.fragmentstesting.fragments.ButtonFragment">
+
+    <Button
+        android:id="@+id/button01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="display image"/>
+
+</LinearLayout>
+```
+We'll also have to create a new Fragment called PictureFragment.java, which will hold an imageView in its XML layout file:
+
+```xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="nyc.c4q.fragmentstesting.fragments.PictureFragment">
+
+    <ImageView
+        android:id="@+id/picture_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
+```
+
+Let's change our code in our MainActivity.java onCreate(), to accomodate for the new fragment:
+
+```java
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ButtonFragment buttonFragment = new ButtonFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_container, mainFragment);
+        fragmentTransaction.commit();
+    }
+```
+
+Huzzah! We created one fragment with a button that, when pressed, will move to another button! However, when we press the back button, the app closes :sob:
+
+How can we fix this? By adding the new fragment to something called the "BackStack" - which allows us to go back to the last fragment created, just like calling pop() on a Stack implementation! However, unlike a regular stack, you are not returned the view that is popped, you are merely brought back to the previous fragment. Let's add our new fragment to the backstack now:
+
