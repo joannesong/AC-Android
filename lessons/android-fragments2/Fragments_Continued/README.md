@@ -125,7 +125,7 @@ Next, within our onCreateView() method, we will assign the view we will be infla
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        return mRootView;
+        return rootView;
     }
 ```
 
