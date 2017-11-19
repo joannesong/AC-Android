@@ -179,6 +179,6 @@ fragmentTransaction.replace(R.id.main_container, mainFragment);
 
 Finally, we commit our transaction (just like we do when editing SharedPrefernces), and let the FragmentManager handle everything at runtime. The result should look something like this:
 
-
+![](overlapping_views.PNG)
 
 
