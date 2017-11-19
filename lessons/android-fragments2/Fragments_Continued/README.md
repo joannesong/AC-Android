@@ -36,3 +36,9 @@ The Fragment Lifecycle is similar to that of the Activity Lifecycle, in that it 
 |onDestroyView()|It’s called before onDestroy(). This is the counterpart to onCreateView() where we set up the UI. If there are things that are needed to be cleaned up specific to the UI, then that logic can be put up in onDestroyView()|
 |onDestroy()|onDestroy() called to do final clean up of the fragment’s state but Not guaranteed to be called by the Android platform|
 |onDetach()|It’s called after onDestroy(), to notify that the fragment has been disassociated from its hosting activity|
+
+## Why use Fragments?
+
+Although it is tempting to think of designing an entire app with many different activities, your manifest fill up with their declarations pretty fast. Fragments are like activities that can be swapped out many times, without having to leave the current activity. You can have only one activity running at any given time, but you can have a seemingly infinite number of fragments running at any given time.
+
+Fragments give us the opportunity to create dynamic UI elements within our application. 
