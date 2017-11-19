@@ -181,4 +181,4 @@ Finally, we commit our transaction (just like we do when editing SharedPrefernce
 
 ![](overlapping_views.PNG)
 
-
+Oh no! It looks jumbled! This is actually a good thing - it's showing us that the fragment has replaced, and been layered onto the MainActivity's FrameLayout! We we delete the TextView from the MainActivity's Layout XML, from within the Frame Layout, this overlapping issue should disappear!
