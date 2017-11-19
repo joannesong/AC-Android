@@ -42,3 +42,58 @@ The Fragment Lifecycle is similar to that of the Activity Lifecycle, in that it 
 Although it is tempting to think of designing an entire app with many different activities, your manifest fill up with their declarations pretty fast. Fragments are like activities that can be swapped out many times, without having to leave the current activity. You can have only one activity running at any given time, but you can have a seemingly infinite number of fragments running at any given time.
 
 Fragments give us the opportunity to create dynamic UI elements within our application. 
+
+Fragments are available as widgets we can use within our XLM Layout files. However, they are rarely if ever used that way. Often, fragments are instantiated at runtime, and replace the contents of a view container.
+
+Typically, when creating an app where Fragments are the UI elements most often used to host the views visible to the user, a main fragment is added, or replaces the contents of a view container, which typically takes up the entire screen. In the layout XML for our Main Activity, we can add a FrameLayout, within the root view, which will be used to "swap out" fragments as necessary:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="nyc.c4q.fragmentstesting.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</LinearLayout>
+```
+
+Because the FrameLayout is set to "match_parent" for both width and height, it will take up the whole screen. We can then fill the screen with our fragment at runtime.
+
+```java
+package nyc.c4q.fragmentstesting;
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import nyc.c4q.fragmentstesting.Fragments.ButtonFragment;
+import nyc.c4q.fragmentstesting.Fragments.MainFragment;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        MainFragment mainFragment = new MainFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_container, mainFragment);
+        fragmentTransaction.commit();
+    }
+}
+```
+
