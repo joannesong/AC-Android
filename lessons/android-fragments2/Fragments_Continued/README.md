@@ -288,3 +288,167 @@ Huzzah! We created one fragment with a button that, when pressed, will move to a
 
 How can we fix this? By adding the new fragment to something called the "BackStack" - which allows us to go back to the last fragment created, just like calling pop() on a Stack implementation! However, unlike a regular stack, you are not returned the view that is popped, you are merely brought back to the previous fragment. Let's add our new fragment to the backstack now:
 
+
+```java
+button01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PictureFragment pictureFragment = new PictureFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_container, pictureFragment).addToBackStack("picture");
+                fragmentTransaction.commit();
+
+            }
+        });
+```
+
+Now, when the back button is pressed, it will go back to the previous fragment, as expected! We use the string "picture", so that FragmentManager can tell the difference between Fragments in the backstack.
+
+Just like how Activities can pass information between them with intents and intent extras, so can fragments, by using bundles. Let's say we wanted to add an EditText to our button fragment that, when pressed, will pass the contents of that EditText to the new fragment called RandomFragment.java - Let's do that now:
+
+
+
+```xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center"
+              tools:context="nyc.c4q.fragmentstesting.fragments.ButtonFragment">
+
+    <EditText
+        android:id="@+id/fragment_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/button01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send bundle"/>
+
+    <Button
+        android:id="@+id/button02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="display image"/>
+
+
+</LinearLayout>
+```
+
+Now the layout for the RandomFragment:
+
+```xml
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical"
+              tools:context="nyc.c4q.fragmentstesting.fragments.RandomFragment">
+
+    <TextView
+        android:id="@+id/random_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:text="Random Value"/>
+
+</LinearLayout>
+```
+
+Next, let's update the onCreateView() in our ButtonFragment:
+
+```java
+@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_button, container, false);
+
+        Button button01 = (Button) rootView.findViewById(R.id.button01);
+        Button button02 = (Button) rootView.findViewById(R.id.button02);
+        editText = (EditText) rootView.findViewById(R.id.fragment_edittext);
+        button01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PictureFragment pictureFragment = new PictureFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_container, pictureFragment).addToBackStack("picture");
+                fragmentTransaction.commit();
+
+            }
+        });
+        button02.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RandomFragment randomFragment = new RandomFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                String editTextContents = editText.getText().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("random", editTextContents);
+                randomFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.main_container, randomFragment).addToBackStack("random");
+                fragmentTransaction.commit();
+            }
+        });
+        return rootView;
+    }
+```
+
+We also added these four lines specifically:
+
+```java
+String editTextContents = editText.getText().toString();
+Bundle bundle = new Bundle();
+bundle.putString("random", editTextContents);
+randomFragment.setArguments(bundle);
+```
+
+When we create a bundle, we are creating an object that will pass on other objects in key/value pairs to whatever fragment receives it. we can then call ```Bundle bundle = getArguments();```, and extract those values by calling the keys that were used to put them in:
+
+```java
+package nyc.c4q.fragmentstesting.fragments;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import nyc.c4q.fragmentstesting.R;
+
+public class RandomFragment extends Fragment {
+
+    private View rootView;
+    private TextView textview;
+
+    public RandomFragment() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        rootView = inflater.inflate(R.layout.fragment_random, container, false);
+        textview = (TextView) rootView.findViewById(R.id.random_textview);
+
+        Bundle bundle = getArguments();
+        String textFromEditText = bundle.getString("random", "");
+        textview.setText(textFromEditText);
+
+        return rootView;
+    }
+
+}
+```
+
+Excellent! We can easily create fragments, replace views, add fragments to a backstack, and pass data between fragments with bundles! Good work!
