@@ -164,6 +164,21 @@ And in our onCreateView within our fragment:
 
 Let's go back to the onCreate() method of our MainActivity, so that we can create our fragment programmatically:
 * First, instantiate our fragment:
-``` MainFragment mainFragment = new MainFragment();```
+```MainFragment mainFragment = new MainFragment();```
 
-* Next
+* Next, assign a FragmentManager:
+```FragmentManager fragmentManager = getSupportFragmentManager();```
+
+A FragmentManager manages Fragments in Android, in relation to how transactions are handled between fragments. A transaction is a way to add, replace, or remove fragments.
+
+* Now, let's create a FragmentTransaction, using our FragmentManager, to replace the view within the FrameLayout:
+```java
+FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+fragmentTransaction.replace(R.id.main_container, mainFragment);
+```
+
+Finally, we commit our transaction (just like we do when editing SharedPrefernces), and let the FragmentManager handle everything at runtime. The result should look something like this:
+
+
+
+
