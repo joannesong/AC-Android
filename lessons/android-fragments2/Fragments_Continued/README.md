@@ -62,13 +62,20 @@ Typically, when creating an app where Fragments are the UI elements most often u
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+    
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="This textview is in the Main Activity"
+            android:textSize="50sp"/>
 
     </FrameLayout>
 
 </LinearLayout>
 ```
 
-Because the FrameLayout is set to "match_parent" for both width and height, it will take up the whole screen. We can then fill the screen with our fragment at runtime.
+Because the FrameLayout is set to "match_parent" for both width and height, it will take up the whole screen. We can now fill the screen with our fragment at runtime.
 
 ```java
 package nyc.c4q.fragmentstesting;
@@ -97,3 +104,66 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
+To create a fragment dynamically within a view, we first need to create the class and corresponding layout.
+
+Right-click inside your main project folder, and create a new project folder called "fragments" - all lowercase. This will help to separate concerns between files. Next, right-click within that folder to create a new fragment. Android Studio allows us to create fragments out-of-the-box, just like activities, with minimal setup.
+
+After right-clicking in the "fragments"'s project folder, select New > Fragment > Empty Fragment - where you will then be prompted to make a few selections. Name your new Fragment "MainFragment", make sure "Create Layout XML?" is checked off, but DESELECT "Include fragment factory methods", as well as "Include Interface callbacks. Then select "Finished".
+
+Let's go to our MainFragment.java file - we can see that we have a n empty public constructor, and an onCreateView() method, but that's about it. We can create a fragment just fine with these parts, but if we want to reference views in this fragmnet, we'll have to alter the onCreateView() method a bit.
+
+First, let's add a field variable, to hold a reference of the view we will be inflating into our MainActivity's FrameLayout:
+
+```java
+private View rootView;
+```
+
+Next, within our onCreateView() method, we will assign the view we will be inflating to this field, then return this field in the end:
+
+```java
+@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        return mRootView;
+    }
+```
+
+Why do we do this? We do this because previousy, the view was simply inflated and returned - but we want to be able to reference views to it, just like we might in the onCreate() of an activity. Now, we can use ```rootView``` by calling ```findViewById()``` on it, before we return the view to be inflated:
+
+```xml
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="nyc.c4q.fragmentstesting.fragments.MainFragment">
+
+    <TextView
+        android:id="@+id/main_fragment_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is the Main Fragment"
+        android:textSize="50sp"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+</FrameLayout>
+```
+
+And in our onCreateView within our fragment:
+
+```java
+@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        TextView textView = (TextView) rootView.findViewById(R.id.main_fragment_textview);
+        return rootView;
+    }
+```
+
+Let's go back to the onCreate() method of our MainActivity, so that we can create our fragment programmatically:
+* First, instantiate our fragment:
+``` MainFragment mainFragment = new MainFragment();```
+
+* Next
