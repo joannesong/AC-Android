@@ -39,11 +39,11 @@ The Fragment Lifecycle is similar to that of the Activity Lifecycle, in that it 
 
 ## Why use Fragments?
 
-Although it is tempting to think of designing an entire app with many different activities, your manifest fill up with their declarations pretty fast. Fragments are like activities that can be swapped out many times, without having to leave the current activity. You can have only one activity running at any given time, but you can have a seemingly infinite number of fragments running at any given time.
+Although it is tempting to think of designing an entire app with many different activities, your manifest will fill up with their declarations pretty fast. Fragments are like activities that can be swapped out many times, without having to leave the current activity. You can have only one activity running at any given time, but you can have a seemingly infinite number of fragments running at any given time.
 
 Fragments give us the opportunity to create dynamic UI elements within our application. 
 
-Fragments are available as widgets we can use within our XLM Layout files. However, they are rarely if ever used that way. Often, fragments are instantiated at runtime, and replace the contents of a view container.
+Fragments are available as widgets we can use within our XML Layout files. However, they are rarely if ever used that way. Often, fragments are instantiated at runtime, and replace the contents of a view container.
 
 Typically, when creating an app where Fragments are the UI elements most often used to host the views visible to the user, a main fragment is added, or replaces the contents of a view container, which typically takes up the entire screen. In the layout XML for our Main Activity, we can add a FrameLayout, within the root view, which will be used to "swap out" fragments as necessary:
 
