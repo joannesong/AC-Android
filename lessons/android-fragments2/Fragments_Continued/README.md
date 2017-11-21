@@ -303,7 +303,7 @@ button01.setOnClickListener(new View.OnClickListener() {
         });
 ```
 
-Now, when the back button is pressed, it will go back to the previous fragment, as expected! We use the string "picture", so that FragmentManager can tell the difference between Fragments in the backstack.
+Now, when the back button is pressed, it will go back to the previous fragment, as expected! We use the string "picture", so that FragmentManager can tell the difference between Fragments in the backstack. Just remember, if you add your main fragment to the backstack, if you press the back button while that fragment is loaded, it will disappear (be popped), and show us the hosting activity, which should be empty. Don't do that, though - that's weird.
 
 Just like how Activities can pass information between them with intents and intent extras, so can fragments, by using bundles. Let's say we wanted to add an EditText to our button fragment that, when pressed, will pass the contents of that EditText to the new fragment called RandomFragment.java - Let's do that now:
 
