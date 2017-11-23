@@ -17,6 +17,8 @@ Concurrency is *dealing* with many things as once. For example: you laptop is ma
 
 Parrellism is *doing* many things at once. For example: Dividing the work of cleaning a big hall between multiple people. They all pick their sections and can all clean at once.
 
+![Parallelism vs Concurrency](parallelism-vs-concurrency.png)
+
 # What is Thread in java
 
 *def* A thread is a lightweight sub process, a smallest unit of processing. It is a separate path of execution.
@@ -29,7 +31,9 @@ As shown in the above figure, thread is executed inside the process. There is co
 
 # What is MultiThreading
 
-*def* Multithreading in java is a process of executing multiple threads simultaneously.
+*def* Multithreading is a type of execution model that allows multiple threads to exist within the context of a process such that they execute independently but share their process resources..
+
+*Simplified* Multithreading is running multiple threads in a process
 
 Benefits:
 
@@ -44,11 +48,11 @@ Benefits:
 ### Threads make work fast, why not use it all time!
 (The Cleaners Problem)
 
-* Asynchronous operations
+* Asynchronous operations (like downloading a file - because it takes time)
 
-* Operations that can be parallelized
+* Operations that can be parallelized (downloading multiple files at a time - because they can be done independently)
 
-* Continual running background operations
+* Continual running background operations (like push notifications service always listening for incoming notifications)
 
 # Simple Java Thread code
 
@@ -195,6 +199,10 @@ public class TestThread {
    }   
 }
 ```
+
+## Shared State and Synchronization
+
+
 
 # More examples
 
