@@ -20,9 +20,13 @@ Students will understand:
 - [AsyncTasks](https://www.youtube.com/watch?v=V4q0sTIntsk)
 
 
-### Do Now (Morning)
+### Warm up
 
-Create an application that reads data locally. Copy the JSON Object from the following [Gist](https://gist.github.com/abassawo/975f7d9a9d90e2d9d5683454dd981ffa) (Copy everything excluding "var data = ") into a json file in your Res directory. Your task is to load up the json data into a TextView as-is.
+* Create an app that displays the [data in this json file](data.json) in a recycler view. 
+
+Your app should have only *1* activity, no click handlers, material design etc... just a recycler view
+
+Lesson summary: We'll learn how to read the same data using async tasks.
 
 ### Lecture
 
@@ -42,8 +46,6 @@ Rule 2: Add necessary permissions
 
 **Jank**: Any stuttering, flickering or just plain halting that users see when an app (or site) isn't keeping up with the refresh rate. Jank is the result of frames taking too long for a browser to make, and it negatively impacts your users and how they experience your site or app.
 
-  - Demo - JankyApp
-
 **Asynchronous** - When you execute something asynchronously, you can move on to another task before it finishes.
 
 **Synchronous** - When you execute something synchronously, you wait for it to finish before moving on to another task. (Also referred to as blocking)
@@ -59,9 +61,10 @@ Race Condition - Running more than one thread inside the same application does n
 
 #### The Android Main Thread
 
-The UI thread is the main thread, and it in charge of updating the UI. Other threads may interact with the main thread to update the UI or do other things such as run a service or running the onReceive method in a broadcast receiver. Because this thread updates the UI, actions that are performed on it should be quick and discrete.  If the UI thread were to be used to access the internet or download a file, for example, then the user would not be unable to interact with the application until that operation was completed. This is why background threads are used.
+The UI thread is the main thread, and it is in charge of updating the UI. Other threads may interact with the main thread to update the UI or do other things such as run a service or running the onReceive method in a broadcast receiver. Because this thread updates the UI, actions that are performed on it should be quick and discrete.  If the UI thread were to be used to access the internet or download a file, for example, then the user would not be unable to interact with the application until that operation was completed. This is why background threads are used.
 
-Background threads are threads other than the main thread.  They do not make changes to the UI.  While information from a background thread may be used to update the UI, the UI is updated by the UI thread. Anything that could block the UI thread, such as a database access, should go on a background thread.
+* Background threads are threads other than the main thread. They do not make changes to the UI.  
+* While information from a background thread may be used to update the UI, the UI is updated by the UI thread. Anything that could block the UI thread, such as a database access, should go on a background thread.
 
 
 #### Asynchronous Android Programming
@@ -76,26 +79,54 @@ There are a number of ways to facilitate asynchronous Android programming - i.e,
 
 - Not an answer to every multi-threading matter*
 
-An AsyncTask is an object that defines a task to be executed in a background thread. The `doInBackground` method must be implemented, and the code runs in the background. The `onPostExecute` method runs on the UI thread, and can use the result of `doInBackground`, which it takes in as a parameter.
+The AsyncTask class allows to run instructions in the background and to synchronize again with the main thread. It also reporting progress of the running tasks. AsyncTasks should be used for short background operations which need to update the user interface.
+
+In other words, AsyncTask is an object that defines a task to be executed in a background thread. The `doInBackground` method must be implemented, and the code runs in the background. The `onPostExecute` method runs on the UI thread, and can use the result of `doInBackground`, which it takes in as a parameter.
 
 Some methods from AsyncTask run on the UI thread, while some run in a background thread - e.g. `publishProgress` posts an update from the background thread, while `onProgressUpdate` runs on the UI thread using the information from `publishProgress`.
 
+An AsyncTask is started via the `execute()` method. This `execute()` method calls the `doInBackground()` and the `onPostExecute()` method.
 
-### Exercises (Afternoon)
-
-We will load information from the internet. 
-
-Modify your project to fetch Chuck Norris jokes from the following web resource:
-
-http://api.icndb.com/jokes/random/
+To use AsyncTask you must subclass it. The parameters are the following AsyncTask <TypeOfVarArgParams, ProgressValue, ResultValue>
 
 
-### 3rd Party Libraries for Consuming Web
+## Asynchronous vs Asynchronous access to data source
 
-- [OkHttp](http://square.github.io/okhttp/)
-- [Retrofit](https://square.github.io/retrofit/)
-- [Gson](https://github.com/google/gson)
+See [this example](https://github.com/C4Q/NotesApp/blob/dev/app/src/main/java/c4q/nyc/notesapp/NotesListActivity.java#L127-151) in NotesApp. 
 
-## Exercise  
+Switch up the `onCreate` methods, run in emulator and see how they behave.
 
-Modify your code to fetch data from http://api.icndb.com/jokes/categories. Load your data into a RecyclerView in your fragment.
+## The 4 steps / Lifecycle of an AsyncTask
+
+When an asynchronous task is executed, the task goes through 4 steps:
+
+1. **onPreExecute()**: invoked on the *UI thread* before the task is executed. This step is normally used to setup the task, for instance by showing a progress bar in the user interface.
+
+2. **doInBackground(Params...)**: invoked on the *background thread* immediately after `onPreExecute()` finishes executing. This step is used to perform background computation that can take a long time. The parameters of the asynchronous task are passed to this step. The result of the computation must be returned by this step and will be passed back to the last step. This step can also use `publishProgress(Progress...)` to publish one or more units of progress. These values are published on the UI thread, in the `onProgressUpdate(Progress...)` step.
+
+3. **onProgressUpdate(Progress...)**: invoked on the *UI thread* after a call to publishProgress(Progress...). The timing of the execution is undefined. This method is used to display any form of progress in the user interface while the background computation is still executing. For instance, it can be used to animate a progress bar or show logs in a text field.
+
+4. **onPostExecute(Result)**: invoked on the *UI thread* after the background computation finishes. The result of the background computation is passed to this step as a parameter.
+
+Try copying modifying the UI (let's say setting adapter of recyclerView) in the `doInBackground` method. What happened? Why?
+
+## AsyncTask are great, but...
+
+![AsyncTask isn't for everything](thor_nail.jpg)
+
+* Use them to perform long running tasks / computations.
+
+* Use them to perform work that could take an indeterminate amount of time.
+
+* Otherwise, don't. Like threads, they're expensive to create, manage and destroy.
+
+### Exercises 
+
+**Question 1** 
+
+Use an async task to read the notes data from file in the NotesApp.
+
+**Question 2**
+
+* Create an activity that loads an image file synchronously and displays it in an imageView
+* Modify the activity to load the image asynchronously
