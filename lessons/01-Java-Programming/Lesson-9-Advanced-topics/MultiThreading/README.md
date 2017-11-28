@@ -205,6 +205,8 @@ public class TestThread {
 * Add `synchronized` before the return type of a method to protect it from access in multiple threads at the same time
 * Use `synchronized(lock){...}` block to protect a block of code from access in multiple threads at the same time
 
+**Race condition**
+
 # More examples
 
 See [SimpleThreads.java](SimpleThreads.java)
@@ -232,17 +234,18 @@ Below is the algorithm to check if a number is prime.
 It returns -1 when it's input is prime or the factor when not prime.
 
 ```java
-int IsPrime(int n) {
-    if (n < 1) return -1;
-    if (i == 1) return -1;
 
-    for(int i = 1; i < n; i++) {
-        if (n % i == 0) {
-            return i;
+    int IsPrime(int n) {
+        if (n < 1) return -1;
+        if (n == 1) return -1;
+
+        for(int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                return i;
+            }
         }
+        return -1;
     }
-    return -1;
-}
 ```
 
 Create a program that takes numbers from user and returns "X Is Prime" if the number is prime or "X Is Divisible by Y" when it is not prime.
