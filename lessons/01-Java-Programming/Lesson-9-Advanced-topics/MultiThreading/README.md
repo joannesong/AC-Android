@@ -202,11 +202,120 @@ public class TestThread {
 
 ## Shared State and Synchronization
 
-
+* Add `synchronized` before the return type of a method to protect it from access in multiple threads at the same time
+* Use `synchronized(lock){...}` block to protect a block of code from access in multiple threads at the same time
 
 # More examples
 
 See [SimpleThreads.java](SimpleThreads.java)
+
+
+---
+
+# Problem
+
+Write a program called SharedCounter.java in which 10 threads each increment a shared int counter 1000 times. 
+
+When all the threads have finished, print the final value of the counter. Counter is initialized to zero and you should always get 10000 
+
+Do you always get 1000? If not why?
+`hide` You will not always get 1000 due to race condition between the threads.
+
+How can we ensure we always get 1000?
+`hide` By protecting the increment block using `synchronize`
+
+---
+
+# Problem
+
+Below is the algorithm to check if a number is prime.
+It returns -1 when it's input is prime or the factor when not prime.
+
+```java
+int IsPrime(int n) {
+    if (n < 1) return -1;
+    if (i == 1) return -1;
+
+    for(int i = 1; i < n; i++) {
+        if (n % i == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+```
+
+Create a program that takes numbers from user and returns "X Is Prime" if the number is prime or "X Is Divisible by Y" when it is not prime.
+
+```
+Input: 2,5,100,101
+Output:
+2 Is Prime
+5 Is Prime
+100 Is Divisible by 2
+101 Is Prime
+```
+
+Time the program so that at the end of the output it would also print:
+```
+Time taken ZZZ seconds
+```
+
+Speed up the program using threads. You should have at most four threads and the work needs to be spread evenly between them.
+
+You can not have more threads than you have numbers.
+
+---
+
+# Problem 
+
+Create a program that takes a number and outputs all prime numbers from 1 to that number and the time taken to perform the computation.
+
+```
+// sample run:
+Input: 10
+Output: [1,2,3,5,7] in 0.02 secs
+```
+
+How long does it take to compute the primes in 1 million? 1 billion?
+
+Speed up the program using threads.
+
+---
+
+# Problem
+
+Create a file downloader program that takes a URL as input, downloads and saves the file at that url to your Downloads directory.
+
+*Some part of the code for downloading files would be provided to you*
+
+If the file already exists, prompt user before overwriting it.
+
+Also, the user may want to download multiple large files, he doesn't want to wait for one to finish before another download can start.
+
+He wants to just queue up as many downloads as he can than leave it for lunch to run on it own.
+
+How would you solve this problem using threads?
+
+---
+
+# Problem 
+
+
+Create a program that allows a user to add new words to a system dictionary. Use this [dictionary file](dictionary.txt).
+
+The dictionary is used by several applications on our system so words can be added to it at anytime by any other application, say MS Word.
+
+It is important that no application hauds the dictionary and prevent apps from reading/modifying it.
+
+When user enters a word that is already in the dictionary, the program should print "Found in X seconds" where X is time taken to find the word.
+
+If the user enters a word that is *not* already in the dictionary, the program should print "Added new word 'WORD' in X seconds"
+
+To make the prompt appear fast, the work of reading and writing to the file should be done outside the main thread.
+
+---
+
 
 # Summary
 
