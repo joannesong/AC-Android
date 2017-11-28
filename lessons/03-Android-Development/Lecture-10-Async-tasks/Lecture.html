@@ -1,4 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
 ## Title: Asynchronous Tasks
+
+---
 
 ### Objective
 
@@ -9,6 +34,9 @@ Students will understand:
 * the role of the main (aka UI) thread and what to do and NOT do
 * the different ways to work with threading on Android
 
+**Demo the objectives**
+
+---
 
 #### Resources
 - [Concurrency](http://docs.oracle.com/javase/tutorial/essential/concurrency/)
@@ -20,6 +48,9 @@ Students will understand:
 - [AsyncTasks](https://www.youtube.com/watch?v=V4q0sTIntsk)
 
 
+---
+
+
 ### Warm up
 
 * Create an app that displays the [data in this json file](data.json) in a recycler view. 
@@ -28,6 +59,7 @@ Your app should have only *1* activity, no click handlers, material design etc..
 
 Lesson summary: We'll learn how to read the same data using async tasks.
 
+---
 
 ### Definitions
 
@@ -45,6 +77,9 @@ Lesson summary: We'll learn how to read the same data using async tasks.
 
 Race Condition - Running more than one thread inside the same application does not by itself cause problems. The problems arise when multiple threads access the same resources. For instance the same memory (variables, arrays, or objects), systems (databases, web services etc.) or files.
 
+---
+
+
 
 #### The Android Main Thread
 
@@ -52,6 +87,9 @@ The UI thread is the main thread, and it is in charge of updating the UI. Other 
 
 * Background threads are threads other than the main thread. They do not make changes to the UI.  
 * While information from a background thread may be used to update the UI, the UI is updated by the UI thread. Anything that could block the UI thread, such as a database access, should go on a background thread.
+
+---
+
 
 
 #### Asynchronous Android Programming
@@ -66,6 +104,10 @@ There are a number of ways to facilitate asynchronous Android programming - i.e,
 
 - Not an answer to every multi-threading matter*
 
+---
+
+## Async Task
+
 The AsyncTask class allows to run instructions in the background and to synchronize again with the main thread. It also reporting progress of the running tasks. AsyncTasks should be used for short background operations which need to update the user interface.
 
 In other words, AsyncTask is an object that defines a task to be executed in a background thread. The `doInBackground` method must be implemented, and the code runs in the background. The `onPostExecute` method runs on the UI thread, and can use the result of `doInBackground`, which it takes in as a parameter.
@@ -77,11 +119,17 @@ An AsyncTask is started via the `execute()` method. This `execute()` method call
 To use AsyncTask you must subclass it. The parameters are the following AsyncTask <TypeOfVarArgParams, ProgressValue, ResultValue>
 
 
+---
+
+
 ## Asynchronous vs Asynchronous access to data source
 
 See [this example](https://github.com/C4Q/NotesApp/blob/dev/app/src/main/java/c4q/nyc/notesapp/NotesListActivity.java#L127-151) in NotesApp. 
 
 Switch up the `onCreate` methods, run in emulator and see how they behave.
+
+---
+
 
 ## The 4 steps / Lifecycle of an AsyncTask
 
@@ -97,6 +145,9 @@ When an asynchronous task is executed, the task goes through 4 steps:
 
 Try copying modifying the UI (let's say setting adapter of recyclerView) in the `doInBackground` method. What happened? Why?
 
+---
+
+
 ## AsyncTask are great, but...
 
 ![AsyncTask isn't for everything](thor_nail.jpg)
@@ -106,6 +157,9 @@ Try copying modifying the UI (let's say setting adapter of recyclerView) in the 
 * Use them to perform work that could take an indeterminate amount of time.
 
 * Otherwise, don't. Like threads, they're expensive to create, manage and destroy.
+
+---
+
 
 ### Exercises 
 
@@ -117,3 +171,20 @@ Use an async task to read the notes data from file in the NotesApp.
 
 * Create an activity that loads an image file synchronously and displays it in an imageView
 * Modify the activity to load the image asynchronously
+
+
+---
+
+## Summary
+
+
+---
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create();
+</script>
+</body>
+</html>
