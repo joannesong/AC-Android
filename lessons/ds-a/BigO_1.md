@@ -1,6 +1,6 @@
 # DS & A: Runtime Complexity
 
-#### Overview: Intro
+### Overview: Intro
 
 When programming, it's important to keep in mind the efficiency of what you build. Part of writing elegant and efficitent code is choosing the right data-structure to represent your information and using the proper algorithms so that your code runs efficiently and is maintanable.
 
@@ -8,19 +8,19 @@ A data-structure in itself is a way to organize information to be used at a late
 
 There are different data structures and each have their own attributes which mean they treat data differently. You have experienced this with the `stack` and the `queue`. It is important to know which structure to use for which situation. For example: Android uses a kind of `map` ( key-value pair ) to store information in shared preferences. Your choice of structure might make things easier or more difficult for you, so it is important to think about how you'll organize your data. Generally you'll find that the simplest way is the best.
 
-#### Big-O notation: Time and space! (Cue the space orchestra!)
+### Big-O notation: Time and space! (Cue the space orchestra!)
 
 Big O notation is a way to measure the performance of your code, and performance is measured along resource consumption. In computing, there are two main resources consumed, these are `time` and `space`. Beyond a certain point improving the performance of a computation involves tradeoffs between consuming more of one to consume less of the other. 
 
 Big O itself allows us to classify the runtime complexity of an operation. The O stands for `order of the function`, in other words a block of code is classified by the amount of time or space necessary for a computer to produce an output as its input grows. Basically it measures how well your code scales depending on the size of input. This may be hard to grasp and so at the end of this lesson we will follow through with some examples to demonstrate. First lets learn about our resources.
 
-###### Time: 
+#### Time: 
 In computing, we measure the amount of processing or the number of operations a program needs to perform to accomplish its objective. A data structure is a part of a program and the main purpose of a Data Structure is to help you achieve some type of operation `fast`. That's what the underlying `algorithms` behind their operations seek. A data-structure and an algorithm share a symbiotic relationship. You want to be able to produce the output of your program in as small a time frame as possible, which means as few computational steps as you can muster. In android, this equates to using less resources and a smooth user-experience, in overall software engineering, this as well equates to system stability.
 
-###### Space:
+#### Space:
 Processing information by nature takes up `resources`, computers, although relatively powerful these days, still have limits in the amount of information they can process. The resources that you have to keep in mind while programming are generally `RAM` for processing power and `Hard disk space` for data storage. When creating certain data structures or working with certain algorithms you'll often notice that you might have to use a combination of structures to process your data. The more structures you use the more space you will be taking up in terms of processing power which might equate to a longer computation. So generally you want to use the least amount of space possible.
 
-###### Complexity
+#### Complexity
 In general, complexity is a measure of performance. The more complex an operation, the more expensive it will be. However, there are some computations that can only be done through complexity, in those cases, although it may be expensive, the fact that certain structures even make them possible, and depending on the urgency and practicality of the solution, the complexity involved might make the trade off worthwhile.
 
 The amount of data that you process can greatly affect the speed at which you process that information, depending on how it is being processed. You can mix and match different data structures to achieve optimal performance. Efficiency is about finding a balance between both. 
@@ -31,7 +31,7 @@ That's where the notion of [Big O](https://en.wikipedia.org/wiki/Big_O_notation)
 
 `tldr; Complexity is a measure of how resource requirements change as the size of the problem gets larger, the higher the complexity the worse the performance`
 
-#### Measurement 
+### Measurement 
 There is a way to calculate all of the points that affect performance in a block of code, but the main idea is that as we grow in input size, some of our measurements become meaningless because they have less influence on the number of calculations performed. Which means that what we really want is to focus on the factors that have the most influence on our performance: What makes the number of calculations grow the most. 
 
 Utimately, because we may have different speeds depending on how many calculations we are doing we measure the efficiency of a program based on what is called a lower bound or it's worst performance.
@@ -47,7 +47,7 @@ It would be impractical to expect bogosort to behave in it's best performance fo
 
 `tldr; Our measure of performance is based on the` [worst case](https://en.wikipedia.org/wiki/Best,_worst_and_average_case) `scenario of how performance changes based on input size. If the input size doubles, does the number of operations double, what if input triples?, or is the relationship between input size and operations different? Worst case: what is the maximum number of basic operations that might have to be performed on the input?`
 
-##### Examples:
+### Examples:
 
 Big O expresses the complexity of an algorithm:
 
@@ -60,7 +60,7 @@ Here is a good place to show that lower order terms and constants do not matter 
 
 The fastest algorithms are `constant: O(1)`,  with the slowest carrying higher orders of `n: O(n), O(n2), etc..`
 
-##### Example 1: 
+#### Example 1: 
 What is the runtime of the following method?
 
 ```
@@ -79,7 +79,7 @@ Take notice of how we used the input `n` in this method. Note that we don't care
 
 The excecution of this method is a constant time operation `O(1)`, because the method takes the same amount of time to execute regardless of the number passed in. This is because the number is being used as a value and not a number of operations or size of input.
 
-##### Example 2: 
+#### Example 2: 
 Here `n` is used as the size of the method's input
 
 ```
@@ -94,7 +94,7 @@ Note that we are simply printing to screen, but the number of operations obvious
 The complexity of this operation is `O(n)` since the number of operations change linearly with the size of input.
 If we were to use a while loop declaring an `int i = 0` and `i < n` as the conditional instead the runtime complexity would be the same since a while loop is conceptually similar to a for-loop. If the value of `n` doubles the code will take twice as long.
 
-##### example 3: 
+#### example 3: 
 conditionals
 
 ```
@@ -110,7 +110,7 @@ public static void ifStatement(int n){
 ```
 Since Complexity analysis is based on the worst case scenario, the complexity of this operation is `O(n)`, the worst case being that the input is odd and we enter the for-loop. It is true that if the input is even the method will run in constant time but that is not what the overall runtime for the method is.
 
-##### Example 4: 
+#### Example 4: 
 nested loops
 
 ```
