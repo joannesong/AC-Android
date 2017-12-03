@@ -124,3 +124,18 @@ And a fragment_next.xml file like below:
 
 </LinearLayout>
 ```
+
+From this code, we can see a number of basic patterns:
+
+* We must first create a Fragment class of our own with its corresponding xml layout, then instantiate it
+* We'll need a FragmentManager object to take care of a number of things under the hood, like where, when, and how to add/replace the fragments
+* We'll need a FragmentTransaction object to separate concerns when adding tasks to our transaction, like ```beginTransaction```, ```replace()```, ```addToBackStack()```, ```commit()```, etc.
+
+Intermediate patterns include:
+
+* Creating a MainFragment, and NOT adding it to the BackStack
+* Adding subsequent fragments to a BackStack
+* Creating Bundle objects to pass values to the next fragment, very much like intent extras between activities
+* Using ```setArguments()``` on our Fragment
+* Making sure to call ```getActivity()``` before calling ```getSupportFragmentManager()``` when inside a fragment
+* Using a ```rootView``` variable to store the fragment for later use after inflation
