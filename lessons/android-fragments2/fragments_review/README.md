@@ -150,7 +150,9 @@ Animation is a very deep ocean in Android. You can create custom views, flip ima
 
 They are simply what the name implies, that when you move from one view to another (like a view, layout, fragment, activity, etc.), it looks, well pretty and fun.
 
-Imagine watching a slideshow, and the person presenting used no animations. Would you buy into their product, or listen to what they had to say? No, of course not, because it's lame and boring, and this meeting at work is a waste of time, Sharon from HR. But, with fun transitions, you can pique a person's interest in what might happen next!
+Imagine watching a slideshow, and the person presenting used no animations. Would you buy into their product, or listen to what they had to say? No, of course not, because it's lame and boring, and this meeting at work is a waste of time, Sharon from HR.... 
+
+But, with fun transitions, you can pique a person's interest in what might happen next!
 
 ## Creating an anim resources folder
 
@@ -206,4 +208,35 @@ pop_exit.xml:
                android:interpolator="@android:anim/accelerate_interpolator"
                android:duration="@android:integer/config_mediumAnimTime"/>
 </set>
+```
+
+Now, simply add this line to any of your fragment transactions, and you'll be in for a treat!
+
+```java
+@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        Button button = (Button) rootView.findViewById(R.id.next_fragment_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NextFragment nextFragment = new NextFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                
+                // Add this line for your transition animation
+                fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+                
+                Bundle bundle = new Bundle();
+                bundle.putString("main", null);
+                nextFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragment_container_framelayout, nextFragment);
+                fragmentTransaction.addToBackStack("next");
+                fragmentTransaction.commit();
+            }
+        });
+        return rootView;
+    }
 ```
