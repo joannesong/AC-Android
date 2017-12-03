@@ -139,3 +139,71 @@ Intermediate patterns include:
 * Using ```setArguments()``` on our Fragment
 * Making sure to call ```getActivity()``` before calling ```getSupportFragmentManager()``` when inside a fragment
 * Using a ```rootView``` variable to store the fragment for later use after inflation
+
+However, these are all pretty "Meh...." - and we can definitely jazz these up a bit. The way we can to this, is through....
+
+## Animations
+
+Animation is a very deep ocean in Android. You can create custom views, flip images, make fun games, anything you can imagine, you can animate in Android! But, before we explore the depths that exist, we should first experiment with animating transitions.
+
+### What are Transitions?
+
+They are simply what the name implies, that when you move from one view to another (like a view, layout, fragment, activity, etc.), it looks, well pretty and fun.
+
+Imagine watching a slideshow, and the person presenting used no animations. Would you buy into their product, or listen to what they had to say? No, of course not, because it's lame and boring, and this meeting at work is a waste of time, Sharon from HR. But, with fun transitions, you can pique a person's interest in what might happen next!
+
+## Creating an anim resources folder
+
+First, right click over the ```res``` folder, and select "New", then "Android Resources Directory". Next, name the directory "anim", and finish.
+
+Within the folder, create the following ```xml``` files, as separate files called ```enter```, ```exit```, ```pop_enter```, and ```pop_exit```:
+
+enter.xml:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<set>
+    <translate xmlns:android="http://schemas.android.com/apk/res/android"
+               android:fromXDelta="100%"
+               android:toXDelta="0"
+               android:interpolator="@android:anim/decelerate_interpolator"
+               android:duration="@android:integer/config_mediumAnimTime"/>
+</set>
+```
+
+exit.xml:
+
+```xml
+<set>
+    <translate xmlns:android="http://schemas.android.com/apk/res/android"
+               android:fromXDelta="0"
+               android:toXDelta="-100%"
+               android:interpolator="@android:anim/accelerate_interpolator"
+               android:duration="@android:integer/config_mediumAnimTime"/>
+</set>
+```
+
+pop_enter.xml:
+
+```xml
+<set>
+    <translate xmlns:android="http://schemas.android.com/apk/res/android"
+               android:fromXDelta="-100%"
+               android:toXDelta="0"
+               android:interpolator="@android:anim/decelerate_interpolator"
+               android:duration="@android:integer/config_mediumAnimTime"/>
+</set>
+```
+
+pop_exit.xml:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<set>
+    <translate xmlns:android="http://schemas.android.com/apk/res/android"
+               android:fromXDelta="0"
+               android:toXDelta="100%"
+               android:interpolator="@android:anim/accelerate_interpolator"
+               android:duration="@android:integer/config_mediumAnimTime"/>
+</set>
+```
