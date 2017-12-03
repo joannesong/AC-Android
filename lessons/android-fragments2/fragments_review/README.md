@@ -144,7 +144,7 @@ However, these are all pretty "Meh...." - and we can definitely jazz these up a 
 
 ## Animations
 
-Animation is a very deep ocean in Android. You can create custom views, flip images, make fun games, anything you can imagine, you can animate in Android! But, before we explore the depths that exist, we should first experiment with animating transitions.
+Animation is a very deep ocean in Android. You can create custom views, flip images, make fun games, anything you can imagine, you can animate in Android! But, before we explore the depths that exist, we should first get our feet wet, by experimenting with animating transitions.
 
 ### What are Transitions?
 
