@@ -245,4 +245,4 @@ As you can see, these four xml layouts have different properties shich help with
 
 * fromXDelta/toXDelta - this tells us where the animation should start "from", and end up "to" along the X axis (horizontal). We use percentages of the screen size to set locations. If we wanted animations vertically, we would use the Y axis
 * interpolator - this sets how to increase/decrease speed upon entering/exiting a transition. There are preset int constants that are used: ```accelerate_interpolator```, ```decelerate_interpolator```, and ```accelerate_decelerate_interpolator```
-* 
+* duration - this sets how long the transition should take - ```config_shortAnimTime```, ```config_mediumAnimTime```, and ```config_longAnimTime```
