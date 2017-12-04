@@ -22,6 +22,7 @@ These topics may include, but are not limited to:
 * Abstract Data Types: Lists, Maps, Sets, Stacks, Queues
 * Data Structures: ArrayList, HashMap, Stack, LinkedList
 * Accessing information from certain data structures
+* Threads and Multithreading/Concurrency
 
 ### Android
 
