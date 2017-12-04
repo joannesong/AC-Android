@@ -43,6 +43,7 @@ These topics may include, but are not limited to:
 * Threads
 * AsyncTasks
 * Testing
+* XML
 
 You will have 2 hours to complete this assessment, time will be thoroughly proctored, and **This Assessment is CLOSED-BOOK / RADIO-SILENCED**, so ***no internet searches, or communication with others is allowed.***
 
@@ -69,5 +70,6 @@ These topics may include, but are not limited to:
 * Threads
 * AsyncTasks
 * Testing
+* XML
 
 You will have **UNTIL 10:00pm EST** to complete this assessment, time will be thoroughly proctored, and **This Assessment is OPEN-BOOK / RADIO-SILENCED**, so although internet searches, lessons, YouTube videos, and previous projects are all fully accessible (and encouraged) to all fellows during this assessment, ***no communication with others is allowed.*** 
