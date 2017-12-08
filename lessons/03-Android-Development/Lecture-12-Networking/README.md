@@ -1,7 +1,7 @@
-- title: Networking
-- tags: java networking http
+# Title: Networking
+Tags: java networking http
 
-#Objectives
+## Objectives
 * Understand computer communication terms:
   - network
   - encoding
@@ -9,17 +9,14 @@
 * Create and Manipulate URLs
 * Retrieve data via HTTP
 
-# Resources
+## Resources
 * [How Does the Internet Work?](https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm)
 * [Oracle Networking Tutorials](https://docs.oracle.com/javase/tutorial/networking/index.html)
 
-# Warmup
-* [HackerRank Inheritance 1](https://www.hackerrank.com/challenges/java-inheritance-1)
-* [HackerRank Inheritance 2](https://www.hackerrank.com/challenges/java-inheritance-2)
 
-# URLs and HTTP
+## URLs and HTTP
 
-[Click here for slides.](https://docs.google.com/a/c4q.nyc/presentation/d/12S0rxujSdbRiYtdWjB2wdC4aRHfsuIqidgykSlw0s2g)
+[Nice slide on urls and http](https://docs.google.com/a/c4q.nyc/presentation/d/12S0rxujSdbRiYtdWjB2wdC4aRHfsuIqidgykSlw0s2g)
 
 ## Encoding
 
