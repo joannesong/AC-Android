@@ -8,7 +8,10 @@ The bulk of the information you need can be found in the [wiki](https://en.wikip
 
 You can also take a look at the [lesson](https://github.com/accesscode-2-1/unit-0/blob/master/lessons/week-4/2015-04-04-secret-kung-fu-masters-JSON-quick-start-guide.md) I had when I learned this subject. It looks like the API needs a key now but we won't be focusing on network connections yet anyway. It's more for context.
 
-In our lesson I will show practical examples of how to create and parse JSON objects and the motivation behind using them. 
+In our lesson I will show practical examples of how to create and parse JSON objects and the motivation behind using them.
+
+
+a sample project can be found [here](https://github.com/lighterletter/JsonStuff)
 
 
 
