@@ -1,18 +1,83 @@
-- title: Sorting Algorithms
-- tags: runtime, algorithms, bubble sort, insertion sort, quick sort merge sort
+# Title: Sorting Algorithms
+Tags: runtime, algorithms, bubble sort, insertion sort, quick sort merge sort
 
 # Objectives
-- Gain exposure to, code from scratch and derive the runtimes of: Bubble Sort, Insertion Sort, Quick Sort and Merge Sort.
-- Write pseudocode and JUnit tests to verify sorting algorithm implementations.
+
+- Know the different strategies used in sorting algorithms
+- Know the different properties of sorting algorithms
+- Understand runtime complexity in the context of sorting
+- Understand recursion in the context of sorting
+- Gain exposure to sorting algorithms like Bubble Sort, Insertion Sort, Quick Sort and Merge Sort.
 
 # Resources
+
 - [Khan Academy](https://www.khanacademy.org/computing/computer-science/algorithms/insertion-sort/a/insertion-sort)
 - [Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort)
 - [Swift Algorithm Club](https://github.com/raywenderlich/swift-algorithm-club/tree/master/Insertion%20Sort)
 - [CS50 - Bubble Sort](https://study.cs50.net/bubble_sort)
 - [Quick Sort](https://interactivepython.org/runestone/static/pythonds/SortSearch/TheQuickSort.html)
+- [Concise lecture on sorting](https://www.comp.nus.edu.sg/~stevenha/cs1020e/lectures/L10%20-%20Sorting.pdf)
 
-# Lecture
+# Sorting
+
+We do it everyday... ![sorting laundry items](link)
+We see it in action everyday... ![the ordering of search results by relevance](link)
+
+### Why study sorting
+
+* When an input is sorted, many (hard) problems become relatively easy, like:
+
+* Efficient Searching
+* Extracting k-th smallest items
+* Uniqueness testing
+* Deleting duplicates
+* Finding Min and max
+* Prioritizing events
+* Frequency counting
+* Reconstructing the original order
+* Set intersection/union
+* Finding a target pair x, y such that x+y = z
+
+### Visual examples of applications
+
+* Find a red ball with "A" written on it in a messy pile of balls
+* Handing out results in alphabetical order vs score
+
+## Sorting strategies
+
+Iterative sorting algorithms (comparison based)
+* Selection Sort
+* Bubble Sort
+* Insertion Sort
+
+Recursive sorting algorithms (comparison based)
+* Merge Sort
+* Quick Sort
+
+## Properties of Sorting algorithms
+* *Time complexity*: How long it takes to sort
+* *Space complexity*: How much space it needs to sort 
+* *Stability*: Does it preserve the order of equal items? Like multi-column sort in excel
+
+Sorting has a variety of interesting algorithmic solutions that embody many ideas
+* Comparison vs non-comparison based
+* Iterative vs Recursive
+* Divide-and-conquer
+* Best/worst/average-case bounds
+* Randomized algorithms
+
+## The most import metric - Time!
+
+There is no *silver-bullet* sorting algorithm. Some generally perform better in metrics we care about.
+![all sorting animation](link)
+
+
+|Sorting function|Runtime|
+|---|---|
+|Insertion Sort| O(n<sup>2</sup>)
+|Bubble Sort| O(n<sup>2</sup>)
+|Merge Sort| O(nlog(n))
+|Quicksort | O(nlog(n))
 
 ## What we know so far
 
@@ -27,43 +92,183 @@ list.add(3);
 Collections.sort(list);
 ```
 
-## But how does it actually work?
+## Selection Sort
 
-There are two main types of sorting algorithms.  
+![Selection sort animation](link)
 
-- Algorithms that work in O(n * log(n)) time.
+**The idea**
 
-- Algorithms that work in O(n<sup>2</sup>) time
+Given an array of n items
+1. Find the largest item x, in the range of [0...n−1]
+2. Swap x with the (n−1)th item
+3. Reduce n by 1 and go to Step 1
 
-*Remember that in computer science, log(n) = log<sub>2</sub>(n)*
+**Selection sort illustration**
 
-We will begin by reviewing two common O(n<sup>2</sup>) algorithms because they are easier to understand.
+![selection sort](selection-sort-illustration.png)
 
-|Sorting function|Runtime|
-|---|---|
-|Insertion Sort| O(n<sup>2</sup>)
-|Bubble Sort| O(n<sup>2</sup>)
-|Merge Sort| O(nlog(n))
-|Quicksort | O(nlog(n))
+**Selection sort implementation**
 
+```java
+public void selectionSort(int[] arr) {
+    for (int n = arr.length; n > 0; n--) {
+        // step 1: find largest element
+        int largest = 0;
+        for(int i = 0; i < n; i++) {
+            if (arr[i] > arr[largest]) {
+                largest = i;
+            }
+        }
+        // step 2: swap the elements
+        int tmp = arr[largest];
+        arr[largest] = arr[n-1];
+        arr[n-1] = tmp;
+    }
+}
+```
+
+## Crash-course on runtime analysis
+
+* O(n) is pronounced as "Big O of n", so O(n<sup>2<sup>) is "Big O of n squared"
+* Big O is an upper bound on how long an operation would take. It's only an **approximation**!
+* O(1) means constant time
+    - takes the same time regardless of the size of the input
+    - the time never grows (this is the fastest - the holy grail of all algorithms)
+    - For example: If it takes 1 sec to sort an array of 1 item, it will still take 1 sec to sort an array of 1 million items
+    - In code, some O(1) operations include:
+        * assignment statements: `int x = 0;` 
+        * conditional statements: `if (x == 2 && y == 3 && z == 4) { ... }`
+* O(log n) means logarithmic time
+    - takes *much less* time than the size of the input
+    - the time grows much slower than input but not a constant
+    - We'll revisit logarithmic time. More realistic to achieve than O(1)
+    - In code, log n operations are common in divide and conquer algorithms (which we'll also visit later)
+* O(n) means linear time 
+    - takes as long as the size of the input 
+    - the time grows just as fast as the input. 
+    - For example: If it takes 1 sec to sort an array of 1 item then it will take 9 seconds to sort an array of 9 items
+    - How long will it take to sort an array of 1 million items?
+    - In code, some O(n) operations include:
+        * loops (single): `for (int i = 0; i < 10; i++) {...}`
+* O(n<sup>2</sup>) is quadratic time 
+    - takes a square of the size of the input
+    - the time grows much faster than the input. 
+    - For example: If it takes 1 sec to sort 1 item, it will take 81 secs (9*9) to sort an array of 9 items. 
+    - How long will it take to sort an array of 1 million items?
+    - In code, some O(n2) operations include:
+        * loops (double nested): 
+        ```java
+        for (int i = 0; i < 10; i++) {  // loop 1
+            int j = 0;
+            while(j < 10) {             // loop 2
+                // some code here
+                j++;
+            }
+        }
+        ```
+* O(x<sup>n</sup>) is exponential time
+    - takes a exponent of the size of the input. Hazard, don't do this at home.
+    - the time *skyrockets* much faster than the input
+    - For example: If it takes 1 sec to sort 1 item, it will take 387,420,489 (9^9) seconds to sort an array of 9 items. Whoops!
+    - How long will it take to sort an array of 1 million items?
+    - In code, triply nested code. 
+
+* Algorithms can have different best, average and worst case performance.
+* The big O of an algorithm is its *worst* case performance - the upper bound. 
+
+## Selection sort analysis
+
+```java
+public void selectionSort(int[] arr) {
+    for (int n = arr.length; n > 0; n--) {      // O(n) - loop
+        // step 1: find largest element
+        int largest = 0;                        // O(1)
+        for(int i = 0; i < n; i++) {            // O(n) inside O(n) => 0(n^2)
+            if (arr[i] > arr[largest]) {        // O(1)
+                largest = i;                    // O(1)
+            }
+        }
+        // step 2: swap the elements
+        int tmp = arr[largest];                 // O(1)
+        arr[largest] = arr[n-1];                // O(1)
+        arr[n-1] = tmp;                         // O(1)
+    }
+}
+```
+
+What is the worst case performance of selection sort
+
+## Selection sort exercises
+
+**Question 1**: Write a unit test to confirm that this implementation of the algorithm is correct.
+Some cases to test for include: empty array, single item array, sorted array, unsorted array, array with duplicates
+
+**Question 2**: Make this algorithm (the given implementation) generic, so it works on arrays of any type not just integers.
+Struggling? Try making it work for Strings first. 
+
+Include unit tests for other types not just integers. 
+
+**Question 3**: Right now, the algorithm only sorts in ascending order. 
+Create an overloaded version of selection-sort that takes an order parameter.
+The order parameters determines whether the array is sorted in ascending and descending other. 
+Update the implementation and add unit tests for descending order
+
+## Selection sort properties and summary
+
+* Is an iterative approach to sorting
+* Both best and worst case is O(n2)
+* Has a space complexity of O(1)
+* It is unstable (will visit this later)
 
 ## Bubble Sort
+
+**The idea**
+
+* Look at at each pair of adjacent numbers.  
+* If they are ordered correctly, we keep them in the same order.  Otherwise, we swap them. 
+* Go back to the start of the list and repeat until we can run through the array without making any swaps. 
+
+**Bubble sort Illustration**
+This algorithm gets its name from the way values eventually "bubble" up to their proper position in the sorted array.
+
+[Bubble Sort Demo](https://www.youtube.com/watch?v=8Kp-8OGwphY)
 
 In video form:
 
 [![Bubble Sort](http://img.youtube.com/vi/nBBMunN4_Fs/0.jpg)](https://www.youtube.com/watch?v=nBBMunN4_Fs "Insertion Sort")
 
-What bubble sort does is look at at each pair of numbers.  If they are ordered correctly, we keep them in the same order.  Otherwise, we swap them.  Then, we go back to the start of the list and repeat. We keep doing this until we can run through the array without making any swaps. This algorithm gets its name from the way values eventually "bubble" up to their proper position in the sorted array.
+**Bubble sort implementation**
 
-[Bubble Sort Demo](https://www.youtube.com/watch?v=8Kp-8OGwphY)
+The implemenation is similar to selection sort except instead of finding the largest and swapping it, anytime we find anything larger, we just swap instantly.
+
+```java
+public void selectionSort(int[] arr) {
+    for (int n = arr.length; n > 0; n--) {      // O(n) - loop
+        // boolean isSorted = true
+        for(int i = 0; i < n; i++) {            // O(n) inside O(n) => 0(n^2)
+            if (arr[i] > arr[largest]) {        // O(1)
+                int tmp = arr[largest];         // O(1)
+                arr[largest] = arr[n-1];        // O(1)
+                arr[n-1] = tmp;                 // O(1)
+                // isSorted = false;
+            }
+        }
+        // if (isSorted) {
+            // break;
+        // }
+    }
+}
+```
+
+* Uncomment `isSorted` lines to short-circuit and exit faster.
+
+## Bubble sort exercises
 
 > Exercise: Write a pseudocode process for how bubble sort would work.
 
-> Exercise: Implement bubble sort in Java.
+> Exercise: What is the worst-case runtime of bubble sort? Why does `isSorted` version run faster?
 
-> Exercise: What is the worst-case runtime of bubble sort? Can you think of any strategies to make it more efficient?
-
-> Exercise: Run your three test methods against your bubble sort algorithm to confirm that your implementation is correct.
+> Exercise: Run your selection-sort test methods against your bubble sort algorithm to confirm that your implementation is correct.
 
 
 ## Insertion Sort
@@ -98,6 +303,9 @@ Here's a step by step process for how that would work:
 > Exercise: What is the worst-case runtime of insertion sort? Can you think of any strategies to make it more efficient?
 
 > Exercise: Write three test methods for your sorting algorithm and run them to confirm that your implementation is correct.
+
+## Crash-course on Recursion
+
 
 ## Merge Sort
 
