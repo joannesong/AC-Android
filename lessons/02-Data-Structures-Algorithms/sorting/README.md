@@ -304,7 +304,8 @@ Here's a step by step process for how that would work:
 
 > Exercise: Write three test methods for your sorting algorithm and run them to confirm that your implementation is correct.
 
-## Crash-course on Recursion
+
+# Stop HERE!!!! No need to read past these lines :)
 
 
 ## Merge Sort
