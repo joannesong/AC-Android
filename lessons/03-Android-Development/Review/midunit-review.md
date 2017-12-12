@@ -9,6 +9,10 @@ Title: Review
 
 ## Any Questions
 
+## Notes App Review
+
+## Finish AsyncTask
+
 ## Topics that would be covered
 
 - Menus and Navigation
