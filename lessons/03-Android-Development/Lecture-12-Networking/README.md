@@ -16,23 +16,133 @@ Tags: java networking http
 
 ## URLs and HTTP
 
-[Nice slide on urls and http](https://docs.google.com/a/c4q.nyc/presentation/d/12S0rxujSdbRiYtdWjB2wdC4aRHfsuIqidgykSlw0s2g)
+Use the `HTTP.stringToUrl(string)` method to convert a string to a `java.net.URL` object.  We've provided you this "factory method" because it's a bit easier to use than the standard constructors for the `URL` class.
 
-## Encoding
+See: http://docs.oracle.com/javase/7/docs/api/java/net/URL.html
 
-In Java, you can _encode_ a `char` as an `int` simply by casting it.
+[Nice slide on the anatomy of urls and http](https://docs.google.com/a/c4q.nyc/presentation/d/12S0rxujSdbRiYtdWjB2wdC4aRHfsuIqidgykSlw0s2g)
+
+
+## Using third-party libraries
+
+Performing network operations with standard Java API can be cumbersome. You have to open and close a connections, enable caches and ensure to perform the network operation in a background thread.
+
+To simplify these operations several popular Open Source libraries are available. The most popular ones are the following:
+
+* OkHttp for efficient HTTP access
+
+* Retrofit for REST based clients
+
+* Glide for image processing
+
+> Prefer using OkHttp over the usage of HttpURLConnection. It is faster than the standard Java library and has a better API.
+
+> Retrofit would be taught in a different lecture.
+
+## Permission to access the network
+
+To access the Internet your application requires the `android.permission.INTERNET` permission. On modern Android API versions, this permission is automatically granted to your application.
+
+## Check the network availability
+
+The network on an Android device is not always available. To check the network state your application requires the android.permission.ACCESS_NETWORK_STATE permission. You can check the network is currently available via the following code.
 
 ```java
-int encoded = (int) 'x';
+public boolean isNetworkAvailable() {
+    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+    // if no network is available networkInfo will be null
+    // otherwise check if we are connected
+    return networkInfo != null && networkInfo.isConnected();
+}
 ```
+This requires the ACCESS_NETWORK_STATE permission.
 
-Likewise, to decode a character, simply cast it back.
+## Connecting to a Network URL
+
+Here is method that takes a url string and fetches it using Java's HttpURLConnection
 
 ```java
-char decoded = (char) 120;
+private String downloadData(String urlString) throws IOException {
+  InputStream is = null;
+  try {
+    URL url = new URL(urlString);
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setRequestMethod("GET");
+    conn.connect();
+
+    InputStream is = conn.getInputStream();
+    BufferedReader r = new BufferedReader(new InputStreamReader(is));
+    StringBuilder total = new StringBuilder();
+    String line;
+    while ((line = r.readLine()) != null) {
+      total.append(line);
+    }
+    return new String(total);
+  } finally {
+    if (is != null) {
+      is.close();
+    }
+  }
+}
 ```
 
-Note: Java uses a text encoding named _Unicode_, which is a superset of ASCII.  It encoded values are the same for English letters, digits, and punctuation, but characters from other languages have encodings too.
+## Using OkHttp
+
+First add the maven dependency for OkHttp. Then add the method below in MainActivity.java
+
+```java
+private void makeRequestWithOkHttp(String url) {
+  OkHttpClient client = new OkHttpClient();   // 1
+  okhttp3.Request request = new okhttp3.Request.Builder().url(url).build();  // 2
+
+  client.newCall(request).enqueue(new okhttp3.Callback() { // 3
+    @Override
+    public void onFailure(okhttp3.Call call, IOException e) {
+      e.printStackTrace();
+    }
+
+    @Override
+    public void onResponse(okhttp3.Call call, okhttp3.Response response)
+    throws IOException {
+      final String result = response.body().string();  // 4
+
+      MainActivity.this.runOnUiThread(new Runnable() {
+        @Override
+        public void run() {
+          try {
+            // perform some ui work with `result`  // 5
+          } catch (JSONException e) {
+            e.printStackTrace();
+          }
+        }
+      });
+    }
+  });
+}
+```
+
+The code above does the following:
+* Creates an OkHttpClient object.
+* Builds an OkHttpClient request with the URL you want to connect to.
+* Queues the request call.
+* Retrieves the response as a string.
+* Converts and passes the results to the main thread.
+
+> **Exercises:**
+>
+> 1. Write a method that constructs an HTTP URL from the host name, port number, and path.  Include the port number only if it is _not_ 80.
+>
+>  ```java
+>  public static URL makeHttpUrl(String host, int port, String path) {
+>    // Write me.
+>  }
+>  ```
+>
+> 2. Using overloaded methods, write a similar method that doesn't take a port number, and assumes the port number is 80.
+>
+> 3. Write a method that **neatly** prints out the parts of a URL, in the correct order.
+
 
 > **Exercises:**
 >
@@ -63,30 +173,6 @@ Note: Java uses a text encoding named _Unicode_, which is a superset of ASCII.  
 > 5. Generalize your methods to rotate any number of positions through the alphabet, not just 13.
 
 
-## URLs
-
-Use the `HTTP.stringToUrl(string)` method to convert a string to a `java.net.URL` object.  We've provided you this "factory method" because it's a bit easier to use than the standard constructors for the `URL` class.
-
-See: http://docs.oracle.com/javase/7/docs/api/java/net/URL.html
-
-> **Exercises:**
->
-> 1. Write a method that constructs an HTTP URL from the host name, port number, and path.  Include the port number only if it is _not_ 80.
->
->  ```java
->  public static URL makeHttpUrl(String host, int port, String path) {
->    // Write me.
->  }
->  ```
->
-> 2. Using overloaded methods, write a similar method that doesn't take a port number, and assumes the port number is 80.
->
-> 3. Write a method that **neatly** prints out the parts of a URL, in the correct order.
-
-
-## HTTP
-
-We've provided a method `HTTP.get(url)` method to connect to a web server, request the correct path, and return you the data.  The argument is a `URL` object and the return value is a `String`.  You don't have to worry about the protocol at all.  Just pass it a URL object, and it will return to you a string (unless something went wrong).
 
 > **Exercises:**
 >
@@ -111,3 +197,4 @@ We've provided a method `HTTP.get(url)` method to connect to a web server, reque
 >  ```
 
 Project Gutenberg is a web site that provides thousands of free public domain ebooks.  They are available in a variety of formats, including "plain text", which is easy for computers to process.
+
