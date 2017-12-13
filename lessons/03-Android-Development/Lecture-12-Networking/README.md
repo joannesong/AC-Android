@@ -71,7 +71,7 @@ private String downloadData(String urlString) throws IOException {
     conn.setRequestMethod("GET");
     conn.connect();
 
-    InputStream is = conn.getInputStream();
+    is = conn.getInputStream();
     BufferedReader r = new BufferedReader(new InputStreamReader(is));
     StringBuilder total = new StringBuilder();
     String line;
@@ -93,33 +93,34 @@ First add the maven dependency for OkHttp. Then add the method below in MainActi
 
 ```java
 private void makeRequestWithOkHttp(String url) {
-  OkHttpClient client = new OkHttpClient();   // 1
-  okhttp3.Request request = new okhttp3.Request.Builder().url(url).build();  // 2
+        OkHttpClient client = new OkHttpClient();   // 1
+        Request request = new Request.Builder().url(url).build();  // 2
 
-  client.newCall(request).enqueue(new okhttp3.Callback() { // 3
-    @Override
-    public void onFailure(okhttp3.Call call, IOException e) {
-      e.printStackTrace();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) { // 3
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                final String result = response.body().string();  // 4
+
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            // perform some ui work with `result`  // 5
+                            TextView tv = (TextView) findViewById(R.id.text_view);
+                            tv.setText(result);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
     }
-
-    @Override
-    public void onResponse(okhttp3.Call call, okhttp3.Response response)
-    throws IOException {
-      final String result = response.body().string();  // 4
-
-      MainActivity.this.runOnUiThread(new Runnable() {
-        @Override
-        public void run() {
-          try {
-            // perform some ui work with `result`  // 5
-          } catch (JSONException e) {
-            e.printStackTrace();
-          }
-        }
-      });
-    }
-  });
-}
 ```
 
 The code above does the following:
