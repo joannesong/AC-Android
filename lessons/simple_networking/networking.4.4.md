@@ -1,4 +1,4 @@
-# Networking before the age of retrofit. 
+# Networking and the age of retrofit. 
 
 #### Overview:
 
@@ -7,6 +7,8 @@ Before android developers had awesome libraries like retrofit for networking, we
 This lesson will give you a quick overview of how that is done.
 
 A sample project can be found [here](https://github.com/lighterletter/NetworkingLesson).
+
+A more robust but older project and the the basis for the sample can be found [here](https://github.com/lighterletter/Dual-level-API-request).
 
 #### Making a network request with an async task: (No libraries)
 
