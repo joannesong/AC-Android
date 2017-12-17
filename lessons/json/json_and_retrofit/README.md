@@ -77,6 +77,48 @@ In this example, we'll use the JSON provided by [Dog.ceo](https://dog.ceo/api/br
 {"status":"success","message":"https:\/\/dog.ceo\/api\/img\/poodle-toy\/n02113624_2224.jpg"}
 ```
 
-We can see that this JSON is a single object, consisting of two key/value pairs - the key "status" has a value of "success', and the key "message" has a value of what looks like a weblink to an image. Both values are written as Strings - this is important to remember as we move foward.
+We can see that this JSON is a single object, consisting of two key/value pairs - the key "status" has a value of "success", and the key "message" has a value of what looks like a weblink to an image. Both values are written as Strings - this is important to remember as we move foward.
 
-###
+### Step 4: Create your Data Model
+
+In your app's package folder, make another package called "model", and create a class inside the 'model' directory to represent that JSON Object. Let's call it "RandoPuppy.java":
+
+```java
+package nyc.c4q.dogjson.model;
+
+public class RandoPuppy {
+    private String status;
+    private String message;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
+```
+
+It should have two String member variables that match the key names **EXACTLY AS THEY ARE WRITTEN** in the JSON, as well as Getter methods. Now that we have our model, let's parse some JSON through it.
+
+### Step 5: Create a Retrofit instance, using the Builder Pattern
+
+The Builder Pattern is a way to assign values to member vaiables/fields within a class using method chaining during instantiation - sort of like a constructor. However, it is arguably better - sort of the way you use beginTransaction() and commit() with a fragment.
+
+**YOU DO NOT NEED TO KNOW HOW THIS WORKS RIGHT NOW.**
+
+However, that's what's happening in the following code:
+
+```java
+Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://dog.ceo/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+```
+
+Let's break it down line-by-line:
+* ```Retrofit retrofit = new Retrofit.Builder()``` - this starts the builder process
+* ```.baseUrl("https://dog.ceo/")``` - this is our "Base URL", or the gateway to our JSON endpoint. Our full endpoint link is: https://dog.ceo/api/breeds/image/random - so essentially everything up to our first forward slash is our base url
+* ```.addConverterFactory(GsonConverterFactory.create())``` - this takes care of our JSON serialization/deserialization for us! Thanks, Google! If you want to take a deeper dive into Gson, you can read more about it [here](https://futurestud.io/tutorials/retrofit-2-adding-customizing-the-gson-converter)
+* ```.build();``` - this ends the transaction, and returns to us a complete Retrofit instance!
