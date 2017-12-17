@@ -6,6 +6,7 @@
 * Fellows will display that data as an image from a website using Picasso
 
 ## Resources
+* [Dog API](https://dog.ceo/dog-api/) 
 * [Picasso](https://github.com/square/picasso)
 * [Retrofit](https://github.com/square/retrofit)
 * [JSON and JSON Parsing - The Old School Way](https://github.com/C4Q/AC-Android/tree/master/lessons/json/json_parsing)
@@ -68,4 +69,14 @@ compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 **Remember:** if you're using Android 3.0, swap out ```compile``` with ```implementation```.
 
-### Step 3:  
+### Step 3: Find your desired JSON Endpoint
+
+In this example, we'll use the JSON provided by [Dog.ceo](https://dog.ceo/api/breeds/image/random), which looks something like this:
+
+```json
+{"status":"success","message":"https:\/\/dog.ceo\/api\/img\/poodle-toy\/n02113624_2224.jpg"}
+```
+
+We can see that this JSON is a single object, consisting of two key/value pairs - the key "status" has a value of "success', and the key "message" has a value of what looks like a weblink to an image. Both values are written as Strings - this is important to remember as we move foward.
+
+###
