@@ -151,3 +151,139 @@ Retrofit retrofit = new Retrofit.Builder()
         puppyService = retrofit.create(PuppyService.class);
 ```
 
+### Step 7: Making the Call
+
+Retrofit allows us to make a GET request Asynchronously - off the main thread, but without having to use an AsyncTask, we just wait for the right callbacks:
+
+```java
+Call<RandoPuppy> puppy = puppyService.getPuppy();
+                puppy.enqueue(new Callback<RandoPuppy>() {
+                    @Override
+                    public void onResponse(Call<RandoPuppy> call, Response<RandoPuppy> response) {
+                        Log.d(TAG, "onResponse: " + response.body().getMessage());
+                    }
+
+                    @Override
+                    public void onFailure(Call<RandoPuppy> call, Throwable t) {
+                        Log.d(TAG, "onResponse: " + t.toString());
+                    }
+                });
+```
+
+As you can see in Call<RandoPuppy>, we are saying that whatever JSON object we get back, we are treating it like our data model "RandoPuppy" and so we'll be able to use the getter methods in ```RandoPuppy.java``` to get the URL string for photo link from the JSON key "message". But that's only if we get a response. If we get a response (```onResponse()```), we should be able to log our response body, and its contents. If we fail, (```onFailure()```), we should be able to log our error, and fail gracefully.
+
+### Step 8: That's essentially it
+
+As you can see, this is much safer than using an AsyncTask to access the internet, and much cleaner than parsing the JSON step-by-step. But, this whole process begs the question - "How about JSON, but with puppies?!"
+
+## Simple Internet App
+
+Let's take the skills we've learned with JSON and Retrofit, and put them all together with another Square library called Picasso. Picasso is a great way to get URL links, and turn them into viewable images, as well as format them to your liking, as far as scaling is concerned.
+
+First, let's have our ```activity_main.xml``` look a little something like this:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="nyc.c4q.dogjson.MainActivity">
+
+    <ImageView
+        android:layout_weight="1"
+        android:id="@+id/puppy_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"/>
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="0dp">
+    <Button
+        android:id="@+id/new_puppy_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Get New Puppy"/>
+    </LinearLayout>
+</LinearLayout>
+```
+
+The goal being - everytime we click on the button, a new random puppy will appear from the internet. Let's modify our code a bit to include some views:
+
+```java
+package nyc.c4q.dogjson;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+
+import nyc.c4q.dogjson.backend.PuppyService;
+import nyc.c4q.dogjson.model.RandoPuppy;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "JSON?";
+    private ImageView imageView;
+    private Button newPuppy;
+    private PuppyService puppyService;
+    private String puppyUrl;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        imageView = (ImageView) findViewById(R.id.puppy_imageview);
+        newPuppy = (Button) findViewById(R.id.new_puppy_button);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://dog.ceo/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        puppyService = retrofit.create(PuppyService.class);
+
+        newPuppy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<RandoPuppy> puppy = puppyService.getPuppy();
+                puppy.enqueue(new Callback<RandoPuppy>() {
+                    @Override
+                    public void onResponse(Call<RandoPuppy> call, Response<RandoPuppy> response) {
+                        Log.d(TAG, "onResponse: " + response.body().getMessage());
+                        puppyUrl = response.body().getMessage();
+                        Picasso.with(getApplicationContext())
+                                .load(response.body().getMessage())
+                                .into(imageView);
+                    }
+
+                    @Override
+                    public void onFailure(Call<RandoPuppy> call, Throwable t) {
+                        Log.d(TAG, "onResponse: " + t.toString());
+                    }
+                });
+            }
+        });
+        newPuppy.callOnClick();
+    }
+}
+```
+
+As you can see, we've extracted the code specific to making a GET request, and placed it into the button's OnClickListener.
