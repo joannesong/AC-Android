@@ -288,5 +288,107 @@ public class MainActivity extends AppCompatActivity {
 
 As you can see, we've extracted the code specific to making a GET request, and placed it into the button's OnClickListener. We also added additional code, ```newPuppy.callOnClick();```, which will run the code in the onClick, so if everything works smoothly, we'll have a puppy waiting for us before we even have to click "Get new Puppy"!
 
-So, how are we able to take the url we get as a response from Retrofit's parsing of the jSOn, and turn that into an image? With, Picasso, of course!
+So, how are we able to take the URL we get as a response from Retrofit's parsing of the JSON, and turn that into an image? With Picasso, of course!
 
+First, add this dependency to your app's build.gradle file:
+
+```groovy
+    compile 'com.squareup.picasso:picasso:2.5.2'
+```
+
+**Remember:** if you're using Android 3.0, swap out ```compile``` with ```implementation```.
+
+Next, let's break down the steps:
+* ```Picasso.with(getApplicationContext())``` - using the current context....
+* ```.load(response.body().getMessage())``` - load the image being pointed to in the link
+* ```.into(imageView);``` - into the ImageView you want
+
+And that's it! Now, let's add some more code to make sure that when we rotate the device by accident, we'll keep the last image queried, rather than make a new call every time onCreate() is called:
+
+```java
+package nyc.c4q.dogjson;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+
+import nyc.c4q.dogjson.backend.PuppyService;
+import nyc.c4q.dogjson.model.RandoPuppy;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "JSON?";
+    private ImageView imageView;
+    private Button newPuppy;
+    private PuppyService puppyService;
+    private String puppyUrl;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        imageView = (ImageView) findViewById(R.id.puppy_imageview);
+        newPuppy = (Button) findViewById(R.id.new_puppy_button);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://dog.ceo/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        puppyService = retrofit.create(PuppyService.class);
+
+        newPuppy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<RandoPuppy> puppy = puppyService.getPuppy();
+                puppy.enqueue(new Callback<RandoPuppy>() {
+                    @Override
+                    public void onResponse(Call<RandoPuppy> call, Response<RandoPuppy> response) {
+                        Log.d(TAG, "onResponse: " + response.body().getMessage());
+                        puppyUrl = response.body().getMessage();
+                        Picasso.with(getApplicationContext())
+                                .load(response.body().getMessage())
+                                .into(imageView);
+                    }
+
+                    @Override
+                    public void onFailure(Call<RandoPuppy> call, Throwable t) {
+                        Log.d(TAG, "onResponse: " + t.toString());
+                    }
+                });
+            }
+        });
+
+        if(savedInstanceState != null) {
+            String savedPuppy = savedInstanceState.getString("puppyUrl");
+            puppyUrl = savedPuppy;
+            Picasso.with(getApplicationContext())
+                    .load(savedPuppy)
+                    .into(imageView);
+        } else {
+            newPuppy.callOnClick();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("puppyUrl", puppyUrl);
+    }
+}
+```
+
+Voila! Puppies!
+
+More complicated use cases for Retrofit are only expanded variations of the example we've just shown you. Together, we created an app that pulls data from the internet, and creates a different experience every time the user interacts with the app somehow! Let's see if we can't experiment with other free API's....
