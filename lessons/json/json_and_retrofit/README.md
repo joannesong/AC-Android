@@ -286,4 +286,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-As you can see, we've extracted the code specific to making a GET request, and placed it into the button's OnClickListener.
+As you can see, we've extracted the code specific to making a GET request, and placed it into the button's OnClickListener. We also added additional code, ```newPuppy.callOnClick();```, which will run the code in the onClick, so if everything works smoothly, we'll have a puppy waiting for us before we even have to click "Get new Puppy"!
+
+So, how are we able to take the url we get as a response from Retrofit's parsing of the jSOn, and turn that into an image? With, Picasso, of course!
+
