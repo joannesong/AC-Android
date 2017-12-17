@@ -122,3 +122,32 @@ Let's break it down line-by-line:
 * ```.baseUrl("https://dog.ceo/")``` - this is our "Base URL", or the gateway to our JSON endpoint. Our full endpoint link is: https://dog.ceo/api/breeds/image/random - so essentially everything up to our first forward slash is our base url
 * ```.addConverterFactory(GsonConverterFactory.create())``` - this takes care of our JSON serialization/deserialization for us! Thanks, Google! If you want to take a deeper dive into Gson, you can read more about it [here](https://futurestud.io/tutorials/retrofit-2-adding-customizing-the-gson-converter)
 * ```.build();``` - this ends the transaction, and returns to us a complete Retrofit instance!
+
+### Step 6: Create a service:
+
+Let's create a package called "backend" within the app's package, and create an interface called ```PuppyService.java```:
+
+```java
+package nyc.c4q.dogjson.backend;
+
+import nyc.c4q.dogjson.model.RandoPuppy;
+import retrofit2.Call;
+import retrofit2.http.GET;
+
+public interface PuppyService {
+    @GET("api/breeds/image/random")
+    Call<RandoPuppy> getPuppy();
+}
+```
+
+This will give us the opportunity to call on a method called ```getPuppy()``` - which will make an HTTP GET request for our JSON. As you can see, the rest of our JSON endpoint link is contained in our GET request. Let's go back to our MainActivity, and call the service:
+
+```java
+Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://dog.ceo/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        // creating the service so we can use it to make requests:
+        puppyService = retrofit.create(PuppyService.class);
+```
+
