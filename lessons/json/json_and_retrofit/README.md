@@ -11,6 +11,17 @@
 * [Retrofit](https://github.com/square/retrofit)
 * [JSON and JSON Parsing - The Old School Way](https://github.com/C4Q/AC-Android/tree/master/lessons/json/json_parsing)
 
+## Warm-Up 
+
+Revisit the following lecture as reference: [JSON and JSON Parsing - The Old School Way](https://github.com/C4Q/AC-Android/tree/master/lessons/json/json_parsing)
+
+Open up a new Android Studio Project. In the ```onCreate()``` method of your ```MainActivity.java``` class - create a single JSONObject instance. In this object, put two entries:
+
+* a key of "name", with a value of your name as a String
+* a key of "age", with a value of a number, without quotes
+
+Log this JSONObject, as debug, and see that it shows up in Logcat as you run the project.
+
 # Lecture
 
 We have explored in class previously how to create JSONObjects, and parse JSON into data models that we can use to display that JSON data in some meaningful way. We've even explored how to use AsyncTasks (ugh, sorry...) to reach a JSON Endpoint somewhere on the internet, and make use of that information any way we chose to do so. You might have thought this was the only way to do this in Android, but...
