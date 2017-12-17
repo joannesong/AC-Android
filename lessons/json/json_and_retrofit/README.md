@@ -391,6 +391,6 @@ public class MainActivity extends AppCompatActivity {
 
 Voila! Puppies!
 
-!(dogs_json.PNG)
+![RandoPuppy](dog_json.PNG)
 
 More complicated use cases for Retrofit are only expanded variations of the example we've just shown you. Together, we created an app that pulls data from the internet, and creates a different experience every time the user interacts with the app somehow! Let's see if we can't experiment with other free API's....
