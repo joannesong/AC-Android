@@ -20,4 +20,52 @@ much less exhausting, and much more predictable way to do this - using Retrofit.
 
 ## What is Retrofit?
 
-It's amazing, is what it is. An open-source library built by Square, it allows you to easily make GET and PUT requests (among other things), by simply using a few boilerplate lines of code, without having to repeat yourself that often. It accounts for most edge cases specific to HTTP requests, and does everything off of the main thread, so you never have to worry about blocking 
+It's amazing, is what it is. An open-source library built by Square, it allows you to easily make GET and PUT requests (among other things), by simply using a few boilerplate lines of code, without having to repeat yourself that often. It accounts for most edge cases specific to HTTP requests, and does everything off of the main thread, so you never have to worry about blocking the rest of your UI.
+
+## Retrofit, by the Recipe
+
+First, we'll break down the most important steps to a basic Retrofit call, as per the **first principles** technique, then we'll expand on these steps by making an app that displays random puppy images.
+
+### Step 1: Add Internet Permissions
+
+First, you'll need to add this permission to your ```AndroidManifest.xml``` file:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="nyc.c4q.dogjson">
+  
+    <!--This will allow you to connect to the internet-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+```
+
+### Step 2: Add Gradle Dependencies
+
+Add these dependencies to your app's build.gradle file:
+
+```groovy
+compile 'com.squareup.retrofit2:retrofit:2.3.0'
+compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+```
+
+**Remember:** if you're using Android 3.0, swap out ```compile``` with ```implementation```.
+
+### Step 3:  
