@@ -8,6 +8,7 @@ Topics include but are not limited to:
 * Displaying multiple fragments within a single fragment/activity
 * Creating a RecyclerView
 * Transitioning between Fragments
+* Using Bundles to exchange data between Fragments
 * Creating JSONObjects from text Strings
 * Creating Data Models
 * Parsing JSONObjects
