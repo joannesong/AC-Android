@@ -79,3 +79,14 @@ AC3.3 uses the [Google Java Style Guide](https://google.github.io/styleguide/jav
 
 ## Random Student Picker
 - Solves a very important problem called ["Who can answer this question?"](https://codyhess.github.io/random-student-picker-android/)
+
+
+## Contributing
+- The repository is reserved for lecture materials *only*.
+    * For apps used in lecture use https://github.com/C4Q/AC-Android-Apps
+- Please don't use "Update README.md" as a commit message. Some suggestions: 
+    * *What did you add to the README?* 
+    * *Which lecture is the update related to?*
+- Please don't *push* one-off branches you do not intend to merge into master. A lot of good info stays hidden on those branches.
+    * If the branch is no longer in use, delete it.
+    * If the branch is still useful, merge it into master.
