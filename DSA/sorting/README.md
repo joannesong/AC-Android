@@ -1,6 +1,8 @@
 # Title: Sorting Algorithms
 Tags: runtime, algorithms, bubble sort, insertion sort, quick sort merge sort
 
+![sorting algorithms](sorting.gif)
+
 # Objectives
 
 - Know the different strategies used in sorting algorithms
@@ -20,8 +22,11 @@ Tags: runtime, algorithms, bubble sort, insertion sort, quick sort merge sort
 
 # Sorting
 
-We do it everyday... ![sorting laundry items](link)
-We see it in action everyday... ![the ordering of search results by relevance](link)
+We do it everyday and see it in action everyday.
+![sorting laundry items](Laundry.jpg)
+![sorting lego pieces](lego.jpeg)
+
+What examples of sorting in real life can you come up with?
 
 ### Why study sorting
 
@@ -45,19 +50,14 @@ We see it in action everyday... ![the ordering of search results by relevance](l
 
 ## Sorting strategies
 
-Iterative sorting algorithms (comparison based)
+Iterative sorting algorithms
 * Selection Sort
 * Bubble Sort
 * Insertion Sort
 
-Recursive sorting algorithms (comparison based)
+Recursive sorting algorithms
 * Merge Sort
 * Quick Sort
-
-## Properties of Sorting algorithms
-* *Time complexity*: How long it takes to sort
-* *Space complexity*: How much space it needs to sort 
-* *Stability*: Does it preserve the order of equal items? Like multi-column sort in excel
 
 Sorting has a variety of interesting algorithmic solutions that embody many ideas
 * Comparison vs non-comparison based
@@ -65,19 +65,6 @@ Sorting has a variety of interesting algorithmic solutions that embody many idea
 * Divide-and-conquer
 * Best/worst/average-case bounds
 * Randomized algorithms
-
-## The most import metric - Time!
-
-There is no *silver-bullet* sorting algorithm. Some generally perform better in metrics we care about.
-![all sorting animation](link)
-
-
-|Sorting function|Runtime|
-|---|---|
-|Insertion Sort| O(n<sup>2</sup>)
-|Bubble Sort| O(n<sup>2</sup>)
-|Merge Sort| O(nlog(n))
-|Quicksort | O(nlog(n))
 
 ## What we know so far
 
@@ -92,9 +79,17 @@ list.add(3);
 Collections.sort(list);
 ```
 
+For arrays:
+```java
+int[] arr = new int[]{11,2,7,3};
+Arrays.sort(arr);
+```
+`Arrays.sort` uses a Dual-Pivot Quicksort algorithm.
+For an array of objects, it uses a variant of MergeSort.
+
 ## Selection Sort
 
-![Selection sort animation](link)
+![Selection sort animation](selectionSort.gif)
 
 **The idea**
 
@@ -109,6 +104,11 @@ Given an array of n items
 
 **Selection sort implementation**
 
+How would you implement selection sort?
+
+<details>
+<summary>Click to view selection sort implementation</summary>
+<pre>
 ```java
 public void selectionSort(int[] arr) {
     for (int n = arr.length; n > 0; n--) {
@@ -126,6 +126,8 @@ public void selectionSort(int[] arr) {
     }
 }
 ```
+</pre>
+</details>
 
 ## Crash-course on runtime analysis
 
@@ -136,27 +138,27 @@ public void selectionSort(int[] arr) {
     - the time never grows (this is the fastest - the holy grail of all algorithms)
     - For example: If it takes 1 sec to sort an array of 1 item, it will still take 1 sec to sort an array of 1 million items
     - In code, some O(1) operations include:
-        * assignment statements: `int x = 0;` 
+        * assignment statements: `int x = 0;`
         * conditional statements: `if (x == 2 && y == 3 && z == 4) { ... }`
 * O(log n) means logarithmic time
     - takes *much less* time than the size of the input
     - the time grows much slower than input but not a constant
     - We'll revisit logarithmic time. More realistic to achieve than O(1)
     - In code, log n operations are common in divide and conquer algorithms (which we'll also visit later)
-* O(n) means linear time 
-    - takes as long as the size of the input 
-    - the time grows just as fast as the input. 
+* O(n) means linear time
+    - takes as long as the size of the input
+    - the time grows just as fast as the input.
     - For example: If it takes 1 sec to sort an array of 1 item then it will take 9 seconds to sort an array of 9 items
     - How long will it take to sort an array of 1 million items?
     - In code, some O(n) operations include:
         * loops (single): `for (int i = 0; i < 10; i++) {...}`
-* O(n<sup>2</sup>) is quadratic time 
+* O(n<sup>2</sup>) is quadratic time
     - takes a square of the size of the input
-    - the time grows much faster than the input. 
-    - For example: If it takes 1 sec to sort 1 item, it will take 81 secs (9*9) to sort an array of 9 items. 
+    - the time grows much faster than the input.
+    - For example: If it takes 1 sec to sort 1 item, it will take 81 secs (9*9) to sort an array of 9 items.
     - How long will it take to sort an array of 1 million items?
     - In code, some O(n2) operations include:
-        * loops (double nested): 
+        * loops (double nested):
         ```java
         for (int i = 0; i < 10; i++) {  // loop 1
             int j = 0;
@@ -171,10 +173,23 @@ public void selectionSort(int[] arr) {
     - the time *skyrockets* much faster than the input
     - For example: If it takes 1 sec to sort 1 item, it will take 387,420,489 (9^9) seconds to sort an array of 9 items. Whoops!
     - How long will it take to sort an array of 1 million items?
-    - In code, triply nested code. 
+    - In code, triply nested code.
 
 * Algorithms can have different best, average and worst case performance.
-* The big O of an algorithm is its *worst* case performance - the upper bound. 
+* The big O of an algorithm is its *worst* case performance - the upper bound.
+
+## Sorting Algorithm time complexity
+
+There is no *silver-bullet* sorting algorithm. Some generally perform better in metrics we care about.
+
+For a visual of how different algorithms perform under different constrainst, see this [sorting animation](https://www.toptal.com/developers/sorting-algorithms)
+
+|Sorting function|Runtime|
+|---|---|
+|Insertion Sort| O(n<sup>2</sup>)
+|Bubble Sort| O(n<sup>2</sup>)
+|Merge Sort| O(nlog(n))
+|Quicksort | O(nlog(n))
 
 ## Selection sort analysis
 
@@ -196,22 +211,18 @@ public void selectionSort(int[] arr) {
 }
 ```
 
-What is the worst case performance of selection sort
+What is the worst case performance of selection sort?
 
-## Selection sort exercises
+## Properties of Sorting algorithms
 
-**Question 1**: Write a unit test to confirm that this implementation of the algorithm is correct.
-Some cases to test for include: empty array, single item array, sorted array, unsorted array, array with duplicates
+* **In-Place**:
+    A sort algorithm is said to be an in-place sort if it requires only a constant amount (i.e. O(1)) of extra space during the sorting process
+    *Question*: Is selection sort an in-place sorting algorithm? Why or why not?
 
-**Question 2**: Make this algorithm (the given implementation) generic, so it works on arrays of any type not just integers.
-Struggling? Try making it work for Strings first. 
+* **Stable**:
+    A sorting algorithm is stable if the relative order of elements with the same key value is preserved by the algorithm
+    *Question*: Is selection sort a stable sorting algorithm? Why or why not?
 
-Include unit tests for other types not just integers. 
-
-**Question 3**: Right now, the algorithm only sorts in ascending order. 
-Create an overloaded version of selection-sort that takes an order parameter.
-The order parameters determines whether the array is sorted in ascending and descending other. 
-Update the implementation and add unit tests for descending order
 
 ## Selection sort properties and summary
 
@@ -219,14 +230,37 @@ Update the implementation and add unit tests for descending order
 * Both best and worst case is O(n2)
 * Has a space complexity of O(1)
 * It is unstable (will visit this later)
+* It is in-place and but unstable.
+
+
+## Selection sort exercises
+
+**Question 1**: Write a unit test to confirm that this implementation of the algorithm is correct.
+Some cases to test for include: empty array, single item array, sorted array, unsorted array, array with duplicates
+
+**Question 2**: Make this algorithm (the given implementation) generic, so it works on arrays of any type not just integers.
+Struggling? Try making it work for Strings first.
+
+Include unit tests for other types not just integers.
+
+**Question 3**: Right now, the algorithm only sorts in ascending order.
+Create an overloaded version of selection-sort that takes an order parameter.
+The order parameters determines whether the array is sorted in ascending and descending other.
+Update the implementation and add unit tests for descending order
+
+**Question 4**: Why is selection sort not stable? Why is it in-place?
+
+
+################################################################################
+
 
 ## Bubble Sort
 
 **The idea**
 
-* Look at at each pair of adjacent numbers.  
-* If they are ordered correctly, we keep them in the same order.  Otherwise, we swap them. 
-* Go back to the start of the list and repeat until we can run through the array without making any swaps. 
+* Look at at each pair of adjacent numbers.
+* If they are ordered correctly, we keep them in the same order.  Otherwise, we swap them.
+* Go back to the start of the list and repeat until we can run through the array without making any swaps.
 
 **Bubble sort Illustration**
 This algorithm gets its name from the way values eventually "bubble" up to their proper position in the sorted array.
@@ -292,9 +326,9 @@ Here's a step by step process for how that would work:
 - For every element:
   - Append that element to `sortedArray`
   - For every index starting from the last index in `sortedArray`:
-     
+
      - Check to see if the value at that index is greater than the one directly to the left.
-     - If it is, swap with it.  Otherwise break out of this loop and look at 
+     - If it is, swap with it.  Otherwise break out of this loop and look at
 
 [Insertion Sort Demo](https://www.youtube.com/watch?v=DFG-XuyPYUQ)
 
@@ -303,10 +337,6 @@ Here's a step by step process for how that would work:
 > Exercise: What is the worst-case runtime of insertion sort? Can you think of any strategies to make it more efficient?
 
 > Exercise: Write three test methods for your sorting algorithm and run them to confirm that your implementation is correct.
-
-
-# Stop HERE!!!! No need to read past these lines :)
-
 
 ## Merge Sort
 
@@ -332,7 +362,7 @@ The following diagram shows the complete merge sort process for an example array
 
 ```java
 public class MergeSort {
-    
+
     public static void main(String[] args) {
         int[] array = {108, 42, 3, 12, 19, 22, 200, 16};
 
@@ -373,7 +403,7 @@ public class MergeSort {
 
 ## BONUS: Quick Sort!
 
-Quick sort is a fast sorting algorithm which is widely applied in practice. On average, it has O(n log n) complexity (or at worst O(n2)), making quick sort suitable for sorting big data sets. 
+Quick sort is a fast sorting algorithm which is widely applied in practice. On average, it has O(n log n) complexity (or at worst O(n2)), making quick sort suitable for sorting big data sets.
 
 Algorithm:
 - Choose a pivot value. We take the value of the middle element as pivot value, but it can be any value in range of sorted values, even if it doesn't present in the array.
