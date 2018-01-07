@@ -39,7 +39,7 @@ private boolean isCloudy;
 Depending on the values of these booleans, we could then run them through an if/else conditional block to see what we could wear:
 
 ```java
-public void checkWeather(boolean weather) {
+public void checkWeather(boolean isSunny, boolean isRainy, boolean isCloudy) {
 	if(isSunny){
 		System.out.println("Wear sunglasses!");
 	} else if(isRainy){
