@@ -335,7 +335,7 @@ So, that's great. But the question remains: Why, though?
 
 ![hard to weild](https://thabto.files.wordpress.com/2013/07/baby-tire.jpg)
 
-Remember when we were bakers, who used Object-Oriented Programming techniques to bake pies? This time, imagine we've move on to a Pizza shop - and we want to make pizza pies with a variety of toppings:
+Remember when we were bakers, who used Object-Oriented Programming techniques to bake pies? This time, imagine we've moved on to a Pizza shop - and we want to make pizza pies with a variety of toppings:
 
 ```java
 public class PizzaClassWithConstructors {
@@ -352,7 +352,7 @@ public class PizzaClassWithConstructors {
 }
 ```
 
-If we used a default constructor, we'd make pizzas without any toppings (Bleeeeeccchhhh!!!), so we'll have to make unique constuctors:
+If we used a default constructor, we'd make pizzas without any toppings (Bleeeeeccchhhh!!!), so we'll have to make unique constructors:
 
 ```java
 public class PizzaClassWithConstructors {
