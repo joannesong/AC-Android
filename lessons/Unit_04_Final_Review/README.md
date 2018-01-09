@@ -1,6 +1,6 @@
-# Unit 04 Midterm Review
+# Unit 04 Final Review
 
-You will have UNTIL 10:00pm EST to complete this assessment, time will be thoroughly proctored, and This Assessment is OPEN-BOOK / RADIO-SILENCED, so although internet searches, lessons, YouTube videos, and previous projects are all fully accessible (and encouraged) to all fellows during this assessment, no communication with others is allowed.
+You will have UNTIL 10:00pm EST to complete this assessment, time will be thoroughly proctored, and this Assessment is **OPEN-BOOK / RADIO-SILENCED**, so although internet searches, lessons, YouTube videos, and previous projects are all fully accessible (and encouraged) to all fellows during this assessment, ***no communication with others is allowed.***
 
 |Topic|Resource|
 |:-|:-:|
