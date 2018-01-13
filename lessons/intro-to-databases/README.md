@@ -23,10 +23,65 @@
 |**Column**|a set of data values of a particular type.
 |**Row**|a single record in a table.
 |**Schema**|a collection of database objects (tables) associated with one particular database username. This username is called the *schema owner*. You may have one or multiple schemas in a database|
+|**SQL statement**|text that the database recognizes as a valid command|
+|**clause**|the part of a SQL statement that performs a specific task. By convention, clauses are written in capital letters. Clauses are sometimes referred to as *commands*|
+|**parameter**|a list of columns, data types, or values that are passed to a *clause* as an argument|
+|**query**|a statement used to extract data from the database in a readable format according to the user's request|
 
 # Lecture
 
 ## What is a database?
+
+A database is simply a collection of information, that is organized so that it can be easily accessed, managed and updated by a user. By this definition, Shared Preferences data can be thought of as a database:
+
+* Creating/Accessing the "Database":
+
+```java
+private static final String SHARED_PREFS_KEY = "sharedPrefsTesting";
+
+SharedPreferences sharedPrefs = getApplicationContext().getSharedPreferences(SHARED_PREFS_KEY, MODE_PRIVATE);
+```
+
+* Putting/Updating entries from the "Database":
+
+```java
+SharedPreferences.Editor editor = sharedPrefs.edit();
+editor.putString("username", username.getText().toString());
+editor.putString("password", password.getText().toString());
+editor.commit();
+```
+
+* Getting specific values from the "Database":
+
+```java
+String usernameValue = sharedPrefs.getString("username", null);
+String passwordValue = sharedPrefs.getString("password", null);
+```
+
+However, `SharedPreferences` are limited since they can only hold key/value pairs. Also, the types of values that can be stored in `SharedPreferences` are limited as well to primitives, Strings, and Sets.
+
+A more effective database can be thought of as a collection of **associated** information, beyond a single key/value pair. An example of this can be visualized as a table (like a spreadsheet), with **columns** for value categories, and **rows** for individual entries. Let's say we wanted to tracl the users of a blogging site. We can put them in something like the table below:
+
+|entry_order|username|password|
+|:-:|:-|:-|
+|1|dogperson123|ComplicatedPassword123!|
+|2|catperson456|ComplicatedPassword456!|
+|3|hamsterperson789|ComplicatedPassword789!|
+
+To extend this metaphor, you might be asking "Which one is the key?" Well, let's say we wanted to find out the password for a certain user - dogperson123 - visually, we could look at the table, under the column `username`, go down until we see the user we wanted (dogperson123), then look to the right or left of that row, until we hit the column `password`, where we'd find the password associated with that particular user. In this sense, technically speaking, any value could be a key. This is both a good and a bad thing. Good, because it means you can search for associated data using multiple keys, but bad, since it means there's no real way to tell one entry from the other, especially if a username is identical:
+
+|entry_order|username|password|
+|:-:|:-|:-|
+|1|dogperson123|ComplicatedPassword123!|
+|2|catperson456|ComplicatedPassword456!|
+|3|hamsterperson789|ComplicatedPassword789!|
+|4|catperson456|SomeOtherPassword!|
+
+We need to make one key unique - so that if we do find dupicate data, we can at least tell the difference between the two. If we make sure that the entry order number can **never be changed**, then at least we'd know for sure that we have mutiple entries for the same user - and we can either remove the duplicate entry, or change the username for them entirely. We can look at the `entry_order` as the **primary key** to associate with all the other data in our rows, making each row a unique entry.
+
+If you wanted to, you could even create a table tracking the multiple blog posts each username might author - you could create a "relationship" between these two tables, so that whenever a user makes a post, you create a relationship between the user data, and the blog post data.
+
+On a very high level, this is essentially how a SQL-type database works. 
 
 // TODO: expand on this question
 
@@ -58,6 +113,8 @@ SQLite also does not have a type set aside for storing dates and/or times. Inste
 
 SQL (Structured Query Language) is a programming language designed to manipulate and manage data stored in relational databases.
 
+|Term|Definition|
+|:-:|:-|
 |**SQL statement**|text that the database recognizes as a valid command|
 |**clause**|the part of a SQL statement that performs a specific task. By convention, clauses are written in capital letters. Clauses are sometimes referred to as *commands*|
 |**parameter**|a list of columns, data types, or values that are passed to a *clause* as an argument|
