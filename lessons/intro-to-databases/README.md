@@ -1,10 +1,10 @@
-# Intro to Databases + SQLite
+# Intro to Databases, SQLite, and SQLiteOpenHelper
 
 ## Objectives
 
-- Become familiar with what a relational database is and when to use one.
-- Learn to compose and execute some common clause SQL statements (CREATE, INSERT, SELECT, UPDATE, DELETE).
-- Gain exposure to SQLite on Android via the Cupboard library.
+- Fellows will become familiar with what a relational database is and when to use one
+- Fellows will learn to compose and execute some common clause SQL statements (CREATE, INSERT, SELECT, UPDATE, DELETE)
+- Fellows will gain exposure to SQLite on Android via the SQLiteOpenHelper Class
 
 ## Resources
 
@@ -150,7 +150,7 @@ DROP TABLE table_name;
 
 ### `CREATE TABLE` statements
 
-Create a new table in the database. Allows you to specify the name of the table and the name and data type of each field (column) in the table.
+Create a new table in the database. Allows you to specify the name of the table and the name and data type of each field (column) in the table:
 
 ```SQL
 CREATE TABLE table_name (column_1 datatype, column_2 datatype, column_3 datatype);
@@ -158,7 +158,7 @@ CREATE TABLE table_name (column_1 datatype, column_2 datatype, column_3 datatype
 
 ### `ALTER TABLE` statements
 
-Add fields (columns) to an existing table in the database.
+Add fields (columns) to an existing table in the database:
 
 ```SQL
 ALTER TABLE table_name ADD column datatype;
@@ -222,7 +222,7 @@ Honestly, this is simply scratching the surface as to the many ways a user can q
 
 ### `UPDATE` statements
 
-Edit records (rows) in a table.
+Edit records (rows) in a table:
 
 ```SQL
 UPDATE table_name SET some_column = some_value WHERE some_column = some_value;
@@ -230,7 +230,7 @@ UPDATE table_name SET some_column = some_value WHERE some_column = some_value;
 
 ### `DELETE FROM` statements
 
-Remove records (rows) from a table.
+Remove records (rows) from a table:
 
 ```SQL
 DELETE FROM table_name WHERE some_column = some_value;
@@ -264,7 +264,7 @@ CREATE TABLE fellows(_id INTEGER PRIMARY KEY AUTOINCREMENT, last_name TEXT, firs
 INSERT INTO fellows(last_name, first_name) VALUES("Smith", "Jordan");
 ```
 
-You might notice though that after deleting records, the `PRIMARY KEY` field may appear to be missing records. That's because each primary key is unique, and should never be used again. This is a normal part of table operations.
+You might notice though that after deleting records, the `PRIMARY KEY` field may appear to be missing record numbers. That's because each primary key is unique, and should never be used again. This is a normal part of table operations.
 
 ## What is SQLite?
 
