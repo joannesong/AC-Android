@@ -109,7 +109,7 @@ All data stored in a relational database is of a certain **data type**. SQLite h
 - **REAL** as [Julian day](https://en.wikipedia.org/wiki/Julian_day) numbers, the number of days since noon in Greenwich on November 24, 4714 B.C. according to the [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)
 - **INTEGER** as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC
 
-A user can insert the current data and current time by using function like `CURDATE()` and `CURTIME()` - this is especially useful for timestamping your data. 
+A user can insert the current data and current time by using function like `DATE()` and `TIME()` - this is especially useful for timestamping your data. 
 
 ## Why use Relational Databases in Android Application?
 
