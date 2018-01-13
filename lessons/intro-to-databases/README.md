@@ -32,7 +32,7 @@
 // TODO: expand on this question
 
 All data stored in a relational database is of a certain **data type**. SQLite, the relational database management system we'll be using, has the following data types:
-
+|Type|Definition|
 |:-:|:-|
 |**INTEGER**|a positive or negative whole number|
 |**TEXT**|a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE). Wrap text strings in single quotes, e.g. `'Hello, world!'`|
