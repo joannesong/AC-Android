@@ -236,6 +236,36 @@ Remove records (rows) from a table.
 DELETE FROM table_name WHERE some_column = some_value;
 ```
 
+### Adding a `PRIMARY KEY`
+
+Remember in the example we described at the beginning of the lecture - where you could have multiple entries with identical values, adding to inconsistent data? There is a way to add a `PRIMARY KEY` you your table, listing the order in which each record was placed into the table: 
+
+```SQL
+CREATE TABLE fellows(_id INTEGER PRIMARY KEY, last_name TEXT, first_name TEXT);
+```
+
+Now, you can add that `PRIMARY KEY` every time you insert a new record:
+
+```SQL
+INSERT INTO fellows(_id, last_name, first_name) VALUES(1, "Lin", "Lily");
+```
+
+However, SQL will make sure that every primary key is unique, so if you add the same primary key when you insert a new record. One way around this is to enter the keyword `NULL` when entering the `PRIMARY KEY` value:
+
+```SQL
+INSERT INTO fellows(_id, last_name, first_name) VALUES(NULL, "Smith", "Jordan");
+```
+
+However, it still requires you to enter a value. You can still add this `PRIMARY KEY` field, and have the number for each record increase automatically every time a new record is added, without having to use `NULL` every single time:
+
+```SQL
+CREATE TABLE fellows(_id INTEGER PRIMARY KEY AUTOINCREMENT, last_name TEXT, first_name TEXT);
+
+INSERT INTO fellows(last_name, first_name) VALUES("Smith", "Jordan");
+```
+
+You might notice though that after deleting records, the `PRIMARY KEY` field may appear to be missing records. That's because each primary key is unique, and should never be used again. This is a normal part of table operations.
+
 ## What is SQLite?
 
 **SQLite** is a **relational database management system (RDBMS)** - a program that lets you create, update, and administer a relational database.
