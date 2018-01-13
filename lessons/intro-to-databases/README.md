@@ -60,7 +60,7 @@ String passwordValue = sharedPrefs.getString("password", null);
 
 However, `SharedPreferences` are limited since they can only hold key/value pairs. Also, the types of values that can be stored in `SharedPreferences` are limited as well to primitives, Strings, and Sets.
 
-A more effective database can be thought of as a collection of **associated** information, beyond a single key/value pair. An example of this can be visualized as a table (like a spreadsheet), with **columns** for value categories, and **rows** for individual entries. Let's say we wanted to tracl the users of a blogging site. We can put them in something like the table below:
+A more effective database can be thought of as a collection of **associated** information, beyond a single key/value pair. An example of this can be visualized as a table (like a spreadsheet), with **columns** for value categories, and **rows** for individual entries. Let's say we wanted to track the users of a blogging site. We can put them in something like the table below:
 
 |entry_order|username|password|
 |:-:|:-|:-|
@@ -81,33 +81,39 @@ We need to make one key unique - so that if we do find dupicate data, we can at 
 
 If you wanted to, you could even create a table tracking the multiple blog posts each username might author - you could create a "relationship" between these two tables, so that whenever a user makes a post, you create a relationship between the user data, and the blog post data.
 
-On a very high level, this is essentially how a SQL-type database works. 
+On a very high level, this is essentially how Relational SQL-type databases work.
+
+## What is a Relational Database?
+
+A **Relational Database** is a database that organizes information into one or more tables. SQLite is the relational database management system we'll be using when working on Android projects.
 
 // TODO: expand on this question
 
-All data stored in a relational database is of a certain **data type**. SQLite, the relational database management system we'll be using, has the following data types:
+All data stored in a relational database is of a certain **data type**. SQLite has the following data types:
 
 |Type|Definition|
 |:-:|:-|
 |**INTEGER**|a positive or negative whole number|
-|**TEXT**|a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE). Wrap text strings in single quotes, e.g. "'Hello, world!'"|
+|**TEXT**|a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE). Wrap text strings in single quotes, e.g. **'Hello, world!'**|
 |**REAL**|a decimal value, stored as an 8-byte IEEE floating point number|
 |**BLOB**|a blob of data, stored exactly as it was input|
 |**NULL**|the null value|
 
 SQLite does not have a separate BOOLEAN data type class. Instead, BOOLEAN values are stored as INTEGERS `0` (false) and `1` (true).
 
-SQLite also does not have a type set aside for storing dates and/or times. Instead, dates and times are stored as TEXT, REAL, or INTEGER values:
+**IMPORTANT:** SQLite also does not have a type set aside for storing dates and/or times. Instead, dates and times are stored as TEXT, REAL, or INTEGER values:
 
 - **TEXT** as ISO8601 strings ("YYYY-MM-DD HH:MM:SS.SSS").
 - **REAL** as Julian day numbers, the number of days since noon in Greenwich on November 24, 4714 B.C. according to the proleptic Gregorian calendar.
 - **INTEGER** as Unix Time, the number of seconds since 1970-01-01 00:00:00 UTC.
 
-## Use cases
+A user can insert the current data and current time by using function like `CURDATE()` and `CURTIME()` - this is especially useful for timestamping your data. 
 
-- Relational databases are ideal for repeating or structured data, e.g. contacts, messages, users, tweets.
-- Your data is of a type, complexity or quantity that cannot be stored easily in SharedPreferences, e.g. a list.
-- You want to cache data from a REST API locally for faster access or offline viewing, e.g. received emails in your Gmail app are always available offline. This can be great for user experience, but it is important to ensure that cached data does not become stale.
+## Why use Relational Databases in Android Application?
+
+- Relational databases are ideal for repeating or structured data (e.g. contacts, messages, users, tweets)
+- The data you wish to store is of a type, complexity or quantity that cannot be stored easily in SharedPreferences (e.g. a list)
+- You want to cache data from a REST API locally for faster access or offline viewing - for example: received emails in your Gmail app are always available offline. This can be great for user experience, but it is important to ensure that cached data does not become stale
 
 ## What is SQL?
 
@@ -120,7 +126,7 @@ SQL (Structured Query Language) is a programming language designed to manipulate
 |**parameter**|a list of columns, data types, or values that are passed to a *clause* as an argument|
 |**query**|a statement used to extract data from the database in a readable format according to the user's request| 
 
-The structure of SQL statements vary. The number of lines used doesn't matter - a statement can be written in a single line or split up across multiple lines for readability. Statements always end in a semi-colon `;`.
+The structure of SQL statements vary. The number of lines used doesn't matter - a statement can be written in a single line or split up across multiple lines for readability. However, statements always end in a semi-colon `;`.
 
 ### `CREATE TABLE` statements
 
