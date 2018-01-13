@@ -201,6 +201,14 @@ You can fetch all records, and order them based on the values of specific fields
 SELECT * FROM table_name ORDER BY column_name DESC;
 ```
 
+You can fetch all records that have fields containing certain values of a certain length from the database:
+
+```SQL
+SELECT * FROM table_name WHERE LENGTH(column_name) = 4;
+```
+
+Honestly, this is simply scratching the surface as to the many ways a user can query a database table. People have spent entire careers as Database Administrators designing/optomizing useful queries for data analytics on massive tables/databases. If you'd like to know more, you can follow [this link](https://www.sqlite.org/lang_select.html) for more information.
+
 ### `UPDATE` statements
 
 Edit records (rows) in a table.
