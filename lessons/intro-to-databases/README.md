@@ -1,13 +1,13 @@
-- title: Intro to Databases + SQLite
+# Intro to Databases + SQLite
 - tags: relational databases, sqlite
 
-# Objectives
+## Objectives
 
 - Become familiar with what a relational database is and when to use one.
 - Learn to compose and execute some common clause SQL statements (CREATE, INSERT, SELECT, UPDATE, DELETE).
 - Gain exposure to SQLite on Android via the Cupboard library.
 
-# Resources
+## Resources
 
 - [Glossary of commonly used SQL commands](https://www.codecademy.com/articles/sql-commands)
 - [Datatypes in SQLite](https://www.sqlite.org/datatype3.html)
@@ -16,23 +16,29 @@
 - [Saving Data in SQL Databases - developer.android.com](https://developer.android.com/training/basics/data-storage/databases.html)
 - [Easier SQL with Cupboard](https://guides.codepath.com/android/Easier-SQL-with-Cupboard)
 
+## Vocabulary
+|Term|Definition|
+|:-:|:-|
+|**Relational Database**|a database that organizes information into one or more *tables*|
+|**Table**|a collection of data organized into *rows* and *columns*. Tables are sometimes referred to as *relations*.
+|**Column**|a set of data values of a particular type.
+|**Row**|a single record in a table.
+|**Schema**|a collection of database objects (tables) associated with one particular database username. This username is called the *schema owner*. You may have one or multiple schemas in a database|
+
 # Lecture
 
 ## What is a database?
 
-- **relational database** - a database that organizes information into one or more *tables*.
-- **table** - a collection of data organized into *rows* and *columns*. Tables are sometimes referred to as *relations*.
-- **column** - a set of data values of a particular type.
-- **row** - a single record in a table.
-- **schema** - a collection of database objects (tables) associated with one particular database username. This username is called the *schema owner*. You may have one or multiple schemas in a database.
+// TODO: expand on this question
 
 All data stored in a relational database is of a certain **data type**. SQLite, the relational database management system we'll be using, has the following data types:
 
-1. **INTEGER** - a positive or negative whole number.
-2. **TEXT** - a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE). Wrap text strings in single quotes, e.g. `'Hello, world!'`.
-3. **REAL** - a decimal value, stored as an 8-byte IEEE floating point number.
-4. **BLOB** - a blob of data, stored exactly as it was input.
-5. **NULL** - the null value.
+|:-:|:-|
+|**INTEGER**|a positive or negative whole number|
+|**TEXT**|a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE). Wrap text strings in single quotes, e.g. `'Hello, world!'`|
+|**REAL**|a decimal value, stored as an 8-byte IEEE floating point number|
+|**BLOB**|a blob of data, stored exactly as it was input|
+|**NULL**|the null value|
 
 SQLite does not have a separate BOOLEAN data type class. Instead, BOOLEAN values are stored as INTEGERS `0` (false) and `1` (true).
 
@@ -52,10 +58,10 @@ SQLite also does not have a type set aside for storing dates and/or times. Inste
 
 SQL (Structured Query Language) is a programming language designed to manipulate and manage data stored in relational databases.
 
-- **SQL statement** - text that the database recognizes as a valid command.
-- **clause** - the part of a SQL statement that performs a specific task. By convention, clauses are written in capital letters. Clauses are sometimes referred to as *commands*.
-- **parameter** - a list of columns, data types, or values that are passed to a *clause* as an argument.
-- **query** -  a statement used to extract data from the database in a readable format according to the user's request. 
+|**SQL statement**|text that the database recognizes as a valid command|
+|**clause** - the part of a SQL statement that performs a specific task. By convention, clauses are written in capital letters. Clauses are sometimes referred to as *commands*|
+|**parameter**|a list of columns, data types, or values that are passed to a *clause* as an argument|
+|**query**|a statement used to extract data from the database in a readable format according to the user's request| 
 
 The structure of SQL statements vary. The number of lines used doesn't matter - a statement can be written in a single line or split up across multiple lines for readability. Statements always end in a semi-colon `;`.
 
@@ -111,11 +117,10 @@ DELETE FROM table_name WHERE some_column = some_value;
 
 **1)** Complete Codeacademy's SQL Manipulation exercises (1 - 10) and the Manipulation multiple choice quiz. You'll need to create an account if you haven't already. Do not continue past the quiz for now.
 
-**2)** Go to [sqlfiddle.com](http://sqlfiddle.com/#!5/). Make sure the dropdown at the top-left is selecting "SQLite (WebSQL)".
+**2)** Go to [Online SQL interpreter (SQL.js)](http://kripken.github.io/sql.js/GUI/). For this example only, make sure to clear the contents of the input box, and add the following code: `DROP TABLE cats;`
 - In the *Schema Panel* (left side), create a table named `cats`. The table should have the following columns: `id` (INTEGER), `name` (TEXT), `last_fed` (LONG) and `is_hungry` (BOOLEAN).
-- Next in the *Schema Panel*, write statements to insert five cats into the cats table: id: 1, name: Furry, last_fed: 0, is_hungry: 1, id: 2, name: Harry, last_fed: 6745684353, is_hungry: 0, id: 3, name: Mike, last_fed: 5890234637, is_hungry: 1, plus two of your choosing. Click "Build Schema" to build your database schema.
-- In the *SQL Panel* (right side), compose and run a statement to select all of the cats from the cats table.
-- In the *SQL Panel* (right side), compose and run an update statement to feed Furry now. He is no longer hungry. Select all cats from the table to confirm that your update worked.
+- Directky below the create statement, write statements to insert five cats into the cats table: id: 1, name: Furry, last_fed: 0, is_hungry: 1, id: 2, name: Harry, last_fed: 6745684353, is_hungry: 0, id: 3, name: Mike, last_fed: 5890234637, is_hungry: 1, plus two of your choosing. Next, compose and run a statement to select all of the cats from the cats table. Click "Execute" to run the code.
+- Compose and run an update statement to feed Furry now. He is no longer hungry. Select all cats from the table to confirm that your update worked.
 - Mike got tired of the pampered life and ran away. Compose and run a statement to delete him from the table. Select all cats from the table to confirm that your delete worked.
 - Alter the table to add a new column: `color` (TEXT). Update each remaining cat with a fur color.
 - Compose and run a statement to select all cats from the table with orange fur.
@@ -128,34 +133,36 @@ SQLite is a popular open source, compact RDBMS that uses SQL to access the datab
 
 SQLite is a popular choice for databases in phones (it is the default embedded database in both iOS and Android) and other electronic gadgets. 
 
+// TODO: update lesson to use SqliteOpenHelper instead of Cupboard, then introduce Cupboard/Room as future alternatives
+
 ### Exercises
 
-Fork and clone the [Access Cats](https://github.com/ramonaharrison/AccessCats) repo. Refer to the [Cupboard documentation](https://bitbucket.org/littlerobots/cupboard/wiki/withDatabase) or this [guide](https://guides.codepath.com/android/Easier-SQL-with-Cupboard) as you complete the following exercises.
+> Fork and clone the [Access Cats](https://github.com/ramonaharrison/AccessCats) repo. Refer to the [Cupboard documentation](https://bitbucket.org/littlerobots/cupboard/wiki/withDatabase) or this [guide](https://guides.codepath.com/android/Easier-SQL-with-Cupboard) as you complete the following exercises.
 
-**1)** Read through the sample code provided in the Access Cats project. What looks familiar? What looks new?
+> **1)** Read through the sample code provided in the Access Cats project. What looks familiar? What looks new?
 
-**2)** Add a few cats to the database and observe the list. Force kill the app by swiping it from the recents screen. Reopen the app. Are the cats still there?
+> **2)** Add a few cats to the database and observe the list. Force kill the app by swiping it from the recents screen. Reopen the app. Are the cats still there?
 
-**3)** With the app open, press the recents button and long press the the cat icon in the Access Cats app label to access the App Info screen. Press "Storage" then "Clear Data" to clear the app data. Reopen the app. Are the cats still there?
+> **3)** With the app open, press the recents button and long press the the cat icon in the Access Cats app label to access the App Info screen. Press "Storage" then "Clear Data" to clear the app data. Reopen the app. Are the cats still there?
 
-**4)** In CatActivity.java, find the `onCatClicked()` method. Add logic to feed the cat by using Cupboard to update the last fed time in the database.
+> **4)** In CatActivity.java, find the `onCatClicked()` method. Add logic to feed the cat by using Cupboard to update the last fed time in the database.
 
-**5)** In CatActivity.java, find the `onCatLongClicked()` method. Add logic to delete the cat by using Cupboard to remove the cat from the database.
+> **5)** In CatActivity.java, find the `onCatLongClicked()` method. Add logic to delete the cat by using Cupboard to remove the cat from the database.
 
-**6)** Use Cupboard to add a new column to the cat table named `image_url`. For each cat in your database, find a cat image URL online and display the image next to the cat's name in the list using the [Picasso library](https://github.com/square/picasso). Try to do this without clearing the app data (read up on [migrations](https://guides.codepath.com/android/Easier-SQL-with-Cupboard#migrations))!
+> **6)** Use Cupboard to add a new column to the cat table named `image_url`. For each cat in your database, find a cat image URL online and display the image next to the cat's name in the list using the [Picasso library](https://github.com/square/picasso). Try to do this without clearing the app data (read up on [migrations](https://guides.codepath.com/android/Easier-SQL-with-Cupboard#migrations))!
 
-**7)** Install [DB Browser for SQLite](http://sqlitebrowser.org/), which will allow you to inspect your app's SQLite data graphically. Use Terminal to pull the database file from your device:
+> **7)** Install [DB Browser for SQLite](http://sqlitebrowser.org/), which will allow you to inspect your app's SQLite data graphically. Use Terminal to pull the database file from your device:
 
-*You'll need to cd into the sdk-tools directory if you haven't added adb to your path*
+> *You'll need to cd into the sdk-tools directory if you haven't added adb to your path*
 
-```
-./adb shell run-as <app package name> chmod 666 /data/data/<app package name>/databases/<database file name>
-./adb shell cp /data/data/<app package name>/databases/<database file name> /sdcard/
-./adb pull /sdcard/<database file name>
-```
+> ```
+> ./adb shell run-as <app package name> chmod 666 /data/data/<app package name>/databases/<database file name>
+> ./adb shell cp /data/data/<app package name>/databases/<database file name> /sdcard/
+> ./adb pull /sdcard/<database file name>
+> ```
 
-Once you have the file downloaded, open it in DB Browser. What do you see?
+> Once you have the file downloaded, open it in DB Browser. What do you see?
 
-**8) BONUS:** Create a new activity, DogActivity.java (or choose another animal that you like). Duplicate the cat logic to create a new POJO, adapter and table in your database, then display a list of animals in your new activity.
+> **8) BONUS:** Create a new activity, DogActivity.java (or choose another animal that you like). Duplicate the cat logic to create a new POJO, adapter and table in your database, then display a list of animals in your new activity.
 
-### [Exit Ticket](https://goo.gl/forms/Mimlu5kAA3zjJBpu1)
+> ### [Exit Ticket](https://goo.gl/forms/Mimlu5kAA3zjJBpu1)
