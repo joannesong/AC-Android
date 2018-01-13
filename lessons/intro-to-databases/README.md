@@ -143,7 +143,7 @@ These statements constitute what are referred to as [CRUD](https://en.wikipedia.
 The `DROP TABLE` statement is used to drop an existing table in a database:
 
 ```SQL
-CREATE TABLE table_name;
+DROP TABLE table_name;
 ```
 
 **IMPORTANT**: ***Be careful before dropping a table*** - deleting a table will result in loss of complete information stored in the table!
