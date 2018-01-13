@@ -1,5 +1,4 @@
 # Intro to Databases + SQLite
-- tags: relational databases, sqlite
 
 ## Objectives
 
@@ -32,10 +31,11 @@
 // TODO: expand on this question
 
 All data stored in a relational database is of a certain **data type**. SQLite, the relational database management system we'll be using, has the following data types:
+
 |Type|Definition|
 |:-:|:-|
 |**INTEGER**|a positive or negative whole number|
-|**TEXT**|a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE). Wrap text strings in single quotes, e.g. `'Hello, world!'`|
+|**TEXT**|a text string, stored using the database encoding (UTF-8, UTF-16BE or UTF-16LE). Wrap text strings in single quotes, e.g. "'Hello, world!'"|
 |**REAL**|a decimal value, stored as an 8-byte IEEE floating point number|
 |**BLOB**|a blob of data, stored exactly as it was input|
 |**NULL**|the null value|
@@ -59,7 +59,7 @@ SQLite also does not have a type set aside for storing dates and/or times. Inste
 SQL (Structured Query Language) is a programming language designed to manipulate and manage data stored in relational databases.
 
 |**SQL statement**|text that the database recognizes as a valid command|
-|**clause** - the part of a SQL statement that performs a specific task. By convention, clauses are written in capital letters. Clauses are sometimes referred to as *commands*|
+|**clause**|the part of a SQL statement that performs a specific task. By convention, clauses are written in capital letters. Clauses are sometimes referred to as *commands*|
 |**parameter**|a list of columns, data types, or values that are passed to a *clause* as an argument|
 |**query**|a statement used to extract data from the database in a readable format according to the user's request| 
 
