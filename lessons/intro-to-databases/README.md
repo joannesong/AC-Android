@@ -87,8 +87,6 @@ On a very high level, this is essentially how Relational SQL-based databases wor
 
 A **Relational Database** is a database that organizes information into one or more tables. SQLite is the relational database management system we'll be using when working on Android projects.
 
-// TODO: expand on this question
-
 All data stored in a relational database is of a certain **data type**. SQLite has the following data types:
 
 |Type|Definition|
@@ -135,7 +133,13 @@ The structure of SQL statements vary. The number of lines used doesn't matter - 
 
 ### `DROP TABLE` statements
 
-// TODO: add `DROP TABLE` description
+The `DROP TABLE` statement is used to drop an existing table in a database:
+
+```SQL
+CREATE TABLE table_name;
+```
+
+**IMPORTANT**: ***Be careful before dropping a table*** - deleting a table will result in loss of complete information stored in the table!
 
 ### `CREATE TABLE` statements
 
@@ -279,4 +283,3 @@ SQLite is a popular choice for databases in phones (it is the default embedded d
 
 > **8) BONUS:** Create a new activity, DogActivity.java (or choose another animal that you like). Duplicate the cat logic to create a new POJO, adapter and table in your database, then display a list of animals in your new activity.
 
-> ### [Exit Ticket](https://goo.gl/forms/Mimlu5kAA3zjJBpu1)
