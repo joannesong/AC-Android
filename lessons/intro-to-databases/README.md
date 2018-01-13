@@ -129,7 +129,14 @@ SQL (Structured Query Language) is a programming language designed to manipulate
 |**field**|comparable to a **column**, a named category for a set of data values of a particular type|
 |**record**|comparable to a **row**, or a single entry in a table|
 
-The structure of SQL statements vary. The number of lines used doesn't matter - a statement can be written in a single line or split up across multiple lines for readability. However, statements always end in a semi-colon `;`.
+The structure of SQL statements vary. The number of lines used doesn't matter - a statement can be written in a single line or split up across multiple lines for readability. However, statements always end in a semi-colon `;` - much like in other languages.
+
+These statements constitute what are referred to as [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations, or the four basic functions of persistent storage:
+
+* Create
+* Read
+* Update
+* Delete
 
 ### `DROP TABLE` statements
 
