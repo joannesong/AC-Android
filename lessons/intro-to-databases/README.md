@@ -10,10 +10,11 @@
 
 - [Glossary of commonly used SQL commands](https://www.codecademy.com/articles/sql-commands)
 - [Datatypes in SQLite](https://www.sqlite.org/datatype3.html)
-- [SQL Fiddle](http://sqlfiddle.com/#!5)
+- [SQLite Online Emulator](http://kripken.github.io/sql.js/GUI/)
 - [SQLite in Android](http://www.grokkingandroid.com/sqlite-in-android/)
 - [Saving Data in SQL Databases - developer.android.com](https://developer.android.com/training/basics/data-storage/databases.html)
 - [Easier SQL with Cupboard](https://guides.codepath.com/android/Easier-SQL-with-Cupboard)
+- [Android Architecture Components - Room](https://developer.android.com/topic/libraries/architecture/room.html)
 
 ## Vocabulary
 |Term|Definition|
@@ -274,11 +275,15 @@ SQLite is a popular open source, compact RDBMS that uses SQL to access the datab
 
 SQLite is a popular choice for databases in phones (it is the default embedded database in both iOS and Android) and other electronic gadgets.
 
+## How can we get better at SQLite?
+
+![Try breaking stuff until you stop breaking stuff](https://i.pinimg.com/originals/f0/ec/70/f0ec70b24a69ea7b57ade4d639f95619.jpg)
+
 ## How can we use SQLite to create, update, and administer a relational database in Android Applications?
 
 There are a number of ways to create a SQLite Database, add records to it, and retreive data from it in Android. There are libraries like Cupboard and Room which will help make your lives easier. However, like all things in Android, it's important to learn how to create and use databases the old fashioned way first - and that way for us, is with **SQLiteOpenHelper**.
 
-### What is SQLIteOpenHelper?
+### What is SQLiteOpenHelper?
 
 **SQLiteOpenHelper** is an Abstract Class which must be subclassed. The abstract class has a number of abstract methods which need to be overridden. This class will allow you to create a database, create a number of tables, run queries, and ultimately run SQLite code directly in your apps, but allow you to create your own methods to expose to the rest of your app, so you won't have to constantly write SQLite code every time you want to run a simple operation.
 
@@ -643,6 +648,8 @@ And in Logcat, we can see the results:
 01-13 22:37:56.550 25565-25565/nyc.c4q.sqliteexample D/Fellows?: Danny Lui - Max2
 01-13 22:37:56.555 25565-25581/nyc.c4q.sqliteexample D/OpenGLRenderer: Use EGL_SWAP_BEHAVIOR_PRESERVED: true
 ```
+
+Alright! It prints the list! And, there are no dupicates in the list as well!
 
 ### Exercises
 
