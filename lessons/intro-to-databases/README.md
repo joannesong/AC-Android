@@ -78,7 +78,7 @@ To extend this metaphor, you might be asking "Which one is the key?" Well, let's
 |3|hamsterperson789|ComplicatedPassword789!|
 |4|catperson456|SomeOtherPassword!|
 
-We need to make one key unique - so that if we do find dupicate data, we can at least tell the difference between the two. If we make sure that the entry order number can **never be changed**, then at least we'd know for sure that we have mutiple entries for the same user - and we can either remove the duplicate entry, or change the username for them entirely. We can look at the `entry_order` as the **primary key** to associate with all the other data in our rows, making each row a unique entry.
+We need to make one key unique - so that if we do find duplicate data, we can at least tell the difference between the two. If we make sure that the entry order number can **never be changed**, then at least we'd know for sure that we have mutiple entries for the same user - and we can either remove the duplicate entry, or change the username for them entirely. We can look at the `entry_order` as the **primary key** to associate with all the other data in our rows, making each row a unique entry.
 
 If you wanted to, you could even create a table tracking the multiple blog posts each username might author - you could create a "relationship" between these two tables, so that whenever a user makes a post, you create a relationship between the user data, and the blog post data.
 
@@ -100,9 +100,9 @@ All data stored in a relational database is of a certain **data type**. SQLite h
 
 **IMPORTANT:** 
 
-* SQLite does not have a separate BOOLEAN data type class. Instead, BOOLEAN values are stored as INTEGERS `0` (false) and `1` (true).
+SQLite does not have a separate BOOLEAN data type class. Instead, BOOLEAN values are stored as INTEGERS `0` (false) and `1` (true).
 
-* SQLite also does not have a type set aside for storing dates and/or times. Instead, dates and times are stored as TEXT, REAL, or INTEGER values:
+SQLite also does not have a type set aside for storing dates and/or times. Instead, dates and times are stored as TEXT, REAL, or INTEGER values:
 
 - **TEXT** as [ISO8601 strings](https://en.wikipedia.org/wiki/ISO_8601) ("YYYY-MM-DD HH:MM:SS.SSS")
 - **REAL** as [Julian day](https://en.wikipedia.org/wiki/Julian_day) numbers, the number of days since noon in Greenwich on November 24, 4714 B.C. according to the [proleptic Gregorian calendar](https://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)
@@ -655,21 +655,7 @@ And in Logcat, we can see the results:
 
 Alright! It prints the list! And, there are no dupicates in the list as well!
 
-### Exercises
+**Things to explore in the future:**
 
-**1)** Complete Codeacademy's SQL Manipulation exercises (1 - 10) and the Manipulation multiple choice quiz. You'll need to create an account if you haven't already. Do not continue past the quiz for now.
-
-**2)** Go to [Online SQL interpreter (SQL.js)](http://kripken.github.io/sql.js/GUI/). For this example only, make sure to clear the contents of the input box, and add the following code: `DROP TABLE cats;`
-- In the *Schema Panel* (left side), create a table named `cats`. The table should have the following columns: `id` (INTEGER PRIMARY KEY AUTOINCREMENT), `name` (TEXT), `last_fed` (LONG) and `is_hungry` (BOOLEAN).
-- Directly below the create statement, write statements to insert five cats into the cats table: 
-  * name: Furry, last_fed: 0, is_hungry: 1, 
-  * name: Harry, last_fed: 6745684353, is_hungry: 0
-  * name: Mike, last_fed: 5890234637, is_hungry: 1
-  * plus two of your choosing 
-
-Next, compose and run a statement to select all of the cats from the cats table. Click "Execute" to run the code.
-
-- Compose and run an update statement to feed Furry now. He is no longer hungry. Select all cats from the table to confirm that your update worked.
-- Mike got tired of the pampered life and ran away. Compose and run a statement to delete him from the table. Select all cats from the table to confirm that your delete worked.
-- Alter the table to add a new column: `color` (TEXT). Update each remaining cat with a fur color.
-- Compose and run a statement to select all cats from the table with orange fur.
+1. Right now, you can instantiate multiple versions of the Helper class - how can we use the Singleton pattern to limit this?
+1. How can we create an app to add data with the click of a button, and update a RecyclerView with current database data?
