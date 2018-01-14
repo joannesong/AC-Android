@@ -276,6 +276,253 @@ SQLite is a popular choice for databases in phones (it is the default embedded d
 
 ## How can we use SQLite to create, update, and administer a relational database in Android Applications?
 
+There are a number of ways to create a SQLite Database, add records to it, and retreive data from it in Android. There are libraries like Cupboard and Room which will help make your lives easier. However, like all things in Android, it's important to learn how to create and use databases the old fashioned way first - and that way for us, is with **SQLiteOpenHelper**.
+
+### What is SQLIteOpenHelper?
+
+**SQLiteOpenHelper** is an Abstract Class which must be subclassed. The abstract class has a number of abstract methods which need to be overridden. This class will allow you to create a database, create a number of tables, run queries, and ultimately run SQLite code directly in your apps, but allow you to create your own methods to expose to the rest of your app, so you won't have to constantly write SQLite code every time you want to run a simple operation.
+
+Let's say we want to create an app to list C4Q graduates, and the companies they now work for.
+
+First, we'll need to create a data model class that we'll want to add to the database:
+
+```java
+package nyc.c4q.sqliteexample.model;
+
+public class Fellow {
+
+    private String firstName;
+    private String lastName;
+    private String company;
+
+    public Fellow(String firstName, String lastName, String company) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.company = company;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+}
+```
+
+Next, we'll create a class that inherits from the abstract class SQLiteOpenHelper, which overrides two methods - `onCreate(SQLiteDatabase sqLiteDatabase)`, and `onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1)`:
+
+```java
+package nyc.c4q.sqliteexample.database;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class FellowsDatabaseHelper extends SQLiteOpenHelper {
+
+    private static final String DATABASE_NAME = "fellows.db";
+    private static final String TABLE_NAME = "fellows";
+    private static final int SCHEMA_VERSION = 1;
+
+    public FellowsDatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, SCHEMA_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL(
+                "CREATE TABLE " + TABLE_NAME +
+                " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "last_name TEXT, first_name TEXT, company TEXT);");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        /*  Important for when you update an entire database with a new version.
+        *   We won't be exploring that in this lecture's example.
+        */
+    }
+}
+```
+
+In our constructor, we call the super's (SQLiteOpenHelper) constructor, with certain arguments:
+
+* The application's context (getApplicationContext())
+* the database name (DATABASE_NAME, or "fellows.db")
+* we pass "null" for a factory we don't need to supply, and
+* the version of our database (SCHEMA_VERSION, or 1)
+
+The `onCreate()` method is called automatically whenever the methods that actually GET a table are called - `getReadableDatabase()` or `getWritableDatabase()`. Inside the `onCreate()` you can we that we are simply calling raw SQL commands to create a new database table, based on the database created when we first called the constructor, IF the table doesn't already exist.
+
+Essentially, the SQLite code we are executing is:
+
+```SQL
+CREATE TABLE fellows(_id INTEGER PRIMARY KEY AUTOINCREMENT, last_name TEXT, first_name TEXT, company TEXT);
+```
+
+Next, we can make methods that allow us to add fellows, and get a list of the fellows we already have in the database:
+
+```java
+package nyc.c4q.sqliteexample.database;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import nyc.c4q.sqliteexample.model.Fellow;
+
+public class FellowsDatabaseHelper extends SQLiteOpenHelper {
+
+    private static final String DATABASE_NAME = "fellows.db";
+    private static final String TABLE_NAME = "fellows";
+    private static final int SCHEMA_VERSION = 1;
+
+    public FellowsDatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, SCHEMA_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL(
+                "CREATE TABLE " + TABLE_NAME +
+                " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "last_name TEXT, first_name TEXT, company TEXT);");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        /*  Important for when you update an entire database with a new version.
+        *   We won't be exploring that in this lecture's example.
+        */
+    }
+
+    public void addFellow(Fellow fellow) {
+        Cursor cursor = getReadableDatabase().rawQuery(
+                "SELECT * FROM " + TABLE_NAME + " WHERE first_name = '" + fellow.getFirstName() +
+                "' AND last_name = '" + fellow.getLastName() + "' AND company = '" + fellow.getCompany() +
+                        "';", null);
+        if (cursor.getCount() == 0) {
+            getWritableDatabase().execSQL("INSERT INTO " + TABLE_NAME +
+                    "(last_name, first_name, company) VALUES('" +
+                    fellow.getLastName() + "', '" +
+                    fellow.getFirstName() + "', '" +
+                    fellow.getCompany() + "');");
+        }
+        cursor.close();
+    }
+
+    public List<Fellow> getFellowList() {
+        List<Fellow> fellowList = new ArrayList<>();
+        Cursor cursor = getReadableDatabase().rawQuery(
+                "SELECT * FROM " + TABLE_NAME + ";", null);
+        if(cursor != null) {
+            if(cursor.moveToFirst()) {
+                do {
+                    Fellow fellow = new Fellow(
+                            cursor.getString(cursor.getColumnIndex("last_name")),
+                            cursor.getString(cursor.getColumnIndex("first_name")),
+                            cursor.getString(cursor.getColumnIndex("company")));
+                    fellowList.add(fellow);
+                } while (cursor.moveToNext());
+            }
+        }
+        return fellowList;
+    }
+}
+```
+
+The `addFellow()` method allows us to add a fellow, if it does not already exist in our database. First, we check to see if a record already exists with those values, by querying those values first.
+
+We create a `Cursor` object, to store all of the values at any given row. Think of a `Cursor` as just that - a cursor that rests on a certain record in the database.
+
+Once again, we are running raw SQL commands to query for records that match certain criteria. This code:
+
+```java
+Cursor cursor = getReadableDatabase().rawQuery(
+                "SELECT * FROM " + TABLE_NAME + " WHERE first_name = '" + fellow.getFirstName() +
+                "' AND last_name = '" + fellow.getLastName() + "' AND company = '" + fellow.getCompany() +
+                        "';", null);
+```
+
+effectively runs the SQL code:
+
+```SQL
+SELECT * FROM fellows WHERE first_name = 'a fellows first name' AND last_name = 'a fellows last name' AND company = 'the company they work for;
+```
+
+Next, we confirm that the record count that returns from that query is zero (0). If it is, add the record - if not, don't. This way, we can avoid adding duplicates:
+
+```java
+if (cursor.getCount() == 0) {
+            getWritableDatabase().execSQL("INSERT INTO " + TABLE_NAME +
+                    "(last_name, first_name, company) VALUES('" +
+                    fellow.getLastName() + "', '" +
+                    fellow.getFirstName() + "', '" +
+                    fellow.getCompany() + "');");
+        }
+```
+
+As you can see, we run queries by calling the `getReadableDatabase()`, but insert records by calling `getWritableDatabase()`.
+
+Finally, we should create a method that returns a list of fellows currently in the database table:
+
+```java
+public List<Fellow> getFellowList() {
+        List<Fellow> fellowList = new ArrayList<>();
+        Cursor cursor = getReadableDatabase().rawQuery(
+                "SELECT * FROM " + TABLE_NAME + ";", null);
+        if(cursor != null) {
+            if(cursor.moveToFirst()) {
+                do {
+                    Fellow fellow = new Fellow(
+                            cursor.getString(cursor.getColumnIndex("last_name")),
+                            cursor.getString(cursor.getColumnIndex("first_name")),
+                            cursor.getString(cursor.getColumnIndex("company")));
+                    fellowList.add(fellow);
+                } while (cursor.moveToNext());
+            }
+        }
+        return fellowList;
+    }
+```
+
+After first getting a list of the records currently in the table, we want to grab the values from each of the records, create a new Fellows object with these values, and add them to our list, so we can return it.
+
+The methods `cursor.moveToFirst()` and `cursor.moveToNext()` are kind of magical, in that they both move the `Cursor` to a new position, but also return a boolean value as to whether they were successful at doing it or not. So what we're doing in the `getFellowList()` method is essentially:
+
+* Getting all the records
+* checking to see if we have any records
+* if we do, we check to see if the cursor is on the first record
+* if it is, we create a new Fellow object based on the field values of that record
+* and we keep moving to a new record and creating Fellow objects based on each new record, as long as there are records to go to
+
+And that's it! We can now return a complete list of Fellows we've entered. Let's run some code in the MainActivity to log what we have in our database, after we add some records:
+
+
+
 // TODO: update lesson to use SqliteOpenHelper, then introduce Cupboard/Room as future alternatives, because SqliteOpenHelper....
 
 ### Exercises
