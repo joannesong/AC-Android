@@ -519,11 +519,130 @@ The methods `cursor.moveToFirst()` and `cursor.moveToNext()` are kind of magical
 * if it is, we create a new Fellow object based on the field values of that record
 * and we keep moving to a new record and creating Fellow objects based on each new record, as long as there are records to go to
 
+```java
+package nyc.c4q.sqliteexample.database;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import nyc.c4q.sqliteexample.model.Fellow;
+
+public class FellowsDatabaseHelper extends SQLiteOpenHelper {
+
+    private static final String DATABASE_NAME = "fellows.db";
+    private static final String TABLE_NAME = "fellows";
+    private static final int SCHEMA_VERSION = 1;
+
+    public FellowsDatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, SCHEMA_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL(
+                "CREATE TABLE " + TABLE_NAME +
+                " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "last_name TEXT, first_name TEXT, company TEXT);");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        /*  Important for when you update an entire database with a new version.
+        *   We won't be exploring that in this lecture's example.
+        */
+    }
+
+    public void addFellow(Fellow fellow) {
+        Cursor cursor = getReadableDatabase().rawQuery(
+                "SELECT * FROM " + TABLE_NAME + " WHERE first_name = '" + fellow.getFirstName() +
+                "' AND last_name = '" + fellow.getLastName() + "' AND company = '" + fellow.getCompany() +
+                        "';", null);
+        if (cursor.getCount() == 0) {
+            getWritableDatabase().execSQL("INSERT INTO " + TABLE_NAME +
+                    "(last_name, first_name, company) VALUES('" +
+                    fellow.getLastName() + "', '" +
+                    fellow.getFirstName() + "', '" +
+                    fellow.getCompany() + "');");
+        }
+        cursor.close();
+    }
+
+    public List<Fellow> getFellowList() {
+        List<Fellow> fellowList = new ArrayList<>();
+        Cursor cursor = getReadableDatabase().rawQuery(
+                "SELECT * FROM " + TABLE_NAME + ";", null);
+        if(cursor != null) {
+            if(cursor.moveToFirst()) {
+                do {
+                    Fellow fellow = new Fellow(
+                            cursor.getString(cursor.getColumnIndex("last_name")),
+                            cursor.getString(cursor.getColumnIndex("first_name")),
+                            cursor.getString(cursor.getColumnIndex("company")));
+                    fellowList.add(fellow);
+                } while (cursor.moveToNext());
+            }
+        }
+        return fellowList;
+    }
+}
+```
+
 And that's it! We can now return a complete list of Fellows we've entered. Let's run some code in the MainActivity to log what we have in our database, after we add some records:
 
+```java
+package nyc.c4q.sqliteexample;
 
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
 
-// TODO: update lesson to use SqliteOpenHelper, then introduce Cupboard/Room as future alternatives, because SqliteOpenHelper....
+import java.util.List;
+
+import nyc.c4q.sqliteexample.database.FellowsDatabaseHelper;
+import nyc.c4q.sqliteexample.model.Fellow;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        FellowsDatabaseHelper fellowsDatabaseHelper = new FellowsDatabaseHelper(getApplicationContext());
+
+        fellowsDatabaseHelper.addFellow(new Fellow("Lin", "Lily", "Spotify"));
+        fellowsDatabaseHelper.addFellow(new Fellow("Lin", "Lily", "Spotify"));
+        fellowsDatabaseHelper.addFellow(new Fellow("Smith", "Jordan", "LinkedIn"));
+        fellowsDatabaseHelper.addFellow(new Fellow("Li", "Rusi", "Weight Watchers"));
+        fellowsDatabaseHelper.addFellow(new Fellow("Santos", "Derek", "Uber"));
+        fellowsDatabaseHelper.addFellow(new Fellow("Lui", "Danny", "Max2"));
+
+        List<Fellow> fellows = fellowsDatabaseHelper.getFellowList();
+
+        for(Fellow f : fellows) {
+            Log.d("Fellows? ", f.getFirstName() + " " + f.getLastName() + " - " + f.getCompany());
+        }
+    }
+}
+```
+
+And in Logcat, we can see the results:
+
+```
+01-13 22:37:56.420 25565-25565/? I/art: Not late-enabling -Xcheck:jni (already on)
+01-13 22:37:56.466 25565-25565/nyc.c4q.sqliteexample W/art: Before Android 4.1, method android.graphics.PorterDuffColorFilter android.support.graphics.drawable.VectorDrawableCompat.updateTintFilter(android.graphics.PorterDuffColorFilter, android.content.res.ColorStateList, android.graphics.PorterDuff$Mode) would have incorrectly overridden the package-private method in android.graphics.drawable.Drawable
+01-13 22:37:56.550 25565-25565/nyc.c4q.sqliteexample D/Fellows?: Lily Lin - Spotify
+01-13 22:37:56.550 25565-25565/nyc.c4q.sqliteexample D/Fellows?: Jordan Smith - LinkedIn
+01-13 22:37:56.550 25565-25565/nyc.c4q.sqliteexample D/Fellows?: Rusi Li - Weight Watchers
+01-13 22:37:56.550 25565-25565/nyc.c4q.sqliteexample D/Fellows?: Derek Santos - Uber
+01-13 22:37:56.550 25565-25565/nyc.c4q.sqliteexample D/Fellows?: Danny Lui - Max2
+01-13 22:37:56.555 25565-25581/nyc.c4q.sqliteexample D/OpenGLRenderer: Use EGL_SWAP_BEHAVIOR_PRESERVED: true
+```
 
 ### Exercises
 
