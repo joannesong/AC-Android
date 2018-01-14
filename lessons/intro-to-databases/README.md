@@ -279,6 +279,10 @@ SQLite is a popular choice for databases in phones (it is the default embedded d
 
 ![Try breaking stuff until you stop breaking stuff](https://i.pinimg.com/originals/f0/ec/70/f0ec70b24a69ea7b57ade4d639f95619.jpg)
 
+One great way to experiment with SQLite is to mess around with a **sandbox**, or a safe way to mess around with a new language, without actually setting your house on fire.
+
+A great resource is this [online emulator](http://kripken.github.io/sql.js/GUI/)!
+
 ## How can we use SQLite to create, update, and administer a relational database in Android Applications?
 
 There are a number of ways to create a SQLite Database, add records to it, and retreive data from it in Android. There are libraries like Cupboard and Room which will help make your lives easier. However, like all things in Android, it's important to learn how to create and use databases the old fashioned way first - and that way for us, is with **SQLiteOpenHelper**.
