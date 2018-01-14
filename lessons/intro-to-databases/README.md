@@ -109,7 +109,7 @@ All data stored in a relational database is of a certain **data type**. SQLite h
 
 A user can insert the current data and current time by using function like `DATE()` and `TIME()` - this is especially useful for timestamping your data. 
 
-## Why use Relational Databases in Android Application?
+## Why use Relational Databases in Android Applications?
 
 Relational databases are ideal for repeating or structured data (e.g. contacts, messages, users, tweets). You might want to use a Relational Database if:
 
@@ -140,7 +140,7 @@ These statements constitute what are referred to as [CRUD](https://en.wikipedia.
 
 ### `DROP TABLE` statements
 
-The `DROP TABLE` statement is used to drop an existing table in a database:
+The `DROP TABLE` statement is used to delete an existing table in a database:
 
 ```SQL
 DROP TABLE table_name;
@@ -283,40 +283,16 @@ SQLite is a popular choice for databases in phones (it is the default embedded d
 **1)** Complete Codeacademy's SQL Manipulation exercises (1 - 10) and the Manipulation multiple choice quiz. You'll need to create an account if you haven't already. Do not continue past the quiz for now.
 
 **2)** Go to [Online SQL interpreter (SQL.js)](http://kripken.github.io/sql.js/GUI/). For this example only, make sure to clear the contents of the input box, and add the following code: `DROP TABLE cats;`
-- In the *Schema Panel* (left side), create a table named `cats`. The table should have the following columns: `id` (INTEGER), `name` (TEXT), `last_fed` (LONG) and `is_hungry` (BOOLEAN).
-- Directky below the create statement, write statements to insert five cats into the cats table: id: 1, name: Furry, last_fed: 0, is_hungry: 1, id: 2, name: Harry, last_fed: 6745684353, is_hungry: 0, id: 3, name: Mike, last_fed: 5890234637, is_hungry: 1, plus two of your choosing. Next, compose and run a statement to select all of the cats from the cats table. Click "Execute" to run the code.
+- In the *Schema Panel* (left side), create a table named `cats`. The table should have the following columns: `id` (INTEGER PRIMARY KEY AUTOINCREMENT), `name` (TEXT), `last_fed` (LONG) and `is_hungry` (BOOLEAN).
+- Directly below the create statement, write statements to insert five cats into the cats table: 
+  * name: Furry, last_fed: 0, is_hungry: 1, 
+  * name: Harry, last_fed: 6745684353, is_hungry: 0
+  * name: Mike, last_fed: 5890234637, is_hungry: 1
+  * plus two of your choosing 
+
+Next, compose and run a statement to select all of the cats from the cats table. Click "Execute" to run the code.
+
 - Compose and run an update statement to feed Furry now. He is no longer hungry. Select all cats from the table to confirm that your update worked.
 - Mike got tired of the pampered life and ran away. Compose and run a statement to delete him from the table. Select all cats from the table to confirm that your delete worked.
 - Alter the table to add a new column: `color` (TEXT). Update each remaining cat with a fur color.
 - Compose and run a statement to select all cats from the table with orange fur.
-
-### Exercises
-
-> Fork and clone the [Access Cats](https://github.com/ramonaharrison/AccessCats) repo. Refer to the [Cupboard documentation](https://bitbucket.org/littlerobots/cupboard/wiki/withDatabase) or this [guide](https://guides.codepath.com/android/Easier-SQL-with-Cupboard) as you complete the following exercises.
-
-> **1)** Read through the sample code provided in the Access Cats project. What looks familiar? What looks new?
-
-> **2)** Add a few cats to the database and observe the list. Force kill the app by swiping it from the recents screen. Reopen the app. Are the cats still there?
-
-> **3)** With the app open, press the recents button and long press the the cat icon in the Access Cats app label to access the App Info screen. Press "Storage" then "Clear Data" to clear the app data. Reopen the app. Are the cats still there?
-
-> **4)** In CatActivity.java, find the `onCatClicked()` method. Add logic to feed the cat by using Cupboard to update the last fed time in the database.
-
-> **5)** In CatActivity.java, find the `onCatLongClicked()` method. Add logic to delete the cat by using Cupboard to remove the cat from the database.
-
-> **6)** Use Cupboard to add a new column to the cat table named `image_url`. For each cat in your database, find a cat image URL online and display the image next to the cat's name in the list using the [Picasso library](https://github.com/square/picasso). Try to do this without clearing the app data (read up on [migrations](https://guides.codepath.com/android/Easier-SQL-with-Cupboard#migrations))!
-
-> **7)** Install [DB Browser for SQLite](http://sqlitebrowser.org/), which will allow you to inspect your app's SQLite data graphically. Use Terminal to pull the database file from your device:
-
-> *You'll need to cd into the sdk-tools directory if you haven't added adb to your path*
-
-> ```
-> ./adb shell run-as <app package name> chmod 666 /data/data/<app package name>/databases/<database file name>
-> ./adb shell cp /data/data/<app package name>/databases/<database file name> /sdcard/
-> ./adb pull /sdcard/<database file name>
-> ```
-
-> Once you have the file downloaded, open it in DB Browser. What do you see?
-
-> **8) BONUS:** Create a new activity, DogActivity.java (or choose another animal that you like). Duplicate the cat logic to create a new POJO, adapter and table in your database, then display a list of animals in your new activity.
-
