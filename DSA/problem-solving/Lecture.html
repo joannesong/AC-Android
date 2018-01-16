@@ -1,5 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+
 # Title: DSA Review
 Tags: dsa, problem solving
+
+---
 
 # Objectives
 
@@ -8,10 +34,14 @@ Tags: dsa, problem solving
 - Apply problem solving techniques to past dsa problems.
 - Practice using unit tests to verify solutions.
 
+---
+
 # Resources
 
 - [Hacker Rank](https://www.hackerrank.com/)
 - [Khan Academy](https://www.khanacademy.org/computing/computer-science/algorithms/)
+
+---
 
 ## App Problem and Review
 
@@ -20,6 +50,8 @@ Tags: dsa, problem solving
 - The test app displays color names, colored in their color names.
 - Deeper review of sorting will happen later in the lecture.
 - Better review of Networking will happen again tomorrow.
+
+---
 
 ## Highlights
 
@@ -30,15 +62,21 @@ Tags: dsa, problem solving
 
 * Implementing selection sort vs bubble sort
 
+---
+
 
 #### Oh My Grades!
 - If you think your app does all these things (and it builds), slack me.
 - If you made commits before 10pm but didn't get to push it, you may do so and slack me.
 
+---
 
-# Problem statement
+
+## Problem statement
 
 > Create a function `selectEvenNumbers` that will take in an array of numbers and return an array of only even numbers. If there are no even numbers, return the empty array.
+
+---
 
 # 1. Read the problem at least three times (or however many makes you feel comfortable)
 
@@ -50,12 +88,16 @@ Tags: dsa, problem solving
 * *How can a computer tell what is an even number?* Divide that number by 2 and see if its remainder is 0.
 * *What are the data types of the elements in the array?* Numbers
 
+---
+
 # 2. Identify what needs to be done
 
 * Be **clear** about what the problem is.
 
 #### Ask questions like:
 * *What is the goal of `selectEvenNumbers`? What am I returning at the end of this function?* The goal is to take all the even numbers and return them in an array. If there are no even numbers, return an empty array.
+
+---
 
 # 3. For a complex programming problem, break the problem up into simpler pieces
 
@@ -66,10 +108,16 @@ Tags: dsa, problem solving
 * *What are the different components of `selectEvenNumbers`?* 1) Deciding if a number is even or not. 2) Creating an array of even numbers
 * *What is the simplest version of the problem?* An array that contains just one even number and we return it. Or no even numbers at all and we return empty array. What other simpler scenarios are there?
 
+---
+
 # 4. Write Pseudocode
 
 * Writing out pseudocode that you can translate into code will help with defining the structure of your code and make coding a lot easier.
 * **Don’t get caught up with the syntax. Focus on the logic and steps.**
+
+---
+
+# Pseudocode
 
 Here is an example of pseudocode that has more words:
 ```
@@ -85,6 +133,10 @@ for each element in the given array
 return evenNumbers
 ```
 
+---
+
+# Pseudocode contd.
+
 Here is an example of pseudocode that has fewer words:
 ```
 function selectEvenNumbers
@@ -98,6 +150,8 @@ for i = 0 to i = length of evenNumbers
 return evenNumbers
 ```
 
+---
+
 # 5. Test your code
 * Work through the solution manually with sample data (preferably while in pseudocode)
 * Think up edge cases and corner cases for your solution.
@@ -105,6 +159,8 @@ return evenNumbers
 #### Ask questions like:
 * *How do I verify my solution is correct?* Write unit tests. Walk through the solution with sample data manually.
 * *What are some corner cases I need to be aware of?* Are negative numbers even or not? Are decimals even or not? Is 0 even or not? Is there a limit to even numbers?
+
+---
 
 # 5. Practice, Practice, Practice.
 
@@ -124,6 +180,10 @@ removeDupes(new int[]{7, 7, 7, 7, 7}}
 // returns {}
 ```
 
+---
+
+# Practice contd.
+
 **DSA Problem 2:**
 
 Given a string, write a method called countTheLetters takes a string input and returns a map containing a count for each of the letters in the string.
@@ -139,14 +199,21 @@ countTheLetters("llama");
 // returns a map containing the pairs {l: 2, a: 2, m: 1}
 ```
 
+---
+
+# In class exercise
+
 **In class exercise**: Implement `selectEvenNumbers`. 
 
 Submit your implementation code or a link to it for in-class exercise.
+
+---
 
 # 6. SelectionSort Review
 
 How we could have implemented `selectionSort` following the steps above.
 
+---
 
 # Summary
 
@@ -161,3 +228,16 @@ How we could have implemented `selectionSort` following the steps above.
 4. Write Pseudocode
 
 5. Test your code
+
+---
+
+
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script>
+  var slideshow = remark.create();
+</script>
+</body>
+</html>
