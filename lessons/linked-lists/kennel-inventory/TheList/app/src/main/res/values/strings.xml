@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TheList</string>
+    <string name="instructions">
+Welcome to the SinglyLinkedList: Number. Please choose one of the following options.\n
+        Note that the list is indexed starting at 1.\n
+Singly Linked List Operations\n
+1. insert at beginning\n
+ 2. insert at end\n
+ 3. insert at position\n
+ 4. delete at position\n
+ 5. check empty\n
+ 6. get size</string>
+</resources>
