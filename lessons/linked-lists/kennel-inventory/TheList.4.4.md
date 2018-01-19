@@ -256,7 +256,7 @@ Better yet, create an activity with buttons that allows you to choose between wh
 ### Resources:
 [Linked List example used in application](http://www.sanfoundry.com/java-program-implement-singly-linked-list/)
 [Further Reading](https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/)
-[Project]()
+[Project](https://github.com/C4Q/AC-Android/tree/linked-lists-kennel/lessons/linked-lists/kennel-inventory/TheList)
 
 
 
