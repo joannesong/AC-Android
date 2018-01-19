@@ -12,7 +12,7 @@ There are different types of linked list depending on their behavior.
 We will focus on a singly linked list: This is a list whose last node always points to null.
 
 We begin with a `Node` who's only attributes are some type of `data` and a `pointer` to another allocation of memory of its same type.
-```
+```java
 class Node { 
     int data; // information held in each element of a linked list. ie. A Type "Customer", "Inventory" or "Dog".
     Node next; // An instance of this class that is used to reference a different Node element. 
@@ -20,7 +20,7 @@ class Node {
 ```
 
 A full implementation of a Node class might look like this:
-```
+```java
 class Node {
     protected int data;
     protected Node next;
@@ -62,7 +62,7 @@ class Node {
 ### A List:
 
 A LinkedList Using such a Node might look like this:
-```
+```java
 public class SinglyLinkedList {
 
     private Node head;
@@ -181,7 +181,7 @@ public class SinglyLinkedList {
 }
 ```
 Above is the list use in the sample project. Don't be put off by what seems like a wall of text. We can see that there are only three fields that contain state in this class: 
-```
+```java
     private Node head;
     private Node tail;
     private int size;
@@ -194,7 +194,7 @@ One of the defining attributes of a linked list is that since we hold a referenc
 We can definitely build a list with only a head but adding an element at the end of such a list would be a Linear, or O(N) operation, because we need to traverse the entire list to find the last element and append the element we are adding to it.
 
 This is what adding an element without the tail might look like: Note this method uses a generic as the datatype
-```
+```java
 public void addNode(T data) {
         if (head == null) {
             head = new Node<T>(data); // assigning a value is constant time.
@@ -210,7 +210,7 @@ public void addNode(T data) {
 
 Below we are adding at the beginning and at the end. 
 Both operations are constant time: O(1) Because we're only changin references
-```
+```java
     public void insertAtStart(int val) {
         Node newNode = new Node(val, null);
         size++;
