@@ -258,7 +258,7 @@ Better yet, create an activity with buttons that allows you to choose between wh
 
 * [Further Reading](https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/)
 
-* [Project](https://github.com/C4Q/AC-Android/tree/linked-lists-kennel/lessons/linked-lists/kennel-inventory/TheList)
+* [Sample Project](https://github.com/lighterletter/TheList/tree/master)
 
 
 
