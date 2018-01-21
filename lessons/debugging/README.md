@@ -75,7 +75,7 @@ E/AndroidRuntime: FATAL EXCEPTION: main
 
 ## Steps for today's lecture:
 
-1) Clone the [Buggy App](https://github.com/ramonaharrison/BuggyApp) repo and open the project in Android Studio. Follow the instructions for each activity to track down and fix the bugs:
+Clone the [Buggy App](https://github.com/ramonaharrison/BuggyApp) repo and open the project in Android Studio. Follow the instructions for each activity to track down and fix the bugs:
 
 **FirstActivity**
 
@@ -139,15 +139,3 @@ In this activity, we care about the next buggy method: `countRepeatedCharacters(
 - Why doesn't the method find the start of the first "aa" group? 
 - Why can't you simply fix the problem by letting `i` start at 0 in the `for` loop? 
 - Go ahead and fix the bug. What is the code of your  `countRepeatedCharacters()` method now? What is the output now?
-
-2) ***BONUS*** -- On your own, take 15 minutes to create your own buggy activity, `FifthActivity`, in the Buggy App project. Afterwards, share the activity code with your pairing partner and ask them to debug it.
-
-3) Clone the Codepath [Android Debugging Challenges](https://github.com/codepath/android-debugging-challenges) repo. Run through [this tutorial](https://guides.codepath.com/android/Debugging-Exceptions-within-your-App) to debug the Flixster app in Android Studio.
-
-4) Do some Google research to learn more about Java memory management, garbage collection, and `OutOfMemoryException`. 
-
-- What are some common known causes for an `OutOfMemoryException` in an Android app? 
-
-- Try to create an `OutOfMemoryException` in BuggyApp! (hint: try [loading a large bitmap](https://developer.android.com/training/displaying-bitmaps/index.html), or [leaking context](http://www.androiddesignpatterns.com/2013/01/inner-class-handler-memory-leak.html)) 
-
-- Practice using Android Studio's [Memory Monitor](https://developer.android.com/studio/profile/am-memory.html) and [HPROF Viewer](https://developer.android.com/studio/profile/am-hprof.html) to monitor and inspect the app's memory allocation.
