@@ -1,15 +1,32 @@
-- title: Debugging Workshop
-- tags: android, debugging, stack traces, logcat
+# Debugging Workshop
 
-# Objectives
-- Master interpreting a stack trace.
-- Practice using Android Studio's debugger to set breakpoints in a program and examine the object tree of a variable.
+## Objectives
+- Master interpreting a stack trace
+- Practice using Android Studio's debugger to set breakpoints in a program and examine the object tree of a variable
 
-# Resources
+## Resources
 - [Debug Your App](https://developer.android.com/studio/debug/index.html)
 - [Codepath: Debugging and Profiling Apps](https://guides.codepath.com/android/Debugging-and-Profiling-Apps)
 
 # Lecture
+
+## Warmup - DO THIS FIRST
+
+While wearing headphones, or using the closed-caption button on youtube, watch this [brief video](https://www.youtube.com/watch?v=RCM2ee200n8), and answer these questions in your own words:
+* What is a break point?
+* How can we "watch" variables?
+* What does it mean to step through code?
+* How can we set a condition for a breakpoint?
+
+## What is Debugging?
+
+Debugging is the process of finding and resolving defects or problems within the program that prevent correct operation of computer software or a system.
+
+There are many ways to "debug" an app:
+* Look through every single line of code to identify errors prior to compilation, and hope for the best
+* Create and run tests to ensure that our code is working effectively
+* Identify common exceptions in the Stack Trace
+* Utilize "Debugging tools" to "step" through code
 
 ### Interpreting a stack trace
 
@@ -56,7 +73,13 @@ E/AndroidRuntime: FATAL EXCEPTION: main
 - At which line number of the activity's code did the exception occur?
 - With which method invocation did the exception occur?
 
-### Using the debugger
+## Steps for today's lecture:
+
+1) Clone the [Buggy App](https://github.com/ramonaharrison/BuggyApp) repo and open the project in Android Studio. Follow the instructions for each activity to track down and fix the bugs:
+
+**FirstActivity**
+
+On launch, this activity displays a string in the TextView, but it crashes when the device is rotated. Fix the activity so that the correct text is displayed without crashing.
 
 To investigate further, try to complete the following steps using Android Studio's debugger:
 
@@ -67,14 +90,6 @@ To investigate further, try to complete the following steps using Android Studio
 - Press the resume button the move on from the breakpoint.
 - Rotate your device. When the breakpoint is encountered again, review the program's state in the Debugger panel. In the Variables window, look at the value of the String variable `welcome`. What is its current value?
 - Fix the Activity code so that `FirstActivity` will display the correct text and not crash when the device is rotated.
-
-# Exercises
-
-1) Clone the [Buggy App](https://github.com/ramonaharrison/BuggyApp) repo and open the project in Android Studio. Follow the instructions for each activity to track down and fix the bugs:
-
-**FirstActivity**
-
-On launch, this activity displays a string in the TextView, but it crashes when the device is rotated. Fix the activity so that the correct text is displayed without crashing.
 
 **SecondActivity**
 
