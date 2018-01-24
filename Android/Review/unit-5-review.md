@@ -26,16 +26,16 @@ Extra on test:
 - DSA review
 
 Topics links:
-* [Intents](https://github.com/C4Q/AC-Android/tree/v2/lessons/03-Android-Development/Lecture-7-Intents)
+* [Intents](https://github.com/C4Q/AC-Android/tree/v2/Android/Lecture-7-Intents)
 * [Menus and Navigation](https://github.com/C4Q/AC-Android/tree/v2/Android/Lecture-12-Networking)
 * [Recycler View](https://github.com/C4Q/AC-Android/blob/master/lessons/recyclerview/review/README.md)
 * [Async Tasks](https://github.com/C4Q/AC-Android/tree/v2/Android/Lecture-10-Async-tasks)
 * [Fragments](https://github.com/C4Q/AC-Android/blob/master/lessons/android-fragments2/Fragments_Continued/README.md)
 * [SQLite database](https://github.com/C4Q/AC-Android/blob/master/lessons/intro-to-databases/README.md)
-* [Json](https://github.com/C4Q/AC-Android/blob/d9470e0cc8e225bc3e841fce4feb0eeaebaac5a5/lessons/json/Json4.4.md)
+* [Json](https://github.com/C4Q/AC-Android/tree/master/lessons/json/json_parsing)
 
 Apps links:
 * [Network And Database sample](https://github.com/C4Q/AC-Android-App-NetworkDatabase)
 * [Unit 4 Final Solution](https://github.com/C4Q/AC-AndroidTest-U4Final/tree/sol)
-* [Notes app](https://github.com/C4Q/notesapp)
+* [Notes app](https://github.com/C4Q/notesapp/tree/dev)
 * [Menus app](https://github.com/C4Q/AC-Android-Menu-App.git)
