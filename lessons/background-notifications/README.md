@@ -21,7 +21,6 @@
 |**Service**|a component which runs in the background without direct user interaction|
 |**IntentService**|a straightforward structure for running an operation on a single background thread|
 |**Broadcast Receiver**|a component that responds to system-wide broadcast announcements|
-|
 
 # Lecture
 
