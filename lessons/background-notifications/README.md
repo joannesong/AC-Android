@@ -6,6 +6,7 @@
 
 ## Resources
 - [Notifications](https://developer.android.com/guide/topics/ui/notifiers/notifications.html)
+- [Notification Channels](https://medium.com/exploring-android/exploring-android-o-notification-channels-94cd274f604c)
 - [Notifications - Design Patterns](https://material.google.com/patterns/notifications.html)
 - [PendingIntent](https://developer.android.com/reference/android/app/PendingIntent.html)
 - [IntentService](https://developer.android.com/reference/android/app/IntentService.html)
@@ -59,8 +60,9 @@ The following code snippet displays a basic notification to the user:
 
 ```java
 int NOTIFICATION_ID = 555;
+String NOTIFICATION_CHANNEL = "C4Q Notifications";
 
-NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL)
                 .setSmallIcon(R.drawable.notification_icon)
                 .setContentTitle("My notification")
                 .setContentText("Hello World!");
