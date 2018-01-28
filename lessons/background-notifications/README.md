@@ -1,16 +1,27 @@
 # Notifications & Background Services
 
-# Objectives
+## Objectives
 - Fellows will learn how to display notifications to the user
 - Fellows will be able to define what a `PendingIntent` is and include one in a notification.
 
-# Resources
+## Resources
 - [Notifications](https://developer.android.com/guide/topics/ui/notifiers/notifications.html)
 - [Notifications - Design Patterns](https://material.google.com/patterns/notifications.html)
 - [PendingIntent](https://developer.android.com/reference/android/app/PendingIntent.html)
 - [IntentService](https://developer.android.com/reference/android/app/IntentService.html)
 - [BroadcastReceiver](https://developer.android.com/reference/android/content/BroadcastReceiver.html)
 - [Starting Background Services](https://guides.codepath.com/android/Starting-Background-Services)
+
+## Vocabulary
+
+|Term|Definition|
+|:-:|:-|
+|**Notification**|message you can display to the user outside of your application's normal UI|
+|**PendingIntent**|a description of an Intent and a target action to perform with it|
+|**Service**|a component which runs in the background without direct user interaction|
+|**IntentService**|a straightforward structure for running an operation on a single background thread|
+|**Broadcast Receiver**|a component that responds to system-wide broadcast announcements|
+|
 
 # Lecture
 
