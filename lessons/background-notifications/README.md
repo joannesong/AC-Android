@@ -1,9 +1,8 @@
-- title: Notifications & Background Services
-- tags: notification, intent, pending intent, intent service, broadcast receiver, alarm manager
+# Notifications & Background Services
 
 # Objectives
-- Learn how to display notifications to the user.
-- Define what a PendingIntent is and include one in a notification.
+- Fellows will learn how to display notifications to the user
+- Fellows will be able to define what a `PendingIntent` is and include one in a notification.
 
 # Resources
 - [Notifications](https://developer.android.com/guide/topics/ui/notifiers/notifications.html)
@@ -69,7 +68,7 @@ notificationManager.notify(NOTIFICATION_ID, notification);
 
 A `PendingIntent` is *a description of an Intent and a target action to perform with it.* A `PendingIntent` can be handed to other applications so that they can perform the action you described on your behalf at a later time. By giving a PendingIntent to another application, you are granting it the right to perform the actions you've specified as if the other application was yourself (with the same permissions and identity).
 
-> **Exercise:** If you haven't already, complete the [Morning Challange](morning-challange.md) to display a Notification with a PendingIntent.
+> **Exercise:** If you haven't already, complete the [Morning Challenge](morning-challenge.md) to display a Notification with a PendingIntent.
 >
 > **Exercise:** What is the difference between:
 >    - A PendingIntent
@@ -234,5 +233,3 @@ public class MainActivity extends Activity {
 ```
 
 > **Exercise:** Extend `BroadcastReceiver` to start your `MyNotificationService` and display a notification to the user every 15 minutes using the `AlarmManager`.
-
-## [Exit Ticket](https://goo.gl/forms/u4gaaMU4m7q6nTBo2)
