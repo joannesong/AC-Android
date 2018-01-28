@@ -14,7 +14,7 @@
 
 # Lecture
 
-## Warm Up 
+## Warm Up - DO THIS FIRST! 👈👈👈
 
 **1)** Create a new Android Studio project for today's exercises.
 
@@ -95,13 +95,6 @@ notificationManager.notify(NOTIFICATION_ID, notification);
 
 A `PendingIntent` is *a description of an Intent and a target action to perform with it.* A `PendingIntent` can be handed to other applications so that they can perform the action you described on your behalf at a later time. By giving a PendingIntent to another application, you are granting it the right to perform the actions you've specified as if the other application was yourself (with the same permissions and identity).
 
-> **Exercise:** If you haven't already, complete the [Morning Challenge](morning-challenge.md) to display a Notification with a PendingIntent.
->
-> **Exercise:** What is the difference between:
->    - A PendingIntent
->    - An implicit Intent
->    - An explicit Intent
-
 ## Background Services with IntentService
 
 A **service** is a component which runs in the background without direct user interaction. Since a service doesn't have a visible UI, it is not bound to the lifecycle of an activity and is able to run in the background even while the user is not viewing or interacting with your app. 
@@ -166,8 +159,6 @@ public class MainActivity extends Activity {
 ```
 You can start your `IntentService` from any `Activity` or `Fragment`. Once you call `startService()`, the `IntentService` does the work defined in its `onHandleIntent()` method, and then stops itself.
 
-> **Exercise:** Create an IntentService, `MyNotificationService.java` that displays a notification to the user in its `onHandleIntent()`. Register the service in your manifest and launch it from your `MainActivity.java` `onCreate()`.
-
 ## Broadcast Receiver
 
 A **broadcast receiver** is a component that responds to system-wide broadcast announcements. Many broadcasts originate from the system (e.g broadcast announce that the device has booted, the screen has turned off, the battery is low, or a picture was captured). Add permissions to `AndroidManifest.xml` in order to intercept system broadcasts:
@@ -199,8 +190,6 @@ Register your receiver in `AndroidManifest.xml`:
     </intent-filter>  
 </receiver>
 ```
-
-> **Exercise:**  Extend `WakefulBroadcastReceiver` to start your `MyNotificationService` and display a notification to the user when your device boots. Reboot your device to confirm that your solution works.
 
 ## Alarm Manager
 
@@ -258,5 +247,3 @@ public class MainActivity extends Activity {
   }
 }
 ```
-
-> **Exercise:** Extend `BroadcastReceiver` to start your `MyNotificationService` and display a notification to the user every 15 minutes using the `AlarmManager`.
