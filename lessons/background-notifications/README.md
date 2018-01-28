@@ -32,9 +32,13 @@
 **2)** The following code snippet displays a basic notification to the user:
 
 ```java
-int NOTIFICATION_ID = 555; // Setting a notification ID allows you to update the notification later on.
+// Setting a notification ID allows you to update the notification later on.
+private static final int NOTIFICATION_ID = 555;
 
-NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+// Setting a notification channel allows the user to make choices about groups of notifications in later Android versions
+private static final String NOTIFICATION_CHANNEL = "C4Q Notifications";
+
+NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL)
                 .setSmallIcon(R.drawable.notification_icon)
                 .setContentTitle("My notification")
                 .setContentText("Hello World!");
