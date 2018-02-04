@@ -231,8 +231,6 @@ Geocoder coder = new Geocoder(getApplicationContext());
                 address = coder.getFromLocationName("3105 Astoria Blvd S, Astoria, NY 11102", 5);
                 if (address != null) {
                     Address location = address.get(0);
-                    location.getLatitude();
-                    location.getLongitude();
                     p1 = new LatLng(location.getLatitude(), location.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(p1).title("Marker in Astoria - Neptune Diner").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher_round)));
                 }
