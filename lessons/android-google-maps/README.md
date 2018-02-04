@@ -30,7 +30,7 @@ Once there, make sure that the following items have been checked-off/installed:
 
 Your selections should look something like this:
 
-![]()
+![AndroidSDKSetup](AndroidSDKSetup.PNG)
 
 Once all of these items have been installed, click Apply and Okay to move on....
 
