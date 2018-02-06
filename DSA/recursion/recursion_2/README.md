@@ -19,7 +19,11 @@ parenthesis(2) = (()), ()()
 
 parenthesis(3) = ()()(), (()()), ((())), (())(), ()(())
 
-parenthesis(4) = ()()()(), (()()()), ((())()), (()(())), (((())))
+parenthesis(4) = (((()))), ((()())), ((())()), ((()))(), (()(())), (()()()), (()())(), (())(()), (())()(), ()((())), ()(()()), ()(())(), ()()(()), ()()()()
+
+count of parenthesis(4) = 14
+count of parenthesis(5) = 42
+
 ```
 
 **Question 2**: Write a recursive function that will count the items in a list
