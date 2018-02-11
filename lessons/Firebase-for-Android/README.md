@@ -68,4 +68,6 @@ In other words, it's very likely that as a developer for a company, you may neve
 
 For today's lesson, we will, as a group, follow the [Google Codelab found here](https://codelabs.developers.google.com/codelabs/firebase-android/index.html#0).
 
+**One Change:** Before we clone this repository - we will fork it to our account, then clone our fork, so that we may push changes: https://github.com/firebase/friendlychat-android 
+
 We'll develop a messenger app that allows for Google Auth, and a number of other features. Along the way, we'll make mistakes, re-read instructions, be prepared to google stuff if the app crashes, and learn new things. Welcome to the wonderful world of self-directed learning!!!
