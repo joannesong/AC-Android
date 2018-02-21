@@ -113,3 +113,83 @@ public int sum(int n){
 
 
 ## HashMaps and Lists
+
+A piece of code is worth a thousand words.
+
+For HashMaps:
+```java
+HashMap<Integer, String> map = new HashMap<>();
+map.put(2, "hello");
+System.out.println(map.get(2));
+```
+
+For Lists:
+```java
+ArrayList<String> list = new ArrayList<>();
+list.add("hello");
+System.out.println(list.get(0));
+```
+
+
+## Problems
+
+**DSA Problem:**
+
+Given an array of integers, write a method called int[] removeDupes(int[] input) that returns a new array of just the unique values.
+
+You may use additional data structures in your solution.
+
+```
+removeDupes(new int[]{1, 2, 3, 4, 5, 1, 2, 3}); 
+
+// returns {4, 5} 
+
+removeDupes(new int[]{7, 7, 7, 7, 7}} 
+
+// returns {}
+```
+
+**DSA Problem:**
+
+Given a string, write a method called countTheLetters takes a string input and returns a map containing a count for each of the letters in the string.
+
+```
+countTheLetters("dog");
+// returns a map containing the pairs {d: 1, o: 1, g: 1}
+
+ countTheLetters("elephant"); 
+// returns a map containing the pairs {e: 2, l: 1, p: 1, h: 1, a: 1, n: 1, t: 1} 
+
+countTheLetters("llama");
+// returns a map containing the pairs {l: 2, a: 2, m: 1}
+```
+
+**DSA Problem**: 
+
+Implement `selectEvenNumbers` which takes a list of integers greater than 0 and returns the ones divisble by 2.
+
+
+**Question**:
+
+Implement `List<String> lengthSort(List<String> strs)` that sorts a list of strings based on the length of the strings.
+
+
+**Question**: Count recursively the total number of "abc" and "aba" substrings that appear in the given string.
+```
+countAbc("abc") → 1
+countAbc("abcxxabc") → 2
+countAbc("abaxxaba") → 2
+```
+
+**Question**: We have triangle made of blocks. The topmost row has 1 block, the next row down has 2 blocks, the next row has 3 blocks, and so on. Compute recursively (no loops or multiplication) the total number of blocks in such a triangle with the given number of rows.
+```
+triangle(0) → 0
+triangle(1) → 1
+triangle(2) → 3
+```
+
+**Question**: Given a number, we need to find sum of its digits using recursion.
+```
+digitSum(12345) = 15
+digitSum(45632) = 20
+```        
