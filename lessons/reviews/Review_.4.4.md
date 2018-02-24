@@ -3,10 +3,12 @@
 ### **Intro** 
 This will be a review day covering various topics.
 
-* 10-12: Overview of Java : Methods and classes structures- From control to complex structures: ie arrays-to lists and maps.Patterns: singleton and listener.
+* 10-12: Overview of Java : Methods and classes structures- 
+From control to complex structures: ie arrays-to lists and maps.
+Patterns: singleton and listener.
 * 12-1: 
 * 1-2: lunch
-* 2-3: Android: Manifest, Activities, shared prefs 
+* 2-3: Android: Manifest, Activities, Shared Preferences 
 * 3-4: Fragments and their transactions
 * 4-5: Recycler view / Image performance  
 * 5-6: Networking: tasks and retrofit. 
@@ -17,13 +19,13 @@ topics: best practices, json modeling, images, maybe fragments overview. Async t
 ### Overview: 
 
 The Java languge is composed of `classes`, and `interfaces`. A class has three main components. Below, they are listed from the highest complexity to the lowest. 
-* `Classes`: These are files that encapsule a concept such as a car, or a user
+* `Classes`: These are files that encapsule a concept such as a car or a user
 ```java
 class Avengers {
 
 }
 ```
-* `Methods`: These are structures that live inside classes, they define behavioral logic for a class such a steering a car or having a user do jumpingjacks depending on the context.
+* `Methods`: These are structures that live inside classes. They define behavioral logic for a class; such as steering a car or having a user do jumping jacks (depending on the context.)
 ```java 
 class Avengers {
     public void assemble(){ // <-- This is a method
@@ -42,7 +44,7 @@ class Avengers {
 }
 ```
 
-***note***: A *declaration* is where we define the `Type` of an opject we're using and we give it a name, in the example above this would be `String avengerOne`. Where as an *assignment* is where we give a variable or field a value following the `=` sign, ie `"spidermeng"`
+***note***: A *declaration* is where we define the `Type` of an object we're using and we give it a name. In the example above this would be `String avengerOne`. Where as an *assignment* is where we give a variable/field a value following the `=` sign, ie `"spidermeng"`
 
 ##### Control structures. 
 
@@ -50,9 +52,11 @@ Control structures are blocks of logic used within methods. such as `"if-else" s
 
 ##### Inheritance:
 
-Java employs two other different file types within the language, that of interfaces and abstract classes. An `interface` defines shared behavior among classes but no implementation, where as an `abstract class` can define behavior if need be. 
+Java employs two other different file types within the language: interfaces and abstract classes. An `interface` defines shared behavior among classes but no implementation, whereas an `abstract class` can define behavior if need be. 
 
-In order to construct complex programs we need to work with different levels of abstraction which is why we have inheritance, in Java, inheritance is the idea of abstracting away concepts to modularize the codebase with the aim of making things easier to read and reason about. To this end we have `Abstract classes` and `interfaces` the idea being that we can connect similar concepts in terms of code. With a class you would `extend` another class, whether it's abstract or not, and with an interface you would `implement` it. You can only extend one class per class. This is called single inheritance.
+In order to construct complex programs we need to work with different levels of abstraction. This is why we have inheritance, in Java. 
+Inheritance: the idea of abstracting away concepts to modularize the codebase with the aim of making things easier to read and reason about. 
+To this end we have `Abstract classes` and `interfaces` the idea being that we can connect similar concepts in terms of code. With a class you would `extend` another class, whether it's abstract or not, and with an interface you would `implement` it. You can only extend one class per class. This is called single inheritance.
 
 The reason you would have an abstract class would be to implement something like `dog` which defines some size and behavior reuirements like barking. A class that extends dog would inherit this and implement specific behavior such as a low-pitched bark for a larger dog.
 
